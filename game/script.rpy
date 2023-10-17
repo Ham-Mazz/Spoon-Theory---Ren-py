@@ -20,6 +20,7 @@ screen spoons_and_points:
 
         text "Spoons: [spoons]" size 20
         text "Social Points: [social_points]" size 20
+
 # The game starts here.
 
 label start:
@@ -46,8 +47,7 @@ label start:
 
     show screen spoons_and_points
 
-    
-
+    # Day 1 timeline
 
     "(Wake Up)"
     "You rise from your bed"
@@ -148,15 +148,7 @@ label start:
     e "Time To head to bed!"
 
     "You go to sleep"
-
-
-
-
-
-
-
-        
-
+    #End of day 1 
 
 
     # This ends the game.
