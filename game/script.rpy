@@ -66,6 +66,7 @@ label dayOne:
 
     "(Wake Up)"
     "You rise from your bed"
+    scene main_bedroom
 
     player "It's a New day!."
 
