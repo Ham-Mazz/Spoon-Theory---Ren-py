@@ -13,8 +13,8 @@ init python:
     #startDay and endDay functions for stats.  
     def difficulty(num):
         spoons = 40 - (num * 5)
-        social_points = 25 - (num * 5)
-        return spoons, social_points
+        socialPoints = 25 - (num * 5)
+        return spoons, socialPoints
 
 screen spoons_and_points:
     hbox:
@@ -23,7 +23,7 @@ screen spoons_and_points:
         spacing 20
 
         text "Spoons: [spoons]" size 20
-        text "Social Points: [social_points]" size 20
+        text "Social Points: [socialPoints]" size 20
 
 # The game starts here.
 
@@ -41,13 +41,13 @@ label start:
 
 
         "Easy":
-            $ spoons, social_points = difficulty(1) 
+            $ spoons, socialPoints = difficulty(1) 
             
         "Normal":
-            $ spoons, social_points = difficulty(2) 
+            $ spoons, socialPoints = difficulty(2) 
             
         "Hard":
-            $ spoons, social_points = difficulty(3) 
+            $ spoons, socialPoints = difficulty(3) 
 
     show screen spoons_and_points
 
@@ -110,7 +110,7 @@ label dayOne:
             $ spoons -= 5
             "You sit down with (character), and having a amazing lunch break. You talk with (character) about (stuff)."
         "Eat in your cubicle (-2 Social Points)":
-            $ social_points -= 2
+            $ socialPoints -= 2
             "You sit back down in your desk, open your small packed lunch and start eating, alone."
     
     menu:
@@ -121,7 +121,7 @@ label dayOne:
             
         "Take a break, resulting in you being unable to finish your work":
             $ spoons -= 5
-            $ social_points -= 2
+            $ socialPoints -= 2
             "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
     
     player "Ok it's time to go home!"
@@ -141,7 +141,7 @@ label dayOne:
     menu groceriesDayOne:
         "Invite friend over and cook dinner? (-2 spoons +2 social points)":
             $ spoons -= 2
-            $ social_points += 2
+            $ socialPoints += 2
             "You had a good time and and enjoyed a fufilling meal with your friend!"
         "Eat dinner alone":
             player "hmm that was a good meal!"
@@ -163,6 +163,8 @@ label dayOne:
     #End of day 1 
 
 label dayTwo:
+
+    #day 2 timeline
 
     "(Wake Up)"
     "You roll outta bed and hit the hard floor"
@@ -211,7 +213,7 @@ label dayTwo:
             $ spoons -= 5
             "You sit down with (character), and having a amazing lunch break. You talk with (character) about (stuff)."
         "Eat in your cubicle (-2 Social Points)":
-            $ social_points -= 2
+            $ socialPoints -= 2
             "You sit back down in your desk, open your small packed lunch and start eating, alone."
     
     #work proposal event
@@ -221,10 +223,10 @@ label dayTwo:
             "You show up the corner office, ready to KICK ASS"
             "you failed to kick ass, but you made a good impression"
             $ spoons -= 6
-            $ social_points += 3
+            $ socialPoints += 3
         "Ask co-worker to present proposal":
             "character says - you want me to present this blind? are you kidding, god damn it"
-            $ social_points -= 3
+            $ socialPoints -= 3
             "your co-worker does the event, but she is furious about it"
 
     #finish work event
@@ -236,7 +238,7 @@ label dayTwo:
             
         "Take a break, resulting in you being unable to finish your work":
             $ spoons -= 5
-            $ social_points -= 2
+            $ socialPoints -= 2
             "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
     
     player "Ok it's time to go home!"
@@ -270,9 +272,13 @@ label dayTwo:
     player "Time To head to bed!"
 
     "You go to sleep"
-    #day 2 timeline
+    #day 2 End
+
+
 
 label dayThree:
+
+    #day 3 timeline
 
     "(Wake Up)"
     "You roll outta bed and hit the hard floor"
