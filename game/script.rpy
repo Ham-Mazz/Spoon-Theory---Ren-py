@@ -51,8 +51,9 @@ label start:
 
     show screen spoons_and_points
 
-    jump dayOne
-    jump dayTwo
+    #jump dayOne
+    #jump dayTwo
+    jump dayThree
 
     # This ends the game.
 
@@ -225,6 +226,105 @@ label dayTwo:
             "character says - you want me to present this blind? are you kidding, god damn it"
             $ social_points -= 3
             "your co-worker does the event, but she is furious about it"
+
+    #finish work event
+    menu:
+
+        "Finish all your work for the day":
+            $ spoons -= 10
+            "After lunch, you focus and manage to get all your work finished somehow."
+            
+        "Take a break, resulting in you being unable to finish your work":
+            $ spoons -= 5
+            $ social_points -= 2
+            "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
+    
+    player "Ok it's time to go home!"
+    "You take the bus home (-5 spoons)"
+    $ spoons -= 5
+    player "hmm I wonder what should I have for dinner"
+
+    #make dinner event
+    menu:
+        "Make dinner":
+            $ spoons -= 5 
+            "Food is good"
+            
+
+        "starve":
+            $ spoons -= 2
+            "I dont need to eat anyways"
+
+    
+    player "it's almost time for me to go to sleep"
+
+    player "should I do laundry?"
+    # be productive event
+    menu:            
+        "Do laundry (-3 spoons)":
+            $ spoons -= 3
+            player "at least I got that out of the way"
+        "Watch TV":
+            player "I will just chill tongiht and watch TV"
+    
+    player "Time To head to bed!"
+
+    "You go to sleep"
+    #day 2 timeline
+
+label dayThree:
+
+    "(Wake Up)"
+    "You roll outta bed and hit the hard floor"
+
+    player "It's a New day... yay"
+
+    player "Hmm Should I take a Shower?"
+    #shower event
+    menu:
+        "Take shower (-2 spoons)":
+            $ spoons -= 2
+            "You took a cold shower."
+            player "that was not enjoyable, but at least I smell somewhat adequate"
+        "Skip shower":
+            "You did not take a shower, you smell and look horrid."
+
+    "you start to feel hungry, what do you want to do"
+    player "hmm Should I starve today, I think food is important for my body, but I am unsure why."
+    #breakfast event
+    menu:
+        "Make and eat breakfast (-3 spoons)":
+            $ spoons -= 3
+            "you made a scrumptious meal"
+            player "That was tasty!"
+        "Skip breakfast":
+            "you skip breakfest, lets hope you don't get too hungry"
+
+    "Time to get to Work!"
+
+    player "I have to take the bus to work (-5 spoons)"
+    $ spoons -= 5
+    player "The bus is so overpriced now"
+
+    #overflow work event
+
+    "You arrive at work and sit down in your small, cramped, dusty cubicle. You already wish the work day was over."
+    "..."
+
+    "Eventually, you hear a knock on the wall of your cubicle. It's your boss Colton."
+
+    boss "Hey , [player], take your lunch, and remember that you have a proposal to present to the board afterwards"
+
+    "You begrudgingly clock out for lunch. Grabbing your measly meal."
+    player "Hmm, where should I eat lunch?"
+    #lunch event
+    menu:
+        "Eat with your co-worker (-5 spoons)":
+            $ spoons -= 5
+            "You sit down with (character), and having a amazing lunch break. You talk with (character) about (stuff)."
+        "Eat in your cubicle (-2 Social Points)":
+            $ social_points -= 2
+            "You sit back down in your desk, open your small packed lunch and start eating, alone."
 
     #finish work event
     menu:
