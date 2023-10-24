@@ -51,8 +51,8 @@ label start:
 
     show screen spoons_and_points
 
-    #jump dayOne
-    #jump dayTwo
+    jump dayOne
+    jump dayTwo
     jump dayThree
 
     # This ends the game.
