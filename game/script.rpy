@@ -66,9 +66,11 @@ label dayOne:
 
     "(Wake Up)"
     "You rise from your bed"
-    scene main_bedroom
+    scene large_bedroom
 
     player "It's a New day!."
+
+    scene main_bedroom
 
     player "Hmm Should I take a Shower?"
 
@@ -314,6 +316,8 @@ label dayThree:
     player "The bus is so overpriced now"
 
     #overflow work event
+    
+    #add event here
 
     "You arrive at work and sit down in your small, cramped, dusty cubicle. You already wish the work day was over."
     "..."
@@ -376,4 +380,4 @@ label dayThree:
     player "Time To head to bed!"
 
     "You go to sleep"
-    #day 2 timeline
+    #day 3 end
