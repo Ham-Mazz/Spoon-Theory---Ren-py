@@ -177,6 +177,7 @@ label dayTwo:
     #day 2 timeline
 
     "(Wake Up)"
+    scene large_bedroom
     "You roll outta bed and hit the hard floor"
 
     player "It's a New day... yay"
@@ -205,6 +206,9 @@ label dayTwo:
     "Time to get to Work!"
 
     player "I have to take the bus to work (-5 spoons)"
+    scene enter_bus
+    "You find an empty spot and take a sit, feeling the bus shake as it goes along"
+    scene sit_on_bus
     $ spoons -= 5
     player "The bus is so overpriced now"
 
@@ -253,6 +257,10 @@ label dayTwo:
     
     player "Ok it's time to go home!"
     "You take the bus home (-5 spoons)"
+    scene enter_bus
+    "You find an empty spot and take a sit, feeling the bus shake as it goes along"
+    scene sit_on_bus
+    "You hate this bus"
     $ spoons -= 5
     player "hmm I wonder what should I have for dinner"
 
@@ -280,7 +288,7 @@ label dayTwo:
             player "I will just chill tongiht and watch TV"
     
     player "Time To head to bed!"
-
+    scene black
     "You go to sleep"
     #day 2 End
 
@@ -291,6 +299,7 @@ label dayThree:
     #day 3 timeline
 
     "(Wake Up)"
+    scene large_bedroom
     "You roll outta bed and hit the hard floor"
 
     player "It's a New day... yay"
@@ -319,15 +328,27 @@ label dayThree:
     "Time to get to Work!"
 
     player "I have to take the bus to work (-5 spoons)"
+    scene enter_bus
     $ spoons -= 5
     player "The bus is so overpriced now"
+    "Someone is in your normal seat, you have to stand today"
+    $ spoons -= 1
 
     #overflow work event
-    
-    #add event here
+    "someone in your group at work has been slacking off, and now there is a bunch of wor that the rest of the group needs to pick up"
+    menu:
+        "help them out":
+            $ spoons -= 8
+            $ social_points += 4
+            "yeah we can finish this, no problem"
+        "say you have other responseibilites":
+            "sorry guys I got a document that needs to be finished today"
+            $ social_points -= 4
 
     "You arrive at work and sit down in your small, cramped, dusty cubicle. You already wish the work day was over."
     "..."
+
+    scene black
 
     "Eventually, you hear a knock on the wall of your cubicle. It's your boss Colton."
 
@@ -358,6 +379,7 @@ label dayThree:
     
     player "Ok it's time to go home!"
     "You take the bus home (-5 spoons)"
+    scene enter_bus
     $ spoons -= 5
     player "hmm I wonder what should I have for dinner"
 
@@ -383,7 +405,7 @@ label dayThree:
             player "at least I got that out of the way"
         "Watch TV":
             player "I will just chill tongiht and watch TV"
-    
+    scene large_bedroom
     player "Time To head to bed!"
 
     "You go to sleep"
