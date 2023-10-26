@@ -93,10 +93,11 @@ label dayOne:
         "Skip breakfast":
             "you skip breakfest, lets hope you don't get too hungry"
 
-    "Time to get to Work!"
-
     player "I have to take the bus to work (-5 spoons)"
     $ spoons -= 5
+    scene enter_bus
+    "You find an empty spot and take a sit, feeling the bus shake as it goes along"
+    scene sit_on_bus
 
     "You arrive at work and sit down in your small, cramped, dusty cubicle. You already wish the work day was over."
     "..."
@@ -130,15 +131,21 @@ label dayOne:
     player "Ok it's time to go home!"
     "You take the bus home (-5 spoons)"
     $ spoons -= 5
+    scene enter_bus
+    "You find an empty spot and take a seat, feeling the bus shake as it goes along"
+    scene sit_on_bus
     player "hmm I wonder what should I have for dinner"
 
     menu:
         "Stop for groceries (-5 spoons)":
             $ spoons -= 5 
+            "lets grab a this, and a that"
+            scene large_grocery_store
             jump groceriesDayOne
 
         "Stop for takeout (-2 spoons)":
             $ spoons -= 2
+            scene large_diner
             "That was a quick dinner!"
 
     menu groceriesDayOne:
@@ -161,7 +168,7 @@ label dayOne:
             player "I will just chill tongiht and watch TV"
     
     player "Time To head to bed!"
-
+    scene black
     "You go to sleep"
     #End of day 1 
 
