@@ -410,3 +410,36 @@ label dayThree:
 
     "You go to sleep"
     #day 3 end
+
+label dayFour: 
+    #start day 4
+
+    "(Wake Up)"
+    scene large_bedroom
+    "You roll outta bed and hit the hard floor"
+
+    player "It's a New day, and I don't have work today, thank god."
+
+    player "Hmm Should I take a Shower, or just stay in bed a little longer?"
+    #shower event
+    menu:
+        "Take shower (-2 spoons)":
+            $ spoons -= 2
+            "You took a cold shower, that's one way to start a morning"
+            player "that was not enjoyable, but at least I can stay in if i'd like, who cares."
+        "Skip shower":
+            "You did not take a shower, you smell and look horrid."
+
+    "you start to feel hungry, what do you want to do"
+    player "hmm Should I starve today, I think food is important for my body, but I am unsure why."
+    #breakfast event
+    menu:
+        "Make and eat breakfast (-3 spoons)":
+            $ spoons -= 3
+            "you made a scrumptious meal"
+            player "That was tasty!"
+        "Skip breakfast":
+            "you skip breakfest, lets hope you don't get too hungry"
+    #go out or stay home (start of branching)
+    menu:
+        #i need to refactor this code
