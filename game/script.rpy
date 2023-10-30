@@ -51,9 +51,10 @@ label start:
 
     show screen spoons_and_points
 
-    jump dayOne
-    jump dayTwo
-    jump dayThree
+    #jump dayOne
+    #jump dayTwo
+    #jump dayThree
+    jump dayFour
 
     # This ends the game.
 
@@ -292,8 +293,6 @@ label dayTwo:
     "You go to sleep"
     #day 2 End
 
-
-
 label dayThree:
 
     #day 3 timeline
@@ -440,6 +439,30 @@ label dayFour:
             player "That was tasty!"
         "Skip breakfast":
             "you skip breakfest, lets hope you don't get too hungry"
-    #go out or stay home (start of branching)
+
+    #go out or stay home (start of branching for day 4)
     menu:
-        #i need to refactor this code
+        "Stay home and have a relaxing day":
+            #stay at home path
+            "you choose to stay home and catch up on things that need to be done"
+            "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better"
+            "now that you ate, find something to do for the rest of the night"
+            #chore or book option
+            menu:
+                "Do chores for the rest of the night":
+                    #do chores
+                    $ spoons -= 3
+                    "clean wax, idk do shit"
+                    "after you finishing cleaning and doing stuff, you go to bed"
+                "Read a book for the night":
+                    "You open and begin to read, the Night of our stars"
+                    "the main character is attempting to jailbreak to his lover from the local jail"
+                    "he succeeds and they live together happily in a beachouse, watching the stars soar over them during the night"
+                    "after finishing the book, you head to bed"
+            #hopefully jump to end day
+        "go our with friends and do stuff":
+            #go out pathway
+            "do stuff"
+
+    #end of day four
+            
