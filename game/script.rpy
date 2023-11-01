@@ -51,7 +51,7 @@ label start:
 
     show screen spoons_and_points
 
-    #jump dayOne
+    jump dayOne
     #jump dayTwo
     #jump dayThree
     jump dayFour
@@ -142,20 +142,18 @@ label dayOne:
             $ spoons -= 5 
             "lets grab a this, and a that"
             scene large_grocery_store
-            jump groceriesDayOne
+            menu:
+                "Invite friend over and cook dinner? (-2 spoons +2 social points)":
+                    $ spoons -= 2
+                    $ socialPoints += 2
+                    "You had a good time and and enjoyed a fufilling meal with your friend!"
+                "Eat dinner alone":
+                    player "hmm that was a good meal!"
 
         "Stop for takeout (-2 spoons)":
             $ spoons -= 2
             scene large_diner
             "That was a quick dinner!"
-
-    menu groceriesDayOne:
-        "Invite friend over and cook dinner? (-2 spoons +2 social points)":
-            $ spoons -= 2
-            $ socialPoints += 2
-            "You had a good time and and enjoyed a fufilling meal with your friend!"
-        "Eat dinner alone":
-            player "hmm that was a good meal!"
     
     player "it's almost bed time"
 
@@ -338,11 +336,11 @@ label dayThree:
     menu:
         "help them out":
             $ spoons -= 8
-            $ social_points += 4
+            $ socialPoints += 4
             "yeah we can finish this, no problem"
         "say you have other responseibilites":
             "sorry guys I got a document that needs to be finished today"
-            $ social_points -= 4
+            $ socialPoints -= 4
 
     "You arrive at work and sit down in your small, cramped, dusty cubicle. You already wish the work day was over."
     "..."
@@ -361,7 +359,7 @@ label dayThree:
             $ spoons -= 5
             "You sit down with (character), and having a amazing lunch break. You talk with (character) about (stuff)."
         "Eat in your cubicle (-2 Social Points)":
-            $ social_points -= 2
+            $ socialPoints -= 2
             "You sit back down in your desk, open your small packed lunch and start eating, alone."
 
     #finish work event
@@ -373,7 +371,7 @@ label dayThree:
             
         "Take a break, resulting in you being unable to finish your work":
             $ spoons -= 5
-            $ social_points -= 2
+            $ socialPoints -= 2
             "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
     
     player "Ok it's time to go home!"
@@ -387,8 +385,6 @@ label dayThree:
         "Make dinner":
             $ spoons -= 5 
             "Food is good"
-            
-
         "starve":
             $ spoons -= 2
             "I dont need to eat anyways"
@@ -460,9 +456,48 @@ label dayFour:
                     "he succeeds and they live together happily in a beachouse, watching the stars soar over them during the night"
                     "after finishing the book, you head to bed"
             #hopefully jump to end day
-        "go our with friends and do stuff":
-            #go out pathway
-            "do stuff"
+        "go out with friends and do stuff":
+            #go out pathway, start by taking the bus
+            "you get ready, putting on a cute dress and doing your makeup"
+            $ spoons -= 15
+            "you take the bus to the resturant, which is on the other side of the city"
+            scene enter_bus
+            $ spoons -= 5
+            "you arrive at the cozy little diner, greeting your friends with a hug and laughter, you missed them"
+            scene large_diner
+            "you guys sit down, order food and begin to eat, laughter is heard from your table all night"
+            $ spoons -= 5
+            "one of your friends covers the bill"
 
+            #keep going out with friends, or go home
+            menu:
+                "Go home for the day":
+                    "afterwards you head back home"
+                "go to the park with friends":
+                    $ spoons -= 7
+                    $ socialPoints
+                    "you head to the park with your friends"
+                    "afterwards you head back home"
+
+            #both pathways result in going home, dinner event then chore event, so back to here
+            
+            #make dinner event
+            menu:   
+                "Make dinner":
+                    $ spoons -= 5 
+                    "Food is good"
+                "starve":
+                    $ spoons -= 2
+                    "I dont need to eat anyways"
+
+            #chore or TV option
+            menu:
+                "Do chores for the rest of the night":
+                    #do chores
+                    $ spoons -= 3
+                    "clean wax, idk do shit"
+                    "after you finishing cleaning and doing stuff, you go to bed"
+                "Watch TV":
+                    "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
     #end of day four
             
