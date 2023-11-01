@@ -55,6 +55,7 @@ label start:
     #jump dayTwo
     #jump dayThree
     jump dayFour
+    jump dayFive
 
     # This ends the game.
 
@@ -64,42 +65,50 @@ label start:
 label dayOne:
         
     # Day 1 timeline
-
-    "(Wake Up)"
-    "You rise from your bed"
+    #wake up
+    "Good morning! It is the start of another day."
+    "Remember to conserve your spoons and use them wisely. "
     scene large_bedroom
-
-    player "It's a New day!."
+    "Let’s see what the day has in store for you."
 
     scene main_bedroom
+    #shower
+    "A shower is a great way to start the day."
+    "Remember, if you do not shower for 3 days, you will be deducted social points."
+    "Would you like to take a shower today?"
 
     player "Hmm Should I take a Shower?"
 
     menu:
-        "Take shower (-2 spoons)":
+        "Take shower":
             $ spoons -= 2
-            "You took a nice, warm, relaxing shower."
-            player "ahh that was refershing!"
+            "You take a warm shower. It is nice to be clean, but the effort drains you."
         "Skip shower":
-            "You did not take a shower, you smell horrid."
-
-    "you start to feel hungry, what do you want to do"
-    player "hmm Should I make breakfast"
+            "You skip a shower today and get dressed. You need to save your spoons for other things today."
+    #breakfast
+    "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
+    "Remember, if you do not eat at least 2 times today, you will have less spoons tomorrow."
+    "Would you like to make breakfast today?"
 
     menu:
-        "Make and eat breakfast (-3 spoons)":
+        "Make and eat breakfast":
             $ spoons -= 3
-            "you made a scrumptious meal"
+            "You make and enjoy pancakes. They're a little lumpy, but still delicious. The effort of cooking leaves you feeling drained."
             player "That was tasty!"
         "Skip breakfast":
-            "you skip breakfest, lets hope you don't get too hungry"
-
-    player "I have to take the bus to work (-5 spoons)"
+            "You skip breakfast today. You need to save your spoons for other things today. Your stomach grumbles."
+    #transition
+    "You leave the house, making sure to lock the door behind you."
+    "You walk a few blocks down the road to the bus stop."
+    "As you wait for the bus, it starts to rain. It makes your body ache."
+    #bus
     $ spoons -= 5
+    "The bus driver, Martha, greets you as you board. She has been the driver on your route for years and she knows you well."
     scene enter_bus
-    "You find an empty spot and take a sit, feeling the bus shake as it goes along"
+    "She knows how much energy it takes for you to be here every day, and she always offers you a warm smile for your effort."
     scene sit_on_bus
-
+    "You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
+    #arrival to work (end of actual good dialouge)
     "You arrive at work and sit down in your small, cramped, dusty cubicle. You already wish the work day was over."
     "..."
 
