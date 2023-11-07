@@ -578,7 +578,7 @@ label dayFive:
             menu:
                 "Go home for the day":
                     "afterwards you head back home"
-                "go to the park with friends":
+                "go to the movies with friends":
                     $ spoons -= 5
                     $ socialPoints
                     "you watch barbie with friends, you are kenough"
