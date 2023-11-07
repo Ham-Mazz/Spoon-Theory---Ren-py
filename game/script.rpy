@@ -51,11 +51,12 @@ label start:
 
     show screen spoons_and_points
 
-    jump dayOne
+    #jump dayOne
     #jump dayTwo
     #jump dayThree
-    jump dayFour
+    #jump dayFour
     jump dayFive
+    jump daySix
 
     # This ends the game.
 
@@ -562,14 +563,15 @@ label dayFive:
         "go out with friends and do stuff":
             #go out pathway, start by taking the bus
             "you get ready, putting on a cute dress and doing your makeup"
-            $ spoons -= 15
+            $ spoons -= 12
+            $ socialPoints =+ 3;
             "you take the bus to the resturant, which is on the other side of the city"
             scene enter_bus
             $ spoons -= 5
             "you arrive at the cozy little diner, greeting your friends with a hug and laughter, you missed them"
             scene large_diner
             "you guys sit down, order food and begin to eat, laughter is heard from your table all night"
-            $ spoons -= 5
+            $ spoons -= 3
             "one of your friends covers the bill"
 
             #keep going out with friends to movies, or go home
@@ -602,3 +604,103 @@ label dayFive:
                 "Watch TV":
                     "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
     #end of day five
+
+label daySix:
+    #start of day 6
+
+    "(Wake Up)"
+    scene large_bedroom
+    "You roll outta bed and hit the hard floor"
+
+    player "It's a New day, and I don't have work today, thank god."
+
+    #shower event
+    menu:
+        "Take shower (-2 spoons)":
+            $ spoons -= 2
+            "You took a cold shower, that's one way to start a morning"
+            player "that was not enjoyable, but at least I can stay in if i'd like, who cares."
+        "Skip shower":
+            "You did not take a shower, you smell and look horrid."
+
+    "you start to feel hungry, what do you want to do"
+    player "hmm Should I starve today, I think food is important for my body, but I am unsure why."
+    #breakfast event
+    menu:
+        "Make and eat breakfast (-3 spoons)":
+            $ spoons -= 3
+            "you made a scrumptious meal"
+            player "That was tasty!"
+        "Skip breakfast":
+            "you skip breakfest, lets hope you don't get too hungry"
+
+    #go out or stay home (start of branching for day 6)
+    menu:
+        "Stay home and have a relaxing day":
+            #stay at home path
+            "you choose to stay home and catch up on things that need to be done"
+            "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better"
+            "now that you ate, find something to do for the rest of the night"
+            #chore or book option
+            menu:
+                "Do chores for the rest of the night":
+                    #do chores
+                    $ spoons -= 3
+                    "clean wax, idk do shit"
+                    "after you finishing cleaning and doing stuff, you go to bed"
+                "Read a book for the night":
+                    "You open and begin to read, the Night of our stars"
+                    "the main character is attempting to jailbreak to his lover from the local jail"
+                    "he succeeds and they live together happily in a beachouse, watching the stars soar over them during the night"
+                    "after finishing the book, you head to bed"
+            #hopefully jump to end day
+        "Go our with your friends for the night":
+            #pathway that sends you to go with friends, upper two branches on figma wireframe
+            $ spoons -= 12
+            $ socialPoints += 3
+            "go our with your friends, get ready and stuff"
+
+            #take the bus to resturant
+
+            $ spoons -= 5
+            "you take the bus to the resturant, going with your freidns and chatting on the way there"
+
+            #eat lunch at resturant
+            $ spoons -= 3
+            "you eat lunch with your friends group, you have an amazing time doing so"
+
+            #invite friend home or go home alone and single (I ship characters I don't actually know)
+            menu:
+                "Invite Friend back to your place":
+                    $ spoons -=7
+                    $ socialPoints += 2
+                    "you invite your friend over for dinner as well, they agree so you go back to your place"
+                    "now that your friend is here, do you choose to"
+                    menu:
+                        "be responisble and wash dishes, and do other chores":
+                            "you do chores after you make dinner, she hangs out for a while but heads home after a little bit"
+                        "Hang out and do a movie marathon":
+                            $ spoons -= 1
+                            $ socialPoints += 1
+                            "you guys do a movie marathon, watching 5 movies before she passes out on the couch"
+                "Go home alone":
+                    $ spoons -=5
+                    "you head home alone"
+                    #make dinner event
+                    menu:   
+                        "Make dinner":
+                            $ spoons -= 3 
+                            "Food is good"
+                        "starve":
+                            "I dont need to eat anyways"
+
+                    #chore or TV option
+                    menu:
+                        "Do chores for the rest of the night":
+                            #do chores
+                            $ spoons -= 3
+                            "clean wax, idk do shit"
+                            "after you finishing cleaning and doing stuff, you go to bed"
+                        "Watch TV":
+                            "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
+    #this should be the end of day 6
