@@ -11,10 +11,14 @@ init python:
     #create all the days on the wireframes as labels
     #create a fuction to randmoly choose a day
     #startDay and endDay functions for stats.  
-    def difficulty(num):
+    def difficultySet(num):
         spoons = 40 - (num * 5)
         socialPoints = 25 - (num * 5)
         return spoons, socialPoints
+
+    def addDailySpoons (currentSpoons, difficultyLevel):
+        currentSpoons += 40 - (difficultyLevel * 5)
+        return currentSpoons
 
 screen spoons_and_points:
     hbox:
@@ -30,6 +34,7 @@ screen spoons_and_points:
 label start:
     $ name = renpy.input("What's your name?")
     $ name = name.strip()
+    $ difficultyLevel = 0
     define player = Character("[name]")
     define boss = Character("Boss Colton")
 
@@ -41,22 +46,25 @@ label start:
 
 
         "Easy":
-            $ spoons, socialPoints = difficulty(1) 
+            $ spoons, socialPoints = difficultySet(1) 
+            $ difficultyLevel = 1
             
         "Normal":
-            $ spoons, socialPoints = difficulty(2) 
+            $ spoons, socialPoints = difficultySet(2) 
+            $ difficultyLevel = 2
             
         "Hard":
-            $ spoons, socialPoints = difficulty(3) 
+            $ spoons, socialPoints = difficultySet(3) 
+            $ difficultyLevel = 3
 
     show screen spoons_and_points
 
-    #jump dayOne
+    jump dayOne
     #jump dayTwo
     #jump dayThree
     #jump dayFour
-    jump dayFive
-    jump daySix
+    #jump dayFive
+    #jump daySix
 
     # This ends the game.
 
@@ -71,6 +79,8 @@ label dayOne:
     "Remember to conserve your spoons and use them wisely. "
     scene large_bedroom
     "Let’s see what the day has in store for you."
+
+    $ spoons = addDailySpoons(spoons, difficultyLevel)
 
     scene main_bedroom
     #shower
@@ -190,6 +200,8 @@ label dayTwo:
     "You roll outta bed and hit the hard floor"
 
     player "It's a New day... yay"
+
+    $ spoons = addDailySpoons(spoons, difficultyLevel)
 
     player "Hmm Should I take a Shower?"
     #shower event
@@ -311,6 +323,8 @@ label dayThree:
 
     player "It's a New day... yay"
 
+    $ spoons = addDailySpoons(spoons, difficultyLevel)
+
     player "Hmm Should I take a Shower?"
     #shower event
     menu:
@@ -425,6 +439,8 @@ label dayFour:
 
     player "It's a New day, and I don't have work today, thank god."
 
+    $ spoons = addDailySpoons(spoons, difficultyLevel)
+
     player "Hmm Should I take a Shower, or just stay in bed a little longer?"
     #shower event
     menu:
@@ -516,6 +532,8 @@ label dayFive:
     "(Wake Up)"
     scene large_bedroom
     "You roll outta bed and hit the hard floor"
+
+    $ spoons = addDailySpoons(spoons, difficultyLevel)
 
     player "It's a New day, and I don't have work today, thank god."
 
@@ -611,6 +629,8 @@ label daySix:
     "(Wake Up)"
     scene large_bedroom
     "You roll outta bed and hit the hard floor"
+
+    $ spoons = addDailySpoons(spoons, difficultyLevel)
 
     player "It's a New day, and I don't have work today, thank god."
 
