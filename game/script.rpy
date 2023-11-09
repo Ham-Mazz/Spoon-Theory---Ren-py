@@ -10,7 +10,13 @@ init python:
     #To-do list
     #create all the days on the wireframes as labels
     #create a fuction to randmoly choose a day
-    #startDay and endDay functions for stats.  
+    #startDay and endDay functions for stats. 
+
+    #initialize some counters
+    showerCounter = 0
+    laundryCounter = 0
+    eatingCounter = 0
+
     def difficultySet(num):
         spoons = 40 - (num * 5)
         socialPoints = 25 - (num * 5)
@@ -19,6 +25,8 @@ init python:
     def addDailySpoons (currentSpoons, difficultyLevel):
         currentSpoons += 40 - (difficultyLevel * 5)
         return currentSpoons
+
+    
 
 screen spoons_and_points:
     hbox:
@@ -78,7 +86,7 @@ label dayOne:
     "Good morning! It is the start of another day."
     "Remember to conserve your spoons and use them wisely. "
     scene large_bedroom
-    "Let’s see what the day has in store for you."
+    "Let's see what the day has in store for you."
 
     $ spoons = addDailySpoons(spoons, difficultyLevel)
 
@@ -96,6 +104,7 @@ label dayOne:
             "You take a warm shower. It is nice to be clean, but the effort drains you."
         "Skip shower":
             "You skip a shower today and get dressed. You need to save your spoons for other things today."
+            $ showerCounter += 1
     #breakfast
     "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
     "Remember, if you do not eat at least 2 times today, you will have less spoons tomorrow."
@@ -106,6 +115,7 @@ label dayOne:
             $ spoons -= 3
             "You make and enjoy pancakes. They're a little lumpy, but still delicious. The effort of cooking leaves you feeling drained."
             player "That was tasty!"
+            $ eatingCounter += 1
         "Skip breakfast":
             "You skip breakfast today. You need to save your spoons for other things today. Your stomach grumbles."
     #transition
@@ -129,6 +139,8 @@ label dayOne:
 
     "You begrudgingly clock out. Grabbing your small lunch."
     player "Hmm, where should I eat lunch?"
+    
+    $ eatingCounter += 1
 
     menu:
         "Eat with your co-worker (-5 spoons)":
@@ -139,7 +151,6 @@ label dayOne:
             "You sit back down in your desk, open your small packed lunch and start eating, alone."
     
     menu:
-
         "Finish all your work for the day":
             $ spoons -= 10
             "After lunch, you focus and manage to get all your work finished somehow."
@@ -156,6 +167,8 @@ label dayOne:
     "You find an empty spot and take a seat, feeling the bus shake as it goes along"
     scene sit_on_bus
     player "hmm I wonder what should I have for dinner"
+
+    $ eatingCounter += 1
 
     menu:
         "Stop for groceries (-5 spoons)":
@@ -184,6 +197,7 @@ label dayOne:
             $ spoons -= 3
             player "at least I got that out of the way"
         "Watch TV":
+            $ laundryCounter += 1
             player "I will just chill tongiht and watch TV"
     
     player "Time To head to bed!"
@@ -211,6 +225,7 @@ label dayTwo:
             "You took a cold shower."
             player "that was not enjoyable, but at least I smell adequate"
         "Skip shower":
+            $ showerCounter += 1
             "You did not take a shower, you smell and look horrid."
 
     "you start to feel hungry, what do you want to do"
@@ -219,6 +234,7 @@ label dayTwo:
     menu:
         "Make and eat breakfast (-3 spoons)":
             $ spoons -= 3
+            $ eatingCounter += 1
             "you made a scrumptious meal"
             player "That was tasty!"
         "Skip breakfast":
@@ -243,6 +259,7 @@ label dayTwo:
     "You begrudgingly clock out for lunch. Grabbing your measly meal."
     player "Hmm, where should I eat lunch?"
     #lunch event
+    $ eatingCounter += 1
     menu:
         "Eat with your co-worker (-5 spoons)":
             $ spoons -= 5
@@ -290,12 +307,10 @@ label dayTwo:
         "Make dinner":
             $ spoons -= 5 
             "Food is good"
-            
-
+            $ eatingCounter += 1
         "starve":
             $ spoons -= 2
             "I dont need to eat anyways"
-
     
     player "it's almost time for me to go to sleep"
 
@@ -306,6 +321,7 @@ label dayTwo:
             $ spoons -= 3
             player "at least I got that out of the way"
         "Watch TV":
+            $ laundryCounter += 1
             player "I will just chill tongiht and watch TV"
     
     player "Time To head to bed!"
@@ -333,6 +349,7 @@ label dayThree:
             "You took a cold shower."
             player "that was not enjoyable, but at least I smell somewhat adequate"
         "Skip shower":
+            $ showerCounter += 1
             "You did not take a shower, you smell and look horrid."
 
     "you start to feel hungry, what do you want to do"
@@ -341,6 +358,7 @@ label dayThree:
     menu:
         "Make and eat breakfast (-3 spoons)":
             $ spoons -= 3
+            $ eatingCounter += 1
             "you made a scrumptious meal"
             player "That was tasty!"
         "Skip breakfast":
@@ -378,6 +396,8 @@ label dayThree:
     "You begrudgingly clock out for lunch. Grabbing your measly meal."
     player "Hmm, where should I eat lunch?"
     #lunch event
+    $ eatingCounter += 1
+
     menu:
         "Eat with your co-worker (-5 spoons)":
             $ spoons -= 5
@@ -409,6 +429,7 @@ label dayThree:
         "Make dinner":
             $ spoons -= 5 
             "Food is good"
+            $ eatingCounter += 1
         "starve":
             $ spoons -= 2
             "I dont need to eat anyways"
@@ -423,6 +444,7 @@ label dayThree:
             $ spoons -= 3
             player "at least I got that out of the way"
         "Watch TV":
+            $ laundryCounter += 1
             player "I will just chill tongiht and watch TV"
     scene large_bedroom
     player "Time To head to bed!"
@@ -449,6 +471,7 @@ label dayFour:
             "You took a cold shower, that's one way to start a morning"
             player "that was not enjoyable, but at least I can stay in if i'd like, who cares."
         "Skip shower":
+            $ showerCounter += 1
             "You did not take a shower, you smell and look horrid."
 
     "you start to feel hungry, what do you want to do"
@@ -457,6 +480,7 @@ label dayFour:
     menu:
         "Make and eat breakfast (-3 spoons)":
             $ spoons -= 3
+            $ eatingCounter += 1
             "you made a scrumptious meal"
             player "That was tasty!"
         "Skip breakfast":
@@ -469,6 +493,7 @@ label dayFour:
             "you choose to stay home and catch up on things that need to be done"
             "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better"
             "now that you ate, find something to do for the rest of the night"
+            $ eatingCounter += 1
             #chore or book option
             menu:
                 "Do chores for the rest of the night":
@@ -477,6 +502,7 @@ label dayFour:
                     "clean wax, idk do shit"
                     "after you finishing cleaning and doing stuff, you go to bed"
                 "Read a book for the night":
+                    $ laundryCounter += 1
                     "You open and begin to read, the Night of our stars"
                     "the main character is attempting to jailbreak to his lover from the local jail"
                     "he succeeds and they live together happily in a beachouse, watching the stars soar over them during the night"
@@ -493,6 +519,7 @@ label dayFour:
             scene large_diner
             "you guys sit down, order food and begin to eat, laughter is heard from your table all night"
             $ spoons -= 5
+            $ eatingCounter += 1
             "one of your friends covers the bill"
 
             #keep going out with friends, or go home
@@ -512,6 +539,7 @@ label dayFour:
                 "Make dinner":
                     $ spoons -= 3 
                     "Food is good"
+                    $ eatingCounter += 1
                 "starve":
                     "I dont need to eat anyways"
 
@@ -523,6 +551,7 @@ label dayFour:
                     "clean wax, idk do shit"
                     "after you finishing cleaning and doing stuff, you go to bed"
                 "Watch TV":
+                    $ laundryCounter += 1
                     "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
     #end of day four
             
@@ -545,6 +574,7 @@ label dayFive:
             "You took a cold shower, that's one way to start a morning"
             player "that was not enjoyable, but at least I can stay in if i'd like, who cares."
         "Skip shower":
+            $ showerCounter += 1
             "You did not take a shower, you smell and look horrid."
 
     "you start to feel hungry, what do you want to do"
@@ -553,6 +583,7 @@ label dayFive:
     menu:
         "Make and eat breakfast (-3 spoons)":
             $ spoons -= 3
+            $ eatingCounter += 1
             "you made a scrumptious meal"
             player "That was tasty!"
         "Skip breakfast":
@@ -565,6 +596,7 @@ label dayFive:
             "you choose to stay home and catch up on things that need to be done"
             "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better"
             "now that you ate, find something to do for the rest of the night"
+            $ eatingCounter += 1
             #chore or book option
             menu:
                 "Do chores for the rest of the night":
@@ -573,6 +605,7 @@ label dayFive:
                     "clean wax, idk do shit"
                     "after you finishing cleaning and doing stuff, you go to bed"
                 "Read a book for the night":
+                    $ laundryCounter += 1
                     "You open and begin to read, the Night of our stars"
                     "the main character is attempting to jailbreak to his lover from the local jail"
                     "he succeeds and they live together happily in a beachouse, watching the stars soar over them during the night"
@@ -590,6 +623,7 @@ label dayFive:
             scene large_diner
             "you guys sit down, order food and begin to eat, laughter is heard from your table all night"
             $ spoons -= 3
+            $ eatingCounter += 1
             "one of your friends covers the bill"
 
             #keep going out with friends to movies, or go home
@@ -608,6 +642,7 @@ label dayFive:
             menu:   
                 "Make dinner":
                     $ spoons -= 3 
+                    $ eatingCounter += 1
                     "Food is good"
                 "starve":
                     "I dont need to eat anyways"
@@ -620,6 +655,7 @@ label dayFive:
                     "clean wax, idk do shit"
                     "after you finishing cleaning and doing stuff, you go to bed"
                 "Watch TV":
+                    $ laundryCounter += 1
                     "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
     #end of day five
 
@@ -641,6 +677,7 @@ label daySix:
             "You took a cold shower, that's one way to start a morning"
             player "that was not enjoyable, but at least I can stay in if i'd like, who cares."
         "Skip shower":
+            $ showerCounter += 1
             "You did not take a shower, you smell and look horrid."
 
     "you start to feel hungry, what do you want to do"
@@ -649,7 +686,8 @@ label daySix:
     menu:
         "Make and eat breakfast (-3 spoons)":
             $ spoons -= 3
-            "you made a scrumptious meal"
+            $ eatingCounter += 1
+            "you made (and ate) a scrumptious meal"
             player "That was tasty!"
         "Skip breakfast":
             "you skip breakfest, lets hope you don't get too hungry"
@@ -661,6 +699,7 @@ label daySix:
             "you choose to stay home and catch up on things that need to be done"
             "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better"
             "now that you ate, find something to do for the rest of the night"
+            $ eatingCounter += 1
             #chore or book option
             menu:
                 "Do chores for the rest of the night":
@@ -686,6 +725,7 @@ label daySix:
             "you take the bus to the resturant, going with your freidns and chatting on the way there"
 
             #eat lunch at resturant
+            $ eatingCounter += 1
             $ spoons -= 3
             "you eat lunch with your friends group, you have an amazing time doing so"
 
@@ -698,7 +738,7 @@ label daySix:
                     "now that your friend is here, do you choose to"
                     menu:
                         "be responisble and wash dishes, and do other chores":
-                            "you do chores after you make dinner, she hangs out for a while but heads home after a little bit"
+                            "you do chores after you get home, she hangs out for a while but heads home after a little bit"
                         "Hang out and do a movie marathon":
                             $ spoons -= 1
                             $ socialPoints += 1
@@ -710,6 +750,7 @@ label daySix:
                     menu:   
                         "Make dinner":
                             $ spoons -= 3 
+                            $ eatingCounter += 1
                             "Food is good"
                         "starve":
                             "I dont need to eat anyways"
@@ -722,5 +763,6 @@ label daySix:
                             "clean wax, idk do shit"
                             "after you finishing cleaning and doing stuff, you go to bed"
                         "Watch TV":
+                            $ socialPoints += 1
                             "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
     #this should be the end of day 6
