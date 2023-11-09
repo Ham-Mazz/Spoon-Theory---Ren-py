@@ -68,11 +68,11 @@ label start:
     show screen spoons_and_points
 
     jump dayOne
-    #jump dayTwo
-    #jump dayThree
-    #jump dayFour
-    #jump dayFive
-    #jump daySix
+    jump dayTwo
+    jump dayThree
+    jump dayFour
+    jump dayFive
+    jump daySix
 
     # This ends the game.
 
@@ -101,6 +101,7 @@ label dayOne:
     menu:
         "Take shower":
             $ spoons -= 2
+            $ showerCounter = 0
             "You take a warm shower. It is nice to be clean, but the effort drains you."
         "Skip shower":
             "You skip a shower today and get dressed. You need to save your spoons for other things today."
@@ -195,6 +196,7 @@ label dayOne:
     menu:            
         "Do laundry (-3 spoons)":
             $ spoons -= 3
+            $ laundryCounter = 0 
             player "at least I got that out of the way"
         "Watch TV":
             $ laundryCounter += 1
@@ -222,6 +224,7 @@ label dayTwo:
     menu:
         "Take shower (-2 spoons)":
             $ spoons -= 2
+            $ showerCounter = 0
             "You took a cold shower."
             player "that was not enjoyable, but at least I smell adequate"
         "Skip shower":
@@ -320,6 +323,7 @@ label dayTwo:
         "Do laundry (-3 spoons)":
             $ spoons -= 3
             player "at least I got that out of the way"
+            $ laundryCounter = 0 
         "Watch TV":
             $ laundryCounter += 1
             player "I will just chill tongiht and watch TV"
@@ -346,6 +350,7 @@ label dayThree:
     menu:
         "Take shower (-2 spoons)":
             $ spoons -= 2
+            $ showerCounter = 0
             "You took a cold shower."
             player "that was not enjoyable, but at least I smell somewhat adequate"
         "Skip shower":
@@ -442,6 +447,7 @@ label dayThree:
     menu:            
         "Do laundry (-3 spoons)":
             $ spoons -= 3
+            $ laundryCounter = 0 
             player "at least I got that out of the way"
         "Watch TV":
             $ laundryCounter += 1
@@ -467,6 +473,7 @@ label dayFour:
     #shower event
     menu:
         "Take shower (-2 spoons)":
+            $ showerCounter = 0
             $ spoons -= 2
             "You took a cold shower, that's one way to start a morning"
             player "that was not enjoyable, but at least I can stay in if i'd like, who cares."
@@ -499,6 +506,7 @@ label dayFour:
                 "Do chores for the rest of the night":
                     #do chores
                     $ spoons -= 3
+                    $ laundryCounter = 0 
                     "clean wax, idk do shit"
                     "after you finishing cleaning and doing stuff, you go to bed"
                 "Read a book for the night":
@@ -548,6 +556,7 @@ label dayFour:
                 "Do chores for the rest of the night":
                     #do chores
                     $ spoons -= 3
+                    $ laundryCounter = 0 
                     "clean wax, idk do shit"
                     "after you finishing cleaning and doing stuff, you go to bed"
                 "Watch TV":
@@ -570,6 +579,7 @@ label dayFive:
     #shower event
     menu:
         "Take shower (-2 spoons)":
+            $ showerCounter = 0
             $ spoons -= 2
             "You took a cold shower, that's one way to start a morning"
             player "that was not enjoyable, but at least I can stay in if i'd like, who cares."
@@ -602,6 +612,7 @@ label dayFive:
                 "Do chores for the rest of the night":
                     #do chores
                     $ spoons -= 3
+                    $ laundryCounter = 0 
                     "clean wax, idk do shit"
                     "after you finishing cleaning and doing stuff, you go to bed"
                 "Read a book for the night":
@@ -652,6 +663,7 @@ label dayFive:
                 "Do chores for the rest of the night":
                     #do chores
                     $ spoons -= 3
+                    $ laundryCounter = 0 
                     "clean wax, idk do shit"
                     "after you finishing cleaning and doing stuff, you go to bed"
                 "Watch TV":
@@ -673,6 +685,7 @@ label daySix:
     #shower event
     menu:
         "Take shower (-2 spoons)":
+            $ showerCounter = 0
             $ spoons -= 2
             "You took a cold shower, that's one way to start a morning"
             player "that was not enjoyable, but at least I can stay in if i'd like, who cares."
@@ -738,9 +751,11 @@ label daySix:
                     "now that your friend is here, do you choose to"
                     menu:
                         "be responisble and wash dishes, and do other chores":
+                            $ laundryCounter = 0 
                             "you do chores after you get home, she hangs out for a while but heads home after a little bit"
                         "Hang out and do a movie marathon":
                             $ spoons -= 1
+                            $ laundryCounter += 1 
                             $ socialPoints += 1
                             "you guys do a movie marathon, watching 5 movies before she passes out on the couch"
                 "Go home alone":
@@ -760,6 +775,7 @@ label daySix:
                         "Do chores for the rest of the night":
                             #do chores
                             $ spoons -= 3
+                            $ laundryCounter = 0 
                             "clean wax, idk do shit"
                             "after you finishing cleaning and doing stuff, you go to bed"
                         "Watch TV":
