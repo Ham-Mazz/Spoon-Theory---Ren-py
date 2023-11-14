@@ -45,6 +45,8 @@ label start:
     $ difficultyLevel = 0
     define player = Character("[name]")
     define boss = Character("Boss Colton")
+    define busDriver = Character("Martha")
+    define coworker = Character("Alvaro")
 
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
@@ -88,15 +90,11 @@ label dayOne:
     scene large_bedroom
     "Let's see what the day has in store for you."
 
-    $ spoons = addDailySpoons(spoons, difficultyLevel)
-
     scene main_bedroom
     #shower
     "A shower is a great way to start the day."
     "Remember, if you do not shower for 3 days, you will be deducted social points."
     "Would you like to take a shower today?"
-
-    player "Hmm Should I take a Shower?"
 
     menu:
         "Take shower":
@@ -106,6 +104,7 @@ label dayOne:
         "Skip shower":
             "You skip a shower today and get dressed. You need to save your spoons for other things today."
             $ showerCounter += 1
+
     #breakfast
     "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
     "Remember, if you do not eat at least 2 times today, you will have less spoons tomorrow."
@@ -119,20 +118,26 @@ label dayOne:
             $ eatingCounter += 1
         "Skip breakfast":
             "You skip breakfast today. You need to save your spoons for other things today. Your stomach grumbles."
+
     #transition
     "You leave the house, making sure to lock the door behind you."
     "You walk a few blocks down the road to the bus stop."
     "As you wait for the bus, it starts to rain. It makes your body ache."
+
     #bus
-    $ spoons -= 5
-    "The bus driver, Martha, greets you as you board. She has been the driver on your route for years and she knows you well."
+    busDriver "Hello [player]! Heading to work?"
     scene enter_bus
+
+    player "Hi Martha! Sure am."
+    "She has been the driver on your route for years and she knows you well"
     "She knows how much energy it takes for you to be here every day, and she always offers you a warm smile for your effort."
     scene sit_on_bus
-    "You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
-    #arrival to work (end of actual good dialouge)
-    "You arrive at work and sit down in your small, cramped, dusty cubicle. You already wish the work day was over."
-    "..."
+    $ spoons -= 5
+    " You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
+    
+    #arrival to work
+    "After the bus drops you off at work, you waste no time getting to your desk."
+    "Your coworkers greet you as you make your way through the building."
 
     "Eventually, you hear a knock on the wall of your cubicle. It's your boss Colton."
 
@@ -161,12 +166,20 @@ label dayOne:
             $ socialPoints -= 2
             "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
     
+    #packing up from work
+    "You pack up all of your belongings, and begin the trek to the bus stop"
+    "Your coworkers wave as you pass by them."
+    coworker " Have a good night, [player]!"
+    player "You too, [coworker]!"
+
+    #at bus stop
+    "You are not at the bus stop for long before [busDriver] pulls up, ready to take you home."
+    
     #bus home event
     player "Ok it's time to go home!"
-    "You take the bus home (-5 spoons)"
-    $ spoons -= 5
     scene enter_bus
-    "You find an empty spot and take a seat, feeling the bus shake as it goes along"
+    $ spoons -= 5
+    "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
     scene sit_on_bus
     player "hmm I wonder what should I have for dinner"
 
