@@ -8,9 +8,9 @@ define player = Character("[name]")
 
 init python:
     #To-do list
-    #create all the days on the wireframes as labels
-    #create a fuction to randmoly choose a day
-    #startDay and endDay functions for stats. 
+    #create all the days on ion to randmoly choose a day
+    #startDay andthe wireframes as labels
+    #create a fuct endDay functions for stats. 
 
     #initialize some counters
     showerCounter = 0
