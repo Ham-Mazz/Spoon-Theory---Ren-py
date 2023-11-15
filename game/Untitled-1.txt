@@ -1,0 +1,30 @@
+"""
+
+question = "What is the summary for all the emails?"
+
+retriever = ParentDocumentRetriever(
+    vectorstore=vectorstore,
+    docstore=store,
+    child_splitter=child_splitter,
+    parent_splitter=parent_splitter,
+)
+retriever.add_documents(data)
+
+#logging.basicConfig()
+#logging.getLogger("langchain.retrievers.multi_query").setLevel(logging.INFO)
+
+unique_docs = retriever.get_relevant_documents(question)
+
+template = """Use the following emails(context) to build a comprehensive summary about the content of emails, as well as build a task/objectives list while keeping track of the parties involved in the emails. use the emails to answer the question at the end. 
+If you don't know the answer, just say that you don't know, don't try to make up an answer. End with asking the user if they any questions about the emails. 
+{context}
+Question: {question}
+Helpful Answer:"""
+rag_prompt_custom = PromptTemplate.from_template(template)
+
+rag_chain = {"context": retriever, "question": RunnablePassthrough()} | rag_prompt_custom | llm
+
+
+print(rag_chain.invoke(question))
+
+"""

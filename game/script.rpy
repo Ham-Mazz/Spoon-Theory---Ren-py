@@ -15,6 +15,12 @@ init python:
         spoons = 40 - (num * 5)
         socialPoints = 25 - (num * 5)
         return spoons, socialPoints
+    def overspent():
+        if spoons <= -5:
+            pass #logic to end day and play overspent scene.
+
+        
+
 
 screen spoons_and_points:
     hbox:
@@ -41,13 +47,21 @@ label start:
 
 
         "Easy":
-            $ spoons, socialPoints = difficulty(1) 
+            $ maxSpoons, socialPoints = difficulty(1)
+            $ spoons = maxSpoons
+            play music "sample1.mp3" loop
             
         "Normal":
-            $ spoons, socialPoints = difficulty(2) 
+            $ maxSpoons, socialPoints = difficulty(2)
+            $ spoons = maxSpoons
+            play music "sample1.mp3" loop
+ 
+ 
             
         "Hard":
-            $ spoons, socialPoints = difficulty(3) 
+            $ maxSpoons, socialPoints = difficulty(3)
+            $ spoons = maxSpoons 
+            play music "sample1.mp3" loop
 
     show screen spoons_and_points
 
@@ -381,3 +395,6 @@ label dayThree:
 
     "You go to sleep"
     #day 3 end
+
+label dayFour:
+    
