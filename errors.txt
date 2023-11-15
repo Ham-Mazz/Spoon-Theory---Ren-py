@@ -2,8 +2,16 @@
 errors listed below, and try again.
 
 
+<<<<<<< HEAD
 File "game/script.rpy", line 19: expected an indented block
         if spoons <= -5:
 
 Ren'Py Version: Ren'Py 8.1.3.23091805
 Wed Nov 15 15:36:50 2023
+=======
+File "game/script.rpy", line 29: expected an indented block
+    def addSpoons (difficultyLevel):
+
+Ren'Py Version: Ren'Py 8.1.3.23091805
+Tue Nov  7 10:38:56 2023
+>>>>>>> 258a2c5fe011abcbc6e29d42accdaf16aebe0b33
