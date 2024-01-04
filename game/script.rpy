@@ -1035,5 +1035,18 @@ label dayEight:
             "character says - you want me to present this blind? are you kidding, god damn it"
             $ socialPoints -= 3
             "your co-worker does the event, but she is furious about it"
+
+    
+    #finish work event
+    menu:
+
+        "Finish all your work for the day":
+            $ spoons -= 10
+            "After lunch, you focus and manage to get all your work finished somehow."
+            
+        "Take a break, resulting in you being unable to finish your work":
+            $ spoons -= 5
+            $ socialPoints -= 2
+            "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
     
 
