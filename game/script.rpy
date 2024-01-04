@@ -999,5 +999,28 @@ label dayEight:
     scene sit_on_bus
     $ spoons -= 5
     " You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
+
+    
+    #arrival to work
+    "After the bus drops you off at work, you waste no time getting to your desk."
+    "Your coworkers greet you as you make your way through the building."
+
+    "Eventually, you hear a knock on the wall of your cubicle. It's your boss Colton."
+
+    boss "Hey , [player], take your lunch, before you forget to, and remember to clock out for it as well."
+
+    "You begrudgingly clock out. Grabbing your small lunch."
+    player "Hmm, where should I eat lunch?"
+    
+    #lunch option
+    $ eatingCounter += 1
+
+    menu:
+        "Eat with your co-worker (-5 spoons)":
+            $ spoons -= 5
+            "You sit down with (character), and having a amazing lunch break. You talk with (character) about (stuff)."
+        "Eat in your cubicle (-2 Social Points)":
+            $ socialPoints -= 2
+            "You sit back down in your desk, open your small packed lunch and start eating, alone."
     
 
