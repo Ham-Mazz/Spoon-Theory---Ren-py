@@ -95,6 +95,7 @@ label start:
 label dayOne:
         
     # Day 1 timeline
+    "Day 1"
     #wake up
     "Good morning! It is the start of another day."
     "Remember to conserve your spoons and use them wisely. "
@@ -235,6 +236,7 @@ label dayOne:
 label dayTwo:
 
     #day 2 timeline
+    "DAY 2"
 
     "(Wake Up)"
     scene large_bedroom
@@ -361,6 +363,7 @@ label dayTwo:
 label dayThree:
 
     #day 3 timeline
+    "DAY 3"
 
     "(Wake Up)"
     scene large_bedroom
@@ -485,7 +488,7 @@ label dayThree:
 
 label dayFour: 
     #start day 4
-
+    "DAY 4"
     "(Wake Up)"
     scene large_bedroom
     "You roll outta bed and hit the hard floor"
@@ -591,7 +594,7 @@ label dayFour:
             
 label dayFive: 
     #start day 5
-
+    "DAY 5"
     "(Wake Up)"
     scene large_bedroom
     "You roll outta bed and hit the hard floor"
@@ -697,7 +700,7 @@ label dayFive:
     #end of day five
 
 label daySix:
-
+    "DAY 6"
     #start of day 6
 
     "(Wake Up)"
@@ -810,6 +813,7 @@ label daySix:
     #this should be the end of day 6
 
 label daySeven:
+    "DAY 7"
     # Day 7 timeline
     #wake up
     "Good morning! It is the start of another day."
@@ -940,3 +944,12 @@ label daySeven:
     scene black
     "You go to sleep"
     #End of day 7
+
+label dayEight:
+    "DAY 8"
+    #Day 8 timeline
+    #wake up
+    "Good morning! It is the start of another day."
+    "Remember to conserve your spoons and use them wisely. "
+    scene large_bedroom
+    "Let's see what the day has in store for you."
