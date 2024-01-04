@@ -85,7 +85,8 @@ label start:
     #jump dayFour
     #jump dayFive
     #jump daySix
-    jump daySeven
+    #jump daySeven
+    jump dayEight
 
     # This ends the game.
 
@@ -1026,11 +1027,10 @@ label dayEight:
     #work proposal event
 
     menu:
-        "Present proposal to the board":
-            "You show up the corner office, ready to KICK ASS"
+        "Catch up on some work":
+            "You catch up on some work"
             "you failed to kick ass, but you made a good impression"
-            $ spoons -= 6
-            $ socialPoints += 3
+            $ spoons -= 4
         "Ask co-worker to present proposal":
             "character says - you want me to present this blind? are you kidding, god damn it"
             $ socialPoints -= 3
@@ -1038,11 +1038,9 @@ label dayEight:
     
     #finish work event
     menu:
-
         "Finish all your work for the day":
             $ spoons -= 10
             "After lunch, you focus and manage to get all your work finished somehow."
-            
         "Take a break, resulting in you being unable to finish your work":
             $ spoons -= 5
             $ socialPoints -= 2
@@ -1068,11 +1066,10 @@ label dayEight:
     #make dinner event
     menu:
         "Make dinner":
-            $ spoons -= 5 
+            $ spoons -= 3 
             "Food is good"
             $ eatingCounter += 1
         "starve":
-            $ spoons -= 2
             "I dont need to eat anyways"
     
     player "it's almost time for me to go to sleep"
