@@ -1035,7 +1035,6 @@ label dayEight:
             "character says - you want me to present this blind? are you kidding, god damn it"
             $ socialPoints -= 3
             "your co-worker does the event, but she is furious about it"
-
     
     #finish work event
     menu:
@@ -1049,4 +1048,18 @@ label dayEight:
             $ socialPoints -= 2
             "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
     
+    #packing up from work
+    "You pack up all of your belongings, and begin the trek to the bus stop"
+    "Your coworkers wave as you pass by them."
+    coworker " Have a good night, [player]!"
+    player "You too, [coworker]!"
 
+    #at bus stop
+    "You are not at the bus stop for long before [busDriver] pulls up, ready to take you home."
+    
+    #bus home event
+    player "Ok it's time to go home!"
+    scene enter_bus
+    $ spoons -= 5
+    "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
+    scene sit_on_bus
