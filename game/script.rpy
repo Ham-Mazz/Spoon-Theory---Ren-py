@@ -1063,3 +1063,32 @@ label dayEight:
     $ spoons -= 5
     "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
     scene sit_on_bus
+    player "hmm I wonder what should I have for dinner"
+
+    #make dinner event
+    menu:
+        "Make dinner":
+            $ spoons -= 5 
+            "Food is good"
+            $ eatingCounter += 1
+        "starve":
+            $ spoons -= 2
+            "I dont need to eat anyways"
+    
+    player "it's almost time for me to go to sleep"
+
+    player "should I do laundry?"
+    # be productive event
+    menu:            
+        "Do laundry (-3 spoons)":
+            $ spoons -= 3
+            player "at least I got that out of the way"
+            $ laundryCounter = 0 
+        "Watch TV":
+            $ laundryCounter += 1
+            player "I will just chill tongiht and watch TV"
+    
+    player "Time To head to bed!"
+    scene black
+    "You go to sleep"
+    #day 8 End
