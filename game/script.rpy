@@ -983,4 +983,21 @@ label dayEight:
             $ eatingCounter += 1
         "Skip breakfast":
             "You skip breakfast today. You need to save your spoons for other things today. Your stomach grumbles."
+    
+    #transition
+    "You leave the house, making sure to lock the door behind you."
+    "You walk a few blocks down the road to the bus stop."
+    "As you wait for the bus, it starts to rain. It makes your body ache."
+
+    #bus
+    busDriver "Hello [player]! Heading to work?"
+    scene enter_bus
+
+    player "Hi Martha! Sure am."
+    "She has been the driver on your route for years and she knows you well"
+    "She knows how much energy it takes for you to be here every day, and she always offers you a warm smile for your effort."
+    scene sit_on_bus
+    $ spoons -= 5
+    " You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
+    
 
