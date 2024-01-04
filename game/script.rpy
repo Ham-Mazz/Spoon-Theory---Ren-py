@@ -953,3 +953,34 @@ label dayEight:
     "Remember to conserve your spoons and use them wisely. "
     scene large_bedroom
     "Let's see what the day has in store for you."
+
+    
+    scene main_bedroom
+    #shower
+    "A shower is a great way to start the day."
+    "Remember, if you do not shower for 3 days, you will be deducted social points."
+    "Would you like to take a shower today?"
+
+    menu:
+        "Take shower":
+            $ spoons -= 2
+            $ showerCounter = 0
+            "You take a warm shower. It is nice to be clean, but the effort drains you."
+        "Skip shower":
+            "You skip a shower today and get dressed. You need to save your spoons for other things today."
+            $ showerCounter += 1
+
+    #breakfast
+    "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
+    "Remember, if you do not eat at least 2 times today, you will have less spoons tomorrow."
+    "Would you like to make breakfast today?"
+
+    menu:
+        "Make and eat breakfast":
+            $ spoons -= 3
+            "You make and enjoy pancakes. They're a little lumpy, but still delicious. The effort of cooking leaves you feeling drained."
+            player "That was tasty!"
+            $ eatingCounter += 1
+        "Skip breakfast":
+            "You skip breakfast today. You need to save your spoons for other things today. Your stomach grumbles."
+
