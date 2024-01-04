@@ -1022,5 +1022,18 @@ label dayEight:
         "Eat in your cubicle (-2 Social Points)":
             $ socialPoints -= 2
             "You sit back down in your desk, open your small packed lunch and start eating, alone."
+
+    #work proposal event
+
+    menu:
+        "Present proposal to the board":
+            "You show up the corner office, ready to KICK ASS"
+            "you failed to kick ass, but you made a good impression"
+            $ spoons -= 6
+            $ socialPoints += 3
+        "Ask co-worker to present proposal":
+            "character says - you want me to present this blind? are you kidding, god damn it"
+            $ socialPoints -= 3
+            "your co-worker does the event, but she is furious about it"
     
 
