@@ -1089,3 +1089,8 @@ label dayEight:
     scene black
     "You go to sleep"
     #day 8 End
+
+label dayNine: 
+    #starting day nine
+    "DAY 9"
+    
