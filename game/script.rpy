@@ -1157,6 +1157,26 @@ label dayNine:
             scene enter_bus
             $ spoons -= 5
 
+            #eat lunch with friends
+            scene large_diner
+            $ spoons -= 7
+            "you arrive at the diner, and enjoy the chime as the door opens"
+            "your friends greet you, you all order and have a barrel of laughs"
+            $ eatingCounter += 1
+
+            #say goodbye
+            "after hours of talking, spilling tea and spending time with your friends, you all unfornatuately have to head home"
+            "you head back to the bus stop"
+
+            #bus home event
+            player "Ok it's time to go home!"
+            scene enter_bus
+            $ spoons -= 5
+            "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
+            scene sit_on_bus
+            player "hmm I wonder what should I have for dinner"
+
+
         "do the laundry":
             #do the laundry path
             $ spoons -= 3
