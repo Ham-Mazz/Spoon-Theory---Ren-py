@@ -1129,3 +1129,20 @@ label dayNine:
             $ eatingCounter += 1
         "Skip breakfast":
             "You skip breakfast today. You need to save your spoons for other things today. Your stomach grumbles."
+
+    #activity, start of branching
+
+    "after your meal, you try to find something to do with your little free time, before you start your busy day. What do you wish to do today?"
+
+    menu:
+        
+        "Read a book":
+            #read a book path
+            "plus 2 something?"
+            $ spoons += 2
+
+        "do the laundry":
+            #do the laundry path
+            $ spoons -= 3
+
+        
