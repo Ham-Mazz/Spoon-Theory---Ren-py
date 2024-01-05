@@ -1141,14 +1141,43 @@ label dayNine:
             "plus 2 something?"
             $ spoons += 2
 
+            #go out with friends
+
+            "after you start reading your book, getting engrossed into many chapter of your long, fantasy novel. You get a call from one of your friends"
+            #add friend on phone here
+            player "Sure! I would love to come out and do that with you. Give me a little bit to get ready and i'll meet in you there in about an hour?"
+            #responding friend dialouge
+
+            "you then proceed get ready, putting on some nice clothes and doing your makeup"
+            $ spoons -= 15
+            $ socialPoints += 3
+
+            #bus on upper branch
+            "you take the bus to the resturant, which is on the other side of the city"
+            scene enter_bus
+            $ spoons -= 5
+
         "do the laundry":
             #do the laundry path
             $ spoons -= 3
 
             #stay at home 
-            "you choose to stay home and catch up on things that need to be done"
+            "you choose to stay home and just take a day to lie down and relax"
+            $ socialPoints -= 6
             "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better, maybe you wouldn't have to eat others leftovers all the time"
             "now that you ate, find something to do for the rest of the night"
             $ eatingCounter += 1
+
+            #activity on lower branch
+
+            menu:
+                "THIS IS A DUPLICATION ACTION":
+                    ""
+                    $ spoons -= 3
+                "Read a book":
+                    "You decide to keep unwinding for tonight. SO you cuddle into your bed after grabbing Pride & Prejudice, and Sense & Sensiability from Janue Austen"
+                    "You enjoy the warmth and soft lighting of your bedroom, eventually your eyes start to get heavy after finishing the first book you picked up"
+                    "you pass out 4 chapters into Sense & Sensiability"
+            #should jump to end of day
 
         
