@@ -1174,8 +1174,17 @@ label dayNine:
             $ spoons -= 5
             "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
             scene sit_on_bus
-            player "hmm I wonder what should I have for dinner"
 
+            #dinner option
+            player "hmm I wonder what should I have for dinner"
+            menu:
+                "Make dinner":
+                    $ spoons -= 5 
+                    "Food is good"
+                    $ eatingCounter += 1
+                "starve":
+                    $ spoons -= 2
+                    "I dont need to eat anyways"
 
         "do the laundry":
             #do the laundry path
