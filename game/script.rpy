@@ -1135,7 +1135,7 @@ label dayNine:
     "after your meal, you try to find something to do with your little free time, before you start your busy day. What do you wish to do today?"
 
     menu:
-        
+
         "Read a book":
             #read a book path
             "plus 2 something?"
@@ -1144,5 +1144,11 @@ label dayNine:
         "do the laundry":
             #do the laundry path
             $ spoons -= 3
+
+            #stay at home 
+            "you choose to stay home and catch up on things that need to be done"
+            "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better, maybe you wouldn't have to eat others leftovers all the time"
+            "now that you ate, find something to do for the rest of the night"
+            $ eatingCounter += 1
 
         
