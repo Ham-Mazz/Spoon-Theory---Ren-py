@@ -215,7 +215,6 @@ label dayOne:
 
     #dinner
 
-    $ eatingCounter += 1
 
     "The grocery store near your house is having a sale on bread."
     "Would you like to stop for groceries to make a hearty meal tonight"
@@ -229,36 +228,41 @@ label dayOne:
             "Do you invite Raneem over and cook for her?"
             menu:
                 "Yes, Invite friend over. (-2 spoons +2 social points)":
+                    $ eatingCounter += 1
                     $ socialPoints += 2
                     "You call Raneem, and she comes over while you cook."
                     $ spoons -= 2
                     "You share a delicious tater tot hotdish, but the effort of cooking leaves you feeling exhausted."
-                    "Thank you for the meal, [busDriver]! I know how tiring cooking can be, and I appreciate you inviting me over."
-                    ""
-                "No, Eat dinner alone":
-                    player "hmm that was a good meal!"
+                    bestFriend "Thank you for the meal, [player]! I know how tiring cooking can be, and I appreciate you inviting me over."
+                    player "Any time. I'm glad you liked it!"
+                "No (-hunger)":
+                    "You decide that you do not have the energy to cook for yourself tonight, let alone someone else."
+                    "You skip dinner"
 
         "Stop for takeout (-2 spoons)":
+            $ eatingCounter += 1
             $ spoons -= 2
+            "Going to the store sounds exhausting, but you still need to eat."
             scene large_diner
-            "That was a quick dinner!"
-    
-    player "it's almost bed time"
-
-    player "should I do laundry?"
-
+            "You stop for takeout at the restaurant next to your house."
+    #luandry
+    "Despite it having been a long day, you notice that you need to do laundry."
+    "Remember, if you do not do the laundry at least twice a week, you will be deducted social points."
+    "Would you like to do your laundry?"
     menu:            
-        "Do laundry (-3 spoons)":
+        "Yes, Do laundry (-3 spoons)":
             $ spoons -= 3
             $ laundryCounter = 0 
-            player "at least I got that out of the way"
-        "Watch TV":
+            "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets. "
+        "No, Watch TV":
             $ laundryCounter += 1
-            player "I will just chill tongiht and watch TV"
+            "Instead of doing laundry, you sit on the couch and watch TV for a while. You deserve a break."
     
-    player "Time To head to bed!"
+    
+    "After a long and tiring day, you decide it's time for bed."
+    "You make your way to your bedroom."
     scene black
-    "You go to sleep"
+    "You get into bed, close your eyes, and fall asleep."
     #End of day 1 
 
 label dayTwo:
