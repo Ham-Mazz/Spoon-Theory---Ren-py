@@ -269,27 +269,27 @@ label dayTwo:
 
     #day 2 timeline
     "DAY 2"
-
-    "(Wake Up)"
-    scene large_bedroom
-    "You roll outta bed and hit the hard floor"
-
-    player "It's a New day... yay"
-
+    #wake up
+    "Good morning! It is the start of another day."
+    "Remember to conserve your spoons and use them wisely."
     $ spoons = addDailySpoons(spoons, difficultyLevel)
+    scene large_bedroom
+    "Let's see what the day has in store for you."
+    
+    #shower
+    "A shower is a great way to start the day."
+    "Would you like to take a shower today?"
 
-    player "Hmm Should I take a Shower?"
-    #shower event
     menu:
-        "Take shower (-2 spoons)":
+        "Yes, take a shower (-2 Spoons)":
             $ spoons -= 2
             $ showerCounter = 0
-            "You took a cold shower."
-            player "that was not enjoyable, but at least I smell adequate"
-        "Skip shower":
+            "You take a warm shower. It is nice to be clean, but the effort drains you."
+        "No, skip shower  (- Cleanliness)":
+            "You skip a shower today and get dressed. You need to save your spoons for other things today."
             $ showerCounter += 1
-            "You did not take a shower, you smell and look horrid."
-
+            
+    #breakfast
     "you start to feel hungry, what do you want to do"
     player "hmm Should I starve today"
     #breakfast event
