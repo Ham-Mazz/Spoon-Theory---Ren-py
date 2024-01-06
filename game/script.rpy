@@ -53,6 +53,7 @@ label start:
     define boss = Character("Boss Colton")
     define busDriver = Character("Martha")
     define coworker = Character("Alvaro")
+    define bestFriend = Character("Raneem")
 
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
@@ -162,8 +163,6 @@ label dayOne:
     "Partway through the day, your stomach begins to rumble. It's time for lunch."
     "Your co-workers approach you. They invite you to join them for lunch in the break room."
 
-   
-
     "Would you like to eat lunch with your co-workers?"   
     menu:
         "Yes, eat with your co-workers (-5 spoons)":
@@ -178,15 +177,22 @@ label dayOne:
             "They look disappointed. Alvaro frowns at you. "
             "Your stomach grumbles."
     
+    #working
+    "You have a lot of work to do today, and the team is relying on you to finish it. "
+    "Whatever work you do not complete will have to be picked up by your co-workers. "
+    "Would you like to finish all of your work today?"
+    
     menu:
-        "Finish all your work for the day":
+        "Yes, Finish all your work for the day (-10 spoons)":
             $ spoons -= 10
-            "After lunch, you focus and manage to get all your work finished somehow."
+            "You finish all of your work for the day, and submit it to your boss, Colton. "
+            boss "Great work today, [player]."
+            player "Thanks Colton, I'll see you later."
             
-        "Take a break, resulting in you being unable to finish your work":
+        "No, take a break which results in you being unable to finish your work (-5 spoons, -2 social points) ":
             $ spoons -= 5
             $ socialPoints -= 2
-            "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
+            "You complete some of your work, but there are still some things left unfinished. Your co-workers do not appreciate having to pick up the slack."
     
     #packing up from work
     "You pack up all of your belongings, and begin the trek to the bus stop"
@@ -196,28 +202,40 @@ label dayOne:
 
     #at bus stop
     "You are not at the bus stop for long before [busDriver] pulls up, ready to take you home."
+    "She greets you with a warm smile. "
+    busDriver "Are you ready to go home, hon?"
+    player "Absolutely."
     
     #bus home event
-    player "Ok it's time to go home!"
     scene enter_bus
     $ spoons -= 5
     "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
     scene sit_on_bus
     player "hmm I wonder what should I have for dinner"
 
+    #dinner
+
     $ eatingCounter += 1
 
+    "The grocery store near your house is having a sale on bread."
+    "Would you like to stop for groceries to make a hearty meal tonight"
     menu:
-        "Stop for groceries (-5 spoons)":
+        "Yes, Stop for groceries (-5 spoons)":
             $ spoons -= 5 
-            "lets grab a this, and a that"
             scene large_grocery_store
+            "You buy fresh groceries. The effort leaves you feeling drained."
+            scene large_bedroom
+            "When you get home, you debate on whether or not you should invite your friend, Raneem, over for dinner."\
+            "Do you invite Raneem over and cook for her?"
             menu:
-                "Invite friend over and cook dinner? (-2 spoons +2 social points)":
-                    $ spoons -= 2
+                "Yes, Invite friend over. (-2 spoons +2 social points)":
                     $ socialPoints += 2
-                    "You had a good time and and enjoyed a fufilling meal with your friend!"
-                "Eat dinner alone":
+                    "You call Raneem, and she comes over while you cook."
+                    $ spoons -= 2
+                    "You share a delicious tater tot hotdish, but the effort of cooking leaves you feeling exhausted."
+                    "Thank you for the meal, [busDriver]! I know how tiring cooking can be, and I appreciate you inviting me over."
+                    ""
+                "No, Eat dinner alone":
                     player "hmm that was a good meal!"
 
         "Stop for takeout (-2 spoons)":
