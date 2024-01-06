@@ -288,19 +288,23 @@ label dayTwo:
         "No, skip shower  (- Cleanliness)":
             "You skip a shower today and get dressed. You need to save your spoons for other things today."
             $ showerCounter += 1
-            
+
+
     #breakfast
-    "you start to feel hungry, what do you want to do"
-    player "hmm Should I starve today"
-    #breakfast event
+    "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
+    "Would you like to make breakfast today?"
+
     menu:
-        "Make and eat breakfast (-3 spoons)":
+        "Yes (-3 Spoons)":
             $ spoons -= 3
+            "You make and enjoy scrambled eggs. They're a little burnt, but you don't mind. "
+            "The effort of cooking leaves you feeling drained."
             $ eatingCounter += 1
-            "you made a scrumptious meal"
-            player "That was tasty!"
-        "Skip breakfast":
-            "you skip breakfest, lets hope you don't get too hungry"
+        "No (- Hunger)":
+            "You skip breakfast today. You need to save your spoons for other things today."
+            "Your stomach grumbles."
+
+    #bus stop
 
     "Time to get to Work!"
 
