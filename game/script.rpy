@@ -110,11 +110,11 @@ label dayOne:
     "Would you like to take a shower today?"
 
     menu:
-        "Take shower":
+        "Yes, take a shower (-2 Spoons)":
             $ spoons -= 2
             $ showerCounter = 0
             "You take a warm shower. It is nice to be clean, but the effort drains you."
-        "Skip shower":
+        "No, skip shower  (- Cleanliness)":
             "You skip a shower today and get dressed. You need to save your spoons for other things today."
             $ showerCounter += 1
 
@@ -124,12 +124,12 @@ label dayOne:
     "Would you like to make breakfast today?"
 
     menu:
-        "Make and eat breakfast":
+        "Yes, make and eat breakfast (-3 Spoons)":
             $ spoons -= 3
             "You make and enjoy pancakes. They're a little lumpy, but still delicious. The effort of cooking leaves you feeling drained."
             player "That was tasty!"
             $ eatingCounter += 1
-        "Skip breakfast":
+        "No, Skip breakfast (- Hunger)":
             "You skip breakfast today. You need to save your spoons for other things today. Your stomach grumbles."
 
     #transition
@@ -146,28 +146,37 @@ label dayOne:
     "She knows how much energy it takes for you to be here every day, and she always offers you a warm smile for your effort."
     scene sit_on_bus
     $ spoons -= 5
-    " You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
+    "You sit in your usual seat and watch the scenery go by. You are already feeling fatigued. (-5 spoons)"
     
     #arrival to work
     "After the bus drops you off at work, you waste no time getting to your desk."
-    "Your coworkers greet you as you make your way through the building."
+    "Your coworker, Alvaro, greets you as you make your way through the building."
+    #should Alvaro say something?
 
-    "Eventually, you hear a knock on the wall of your cubicle. It's your boss Colton."
+    #at your desk
+    "You sit down and begin your work for the day"
+    "You are finishing an important project with the rest of your team"
 
-    boss "Hey , [player], take your lunch, before you forget to, and remember to clock out for it as well."
+    #lunch
 
-    "You begrudgingly clock out. Grabbing your small lunch."
-    player "Hmm, where should I eat lunch?"
-    
-    $ eatingCounter += 1
+    "Partway through the day, your stomach begins to rumble. It's time for lunch."
+    "Your co-workers approach you. They invite you to join them for lunch in the break room."
 
+   
+
+    "Would you like to eat lunch with your co-workers?"   
     menu:
-        "Eat with your co-worker (-5 spoons)":
+        "Yes, eat with your co-workers (-5 spoons)":
+            $ eatingCounter += 1
             $ spoons -= 5
-            "You sit down with (character), and having a amazing lunch break. You talk with (character) about (stuff)."
-        "Eat in your cubicle (-2 Social Points)":
+            "You join your co-workers in the break room. Alvaro tells you all about his daughter's dance recital."
+            #more Alvaro lore?
+            "You have fun, but being around this many people drains you of energy."
+        "No, keep working (-2 Social Points, Hunger)":
+            "You tell them that you are going to skip lunch today to continue working on the project. "
             $ socialPoints -= 2
-            "You sit back down in your desk, open your small packed lunch and start eating, alone."
+            "They look disappointed. Alvaro frowns at you. "
+            "Your stomach grumbles."
     
     menu:
         "Finish all your work for the day":
