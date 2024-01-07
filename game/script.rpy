@@ -413,23 +413,26 @@ label dayTwo:
         "No (- Hunger)":
             "You skip dinner today. You are too tired to make anything tonight anyways."
             "Your stomach grumbles."
-    
-    player "it's almost time for me to go to sleep"
-
-    player "should I do laundry?"
-    # be productive event
+    #laundry
+    "Despite it having been a long day, you notice that you need to do laundry. "
+    "Would you like to do your laundry?"
     menu:            
-        "Do laundry (-3 spoons)":
+        "Yes, do laundry (-3 spoons)":
             $ spoons -= 3
-            player "at least I got that out of the way"
+            "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
             $ laundryCounter = 0 
-        "Watch TV":
+        "No, watch TV instead (-laundry)":
+            "Instead of doing laundry, you sit on the couch and watch TV for a while. You deserve a break. "
+            "They are playing reruns of cartoons you used to watch as a child."
+            "It brings a smile to your face."
             $ laundryCounter += 1
-            player "I will just chill tongiht and watch TV"
-    
-    player "Time To head to bed!"
+
+    #bedtime
+    "After a long and tiring day, you decide it's time for bed."
+    "You make your way to your bedroom."
     scene black
-    "You go to sleep"
+    "You get into bed, close your eyes, and fall asleep."
+    
     #day 2 End
 
 label dayThree:
