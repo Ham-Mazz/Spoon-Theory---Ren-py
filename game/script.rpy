@@ -305,8 +305,16 @@ label dayTwo:
             "Your stomach grumbles."
 
     #bus stop
-
-    "Time to get to Work!"
+    "You leave the house, making sure to lock the door behind you. "
+    "You walk a few blocks down the road to the bus stop."
+    "As you wait for the bus, you watch the sun rise."
+    
+    #on the bus
+    busDriver "Hello [player] How are you today?"
+    player "I'm alright [busDriver]. How are you"
+    busDriver "Same as always, my dear. Same as always. "
+    $ spoons -= 5
+    "(-5 spoons) You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
 
     player "I have to take the bus to work (-5 spoons)"
     scene enter_bus
