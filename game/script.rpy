@@ -347,34 +347,59 @@ label dayTwo:
             "Your stomach grumbles."
     
     #work proposal event
-    ""
-    ""
-    ""
-    ""
+    "It's almost time for you to give the presentation to the company's investors."
+    "You know this will take a lot of your energy for the day, but your team is counting on you."
+    "One of your co-workers, Alvaro, could take over and present for you, but you know this project better than anyone else."
+    "Will you present to the investors?"
 
     menu:
-        "Present proposal to the board":
-            "You show up the corner office, ready to KICK ASS"
-            "you failed to kick ass, but you made a good impression"
+        "Yes (-6 spoons)":
             $ spoons -= 6
+            "You finish all of your work for the day, and submit it to your boss."
             $ socialPoints += 3
-        "Ask co-worker to present proposal":
-            "character says - you want me to present this blind? are you kidding, god damn it"
+        "No (-3 social points)":
+            player "Alvaro, I'm so sorry to ask at the last minute, but can you take over the investor presentation?"
+            coworker "I mean, I can. But why can't you do it"
+            player "I just... I don't really have the energy for it today."
             $ socialPoints -= 3
-            "your co-worker does the event, but she is furious about it"
+            "Your whole team looks disappointed."
+            "[boss] frowns as you return to your desk."
+            "[bestFriend] delivers the presentation, but stumbles a few times."
+
+    #working
+    "You have a lot of work to do today, and the team is relying on you to finish it. "
+    "Whatever work you do not complete will have to be picked up by your co-workers. "
+    "Would you like to finish all of your work today?"
 
     #finish work event
+    
     menu:
-
-        "Finish all your work for the day":
+        "Yes, Finish all your work for the day (-10 spoons)":
             $ spoons -= 10
-            "After lunch, you focus and manage to get all your work finished somehow."
-            
-        "Take a break, resulting in you being unable to finish your work":
+            "You finish all of your work for the day, and submit it to your boss, Colton. "
+        "No, take a break which results in you being unable to finish your work (-5 spoons, -2 social points) ":
             $ spoons -= 5
             $ socialPoints -= 2
-            "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
+            "You complete some of your work, but there are still some things left unfinished. Your co-workers do not appreciate having to pick up the slack."
     
+    #pack up from work
+
+    "You pack up all of your belongings, and begin the trek to the bus stop"
+    "Your coworkers wave as you pass by them."
+    coworker " Have a good night, [player]!"
+    player "You too, [coworker]!"
+
+    #at the bus stop
+    "You are not at the bus stop for long before [busDriver] pulls up, ready to take you home."
+
+    #on the bus
+    scene enter_bus
+    "You exchange nods with her, and collapse into your usual seat."
+    scene sit_on_bus
+    "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
+    $ spoons -= 5
+    "Watching the scenery helps clear your head after such a long day at work."
+
     player "Ok it's time to go home!"
     "You take the bus home (-5 spoons)"
     scene enter_bus
