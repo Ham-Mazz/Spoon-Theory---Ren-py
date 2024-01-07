@@ -215,7 +215,6 @@ label dayOne:
 
     #dinner
 
-
     "The grocery store near your house is having a sale on bread."
     "Would you like to stop for groceries to make a hearty meal tonight"
     menu:
@@ -245,6 +244,7 @@ label dayOne:
             "Going to the store sounds exhausting, but you still need to eat."
             scene large_diner
             "You stop for takeout at the restaurant next to your house."
+
     #luandry
     "Despite it having been a long day, you notice that you need to do laundry."
     "Remember, if you do not do the laundry at least twice a week, you will be deducted social points."
@@ -257,7 +257,6 @@ label dayOne:
         "No, Watch TV":
             $ laundryCounter += 1
             "Instead of doing laundry, you sit on the couch and watch TV for a while. You deserve a break."
-    
     
     "After a long and tiring day, you decide it's time for bed."
     "You make your way to your bedroom."
@@ -289,7 +288,6 @@ label dayTwo:
             "You skip a shower today and get dressed. You need to save your spoons for other things today."
             $ showerCounter += 1
 
-
     #breakfast
     "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
     "Would you like to make breakfast today?"
@@ -311,9 +309,11 @@ label dayTwo:
     
     #on the bus
     busDriver "Hello [player] How are you today?"
+    scene enter_bus
     player "I'm alright [busDriver]. How are you"
     busDriver "Same as always, my dear. Same as always. "
     $ spoons -= 5
+    scene sit_on_bus
     "(-5 spoons) You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
 
     #arrival to work
@@ -400,24 +400,19 @@ label dayTwo:
     $ spoons -= 5
     "Watching the scenery helps clear your head after such a long day at work."
 
-    player "Ok it's time to go home!"
-    "You take the bus home (-5 spoons)"
-    scene enter_bus
-    "You find an empty spot and take a sit, feeling the bus shake as it goes along"
-    scene sit_on_bus
-    "You hate this bus"
-    $ spoons -= 5
-    player "hmm I wonder what should I have for dinner"
-
     #make dinner event
+    "By the time you return home, your stomach is grumbling."
+    "You should have enough food in your pantry to whip something up for dinner."
+    "Would you like to make dinner?"
     menu:
-        "Make dinner":
-            $ spoons -= 5 
-            "Food is good"
+        "Yes, make dinner (-3 spoons)":
+            $ spoons -= 3 
+            "You make pasta with the homemade spaghetti sauce your mom brought over the last time she visited."
+            "The spaghetti is almost as good as when she makes it for you."
             $ eatingCounter += 1
-        "starve":
-            $ spoons -= 2
-            "I dont need to eat anyways"
+        "No (- Hunger)":
+            "You skip dinner today. You are too tired to make anything tonight anyways."
+            "Your stomach grumbles."
     
     player "it's almost time for me to go to sleep"
 
