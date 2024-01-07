@@ -316,33 +316,41 @@ label dayTwo:
     $ spoons -= 5
     "(-5 spoons) You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
 
-    player "I have to take the bus to work (-5 spoons)"
-    scene enter_bus
-    "You find an empty spot and take a sit, feeling the bus shake as it goes along"
-    scene sit_on_bus
-    $ spoons -= 5
-    player "The bus is so overpriced now"
+    #arrival to work
+    "After the bus drops you off at work, you waste no time getting to your desk. "
+    "Your coworkers greet you as you make your way through the building."
 
-    "You arrive at work and sit down in your small, cramped, dusty cubicle. You already wish the work day was over."
-    "..."
+    #at your desk
+    "You sit down and begin your work for the day."
+    "Your boss, Colton, approaches your desk."
+    boss "Hey [player], are you ready for the investor presentation today?"
+    player "Sure am, just finishing up that last couple things."
+    boss "Thank you. I'm counting on you, [player]."
 
-    "Eventually, you hear a knock on the wall of your cubicle. It's your boss Colton."
+    #lunch
 
-    boss "Hey , [player], take your lunch, and remember that you have a proposal to present to the board afterwards"
+    "Partway through the day, your stomach begins to rumble. It's time for lunch."
+    "Your co-workers approach you. They invite you to join them for lunch in the break room"
+    
+    "Would you like to eat lunch with your co-workers?"
 
-    "You begrudgingly clock out for lunch. Grabbing your measly meal."
-    player "Hmm, where should I eat lunch?"
-    #lunch event
-    $ eatingCounter += 1
     menu:
-        "Eat with your co-worker (-5 spoons)":
+        "Yes (-5 spoons)":
             $ spoons -= 5
-            "You sit down with (character), and having a amazing lunch break. You talk with (character) about (stuff)."
-        "Eat in your cubicle (-2 Social Points)":
-            $ socialPoints -= 2
-            "You sit back down in your desk, open your small packed lunch and start eating, alone."
+            $ eatingCounter += 1
+            "You join your co-workers in the break room. You tell them about a new book you have been reading."
+            "You have fun, but being around this many people drains you of energy."
+        "No (-1 social point, - Hunger)":
+            $ socialPoints -= 1
+            "You tell them that you are going to skip lunch today to continue working on the presentation. "
+            "They look disappointed, but understand."
+            "Your stomach grumbles."
     
     #work proposal event
+    ""
+    ""
+    ""
+    ""
 
     menu:
         "Present proposal to the board":
