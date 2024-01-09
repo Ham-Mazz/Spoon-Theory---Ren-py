@@ -25,12 +25,10 @@ init python:
         if spoons <= -5:
             pass #logic to end day and play overspent scene.
 
-        
-
-
     def addDailySpoons (currentSpoons, difficultyLevel):
         currentSpoons += 40 - (difficultyLevel * 5)
         return currentSpoons
+
 
     
 
@@ -71,8 +69,6 @@ label start:
             $ spoons = maxSpoons
             play music "sample1.mp3" loop
  
- 
-            
         "Hard":
             $ maxSpoons, socialPoints = difficulty(3)
             $ spoons = maxSpoons 
@@ -92,7 +88,6 @@ label start:
     # This ends the game.
 
     return
-
 
 label dayOne:
         
