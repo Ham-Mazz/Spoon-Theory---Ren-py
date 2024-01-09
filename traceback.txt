@@ -1,30 +1,26 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 83, in script
-    $ spoons += addDailySpoons(difficultyLevel)
-  File "game/script.rpy", line 83, in <module>
-    $ spoons += addDailySpoons(difficultyLevel)
-  File "game/script.rpy", line 20, in addDailySpoons
-    spoons += difficultyLevel
-UnboundLocalError: local variable 'spoons' referenced before assignment
+  File "game/script.rpy", line 66, in script
+    $ maxSpoons, socialPoints = difficulty(2)
+  File "game/script.rpy", line 66, in <module>
+    $ maxSpoons, socialPoints = difficulty(2)
+NameError: name 'difficulty' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 83, in script
-    $ spoons += addDailySpoons(difficultyLevel)
+  File "game/script.rpy", line 66, in script
+    $ maxSpoons, socialPoints = difficulty(2)
   File "C:\Users\Matte\Desktop\renpy-8.1.3-sdk\renpy\ast.py", line 1138, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "C:\Users\Matte\Desktop\renpy-8.1.3-sdk\renpy\python.py", line 1122, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 83, in <module>
-    $ spoons += addDailySpoons(difficultyLevel)
-  File "game/script.rpy", line 20, in addDailySpoons
-    spoons += difficultyLevel
-UnboundLocalError: local variable 'spoons' referenced before assignment
+  File "game/script.rpy", line 66, in <module>
+    $ maxSpoons, socialPoints = difficulty(2)
+NameError: name 'difficulty' is not defined
 
 Windows-10-10.0.22621 AMD64
 Ren'Py 8.1.3.23091805
 Spoon Theory 1.0
-Tue Nov  7 10:42:49 2023
+Tue Jan  9 10:50:10 2024

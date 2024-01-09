@@ -30,8 +30,6 @@ init python:
         return currentSpoons
 
 
-    
-
 screen spoons_and_points:
     hbox:
         xalign 0.05
@@ -60,24 +58,24 @@ label start:
     menu:
 
         "Easy":
-            $ maxSpoons, socialPoints = difficulty(1)
+            $ maxSpoons, socialPoints = difficultySet(1)
             $ spoons = maxSpoons
             play music "sample1.mp3" loop
             
         "Normal":
-            $ maxSpoons, socialPoints = difficulty(2)
+            $ maxSpoons, socialPoints = difficultySet(2)
             $ spoons = maxSpoons
             play music "sample1.mp3" loop
  
         "Hard":
-            $ maxSpoons, socialPoints = difficulty(3)
+            $ maxSpoons, socialPoints = difficultySet(3)
             $ spoons = maxSpoons 
             play music "sample1.mp3" loop
 
     show screen spoons_and_points
 
-    #jump dayOne
-    #jump dayTwo
+    jump dayOne
+    jump dayTwo
     #jump dayThree
     #jump dayFour
     #jump dayFive
@@ -98,6 +96,9 @@ label dayOne:
     "Remember to conserve your spoons and use them wisely. "
     scene large_bedroom
     "Let's see what the day has in store for you."
+
+    if spoons > -5:
+        jump overspentSpoons
 
     scene main_bedroom
     #shower
@@ -218,7 +219,7 @@ label dayOne:
             scene large_grocery_store
             "You buy fresh groceries. The effort leaves you feeling drained."
             scene large_bedroom
-            "When you get home, you debate on whether or not you should invite your friend, Raneem, over for dinner."\
+            "When you get home, you debate on whether or not you should invite your friend, Raneem, over for dinner."
             "Do you invite Raneem over and cook for her?"
             menu:
                 "Yes, Invite friend over. (-2 spoons +2 social points)":
@@ -1278,4 +1279,7 @@ label dayNine:
                     "you pass out 4 chapters into Sense & Sensiability"
             #should jump to end of day
 
-        
+label overspentSpoons:
+    "As you finish your prior activity, exhuasting and nasuea washes over you"
+    "You slowly close your eyes, unable to keep them open."
+    #call a new day, randomly, somehow
