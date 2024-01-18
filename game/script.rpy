@@ -75,7 +75,7 @@ label start:
 
     show screen spoons_and_points
 
-    jump dayOne
+    #jump dayOne
     jump dayTwo
     #jump dayThree
     #jump dayFour
@@ -448,9 +448,12 @@ label dayTwo:
             "The spaghetti is almost as good as when she makes it for you."
             $ spoons -= 5
             $ eatingCounter += 1
+            if spoons < -5:
+                jump overspentSpoons
         "No (- Hunger)":
             "You skip dinner today. You are too tired to make anything tonight anyways."
             "Your stomach grumbles."
+
     #laundry
     "Despite it having been a long day, you notice that you need to do laundry. "
     "Would you like to do your laundry?"
@@ -1327,3 +1330,6 @@ label overspentSpoons:
     "As you finish your prior activity, exhuasting and nasuea washes over you"
     "You slowly close your eyes, unable to keep them open."
     #call a new day, randomly, somehow
+
+label noSocialPoints:
+    "The game is over"
