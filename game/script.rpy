@@ -309,6 +309,9 @@ label dayTwo:
             "You skip a shower today and get dressed. You need to save your spoons for other things today."
             $ showerCounter += 1
 
+    if spoons < -5:
+        jump overspentSpoons
+
     #breakfast
     "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
     "Would you like to make breakfast today?"
@@ -319,6 +322,8 @@ label dayTwo:
             "You make and enjoy scrambled eggs. They're a little burnt, but you don't mind. "
             "The effort of cooking leaves you feeling drained."
             $ eatingCounter += 1
+            if spoons < -5:
+                jump overspentSpoons
         "No (- Hunger)":
             "You skip breakfast today. You need to save your spoons for other things today."
             "Your stomach grumbles."
@@ -336,6 +341,8 @@ label dayTwo:
     $ spoons -= 5
     scene sit_on_bus
     "(-5 spoons) You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
+    if spoons < -5:
+        jump overspentSpoons
 
     #arrival to work
     "After the bus drops you off at work, you waste no time getting to your desk. "
@@ -361,6 +368,8 @@ label dayTwo:
             $ eatingCounter += 1
             "You join your co-workers in the break room. You tell them about a new book you have been reading."
             "You have fun, but being around this many people drains you of energy."
+            if spoons < -5:
+                jump overspentSpoons
         "No (-1 social point, - Hunger)":
             $ socialPoints -= 1
             "You tell them that you are going to skip lunch today to continue working on the presentation. "
@@ -378,6 +387,8 @@ label dayTwo:
             $ spoons -= 6
             "You finish all of your work for the day, and submit it to your boss."
             $ socialPoints += 3
+            if spoons < -5:
+                jump overspentSpoons
         "No (-3 social points)":
             player "Alvaro, I'm so sorry to ask at the last minute, but can you take over the investor presentation?"
             coworker "I mean, I can. But why can't you do it"
@@ -403,6 +414,9 @@ label dayTwo:
             $ socialPoints -= 2
             "You complete some of your work, but there are still some things left unfinished. Your co-workers do not appreciate having to pick up the slack."
     
+    if spoons < -5:
+        jump overspentSpoons
+
     #pack up from work
 
     "You pack up all of your belongings, and begin the trek to the bus stop"
@@ -417,8 +431,10 @@ label dayTwo:
     scene enter_bus
     "You exchange nods with her, and collapse into your usual seat."
     scene sit_on_bus
-    "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
     $ spoons -= 5
+    "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
+    if spoons < -5:
+        jump overspentSpoons
     "Watching the scenery helps clear your head after such a long day at work."
 
     #make dinner event
@@ -430,6 +446,7 @@ label dayTwo:
             $ spoons -= 3 
             "You make pasta with the homemade spaghetti sauce your mom brought over the last time she visited."
             "The spaghetti is almost as good as when she makes it for you."
+            $ spoons -= 5
             $ eatingCounter += 1
         "No (- Hunger)":
             "You skip dinner today. You are too tired to make anything tonight anyways."
@@ -441,6 +458,8 @@ label dayTwo:
         "Yes, do laundry (-3 spoons)":
             $ spoons -= 3
             "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
+            if spoons < -5:
+                jump overspentSpoons
             $ laundryCounter = 0 
         "No, watch TV instead (-laundry)":
             "Instead of doing laundry, you sit on the couch and watch TV for a while. You deserve a break. "
