@@ -30,7 +30,6 @@ init python:
         currentSpoons += 40 - (difficultyLevel * 5)
         return currentSpoons
 
-
 screen spoons_and_points:
     hbox:
         xalign 0.05
@@ -503,6 +502,9 @@ label dayThree:
             $ showerCounter += 1
             "You did not take a shower, you smell and look horrid."
 
+    if spoons < -5:
+        jump overspentSpoons
+
     "you start to feel hungry, what do you want to do"
     player "hmm Should I starve today, I think food is important for my body, but I am unsure why."
     #breakfast event
@@ -523,6 +525,8 @@ label dayThree:
     player "The bus is so overpriced now"
     "Someone is in your normal seat, you have to stand today"
     $ spoons -= 1
+    if spoons < -5:
+        jump overspentSpoons
 
     #overflow work event
     "someone in your group at work has been slacking off, and now there is a bunch of wor that the rest of the group needs to pick up"
@@ -534,6 +538,9 @@ label dayThree:
         "say you have other responseibilites":
             "sorry guys I got a document that needs to be finished today"
             $ socialPoints -= 4
+    
+    if spoons < -5:
+        jump overspentSpoons
 
     "You arrive at work and sit down in your small, cramped, dusty cubicle. You already wish the work day was over."
     "..."
@@ -556,6 +563,9 @@ label dayThree:
         "Eat in your cubicle (-2 Social Points)":
             $ socialPoints -= 2
             "You sit back down in your desk, open your small packed lunch and start eating, alone."
+
+    if spoons < -5:
+        jump overspentSpoons
 
     #finish work event
     menu:
