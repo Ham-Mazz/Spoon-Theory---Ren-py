@@ -300,6 +300,16 @@ label dayTwo:
         #player did not eat enough during the day prior, deduct spoons
         "your stomach growls at you after you wake up, someone did not eat enough yesterday"
         $ spoons -= 5
+
+    if showerCounter >= 3:
+        #player has not showered in the past few days, deduct spoons
+        "As you wake up, you feel flith roll off your body and onto the floor, you are an absolute mess"
+        $ spoons -= 5
+
+    if laundryCounter >= 3:
+        #player has not done laundry in the past few days, deduct spoons
+        "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
+        $ spoons -= 5
     
     #shower
     "A shower is a great way to start the day."
@@ -502,6 +512,16 @@ label dayThree:
         "your stomach growls at you after you wake up, someone did not eat enough yesterday"
         $ spoons -= 5
 
+    if showerCounter >= 3:
+        #player has not showered in the past few days, deduct spoons
+        "As you wake up, you feel flith roll off your body and onto the floor, you are an absolute mess"
+        $ spoons -= 5
+
+    if laundryCounter >= 3:
+        #player has not done laundry in the past few days, deduct spoons
+        "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
+        $ spoons -= 5
+
     player "Hmm Should I take a Shower?"
     #shower event
     menu:
@@ -643,6 +663,16 @@ label dayFour:
         "your stomach growls at you after you wake up, someone did not eat enough yesterday"
         $ spoons -= 5
 
+    if showerCounter >= 3:
+        #player has not showered in the past few days, deduct spoons
+        "As you wake up, you feel flith roll off your body and onto the floor, you are an absolute mess"
+        $ spoons -= 5
+
+    if laundryCounter >= 3:
+        #player has not done laundry in the past few days, deduct spoons
+        "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
+        $ spoons -= 5
+
     player "Hmm Should I take a Shower, or just stay in bed a little longer?"
     #shower event
     menu:
@@ -753,6 +783,16 @@ label dayFive:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
+
+    if showerCounter >= 3:
+        #player has not showered in the past few days, deduct spoons
+        "As you wake up, you feel flith roll off your body and onto the floor, you are an absolute mess"
+        $ spoons -= 5
+
+    if laundryCounter >= 3:
+        #player has not done laundry in the past few days, deduct spoons
+        "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
         $ spoons -= 5
 
     player "Hmm Should I take a Shower, or just stay in bed a little longer?"
@@ -867,6 +907,16 @@ label daySix:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
+
+    if showerCounter >= 3:
+        #player has not showered in the past few days, deduct spoons
+        "As you wake up, you feel flith roll off your body and onto the floor, you are an absolute mess"
+        $ spoons -= 5
+
+    if laundryCounter >= 3:
+        #player has not done laundry in the past few days, deduct spoons
+        "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
         $ spoons -= 5
 
     #shower event
@@ -985,6 +1035,16 @@ label daySeven:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
+
+    if showerCounter >= 3:
+        #player has not showered in the past few days, deduct spoons
+        "As you wake up, you feel flith roll off your body and onto the floor, you are an absolute mess"
+        $ spoons -= 5
+
+    if laundryCounter >= 3:
+        #player has not done laundry in the past few days, deduct spoons
+        "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
         $ spoons -= 5
 
     scene main_bedroom
@@ -1125,7 +1185,16 @@ label dayEight:
         #player did not eat enough during the day prior, deduct spoons
         "your stomach growls at you after you wake up, someone did not eat enough yesterday"
         $ spoons -= 5
+        
+    if showerCounter >= 3:
+        #player has not showered in the past few days, deduct spoons
+        "As you wake up, you feel flith roll off your body and onto the floor, you are an absolute mess"
+        $ spoons -= 5
 
+    if laundryCounter >= 3:
+        #player has not done laundry in the past few days, deduct spoons
+        "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
+        $ spoons -= 5
     
     scene main_bedroom
     #shower
@@ -1275,6 +1344,16 @@ label dayNine:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
+
+    if showerCounter >= 3:
+        #player has not showered in the past few days, deduct spoons
+        "As you wake up, you feel flith roll off your body and onto the floor, you are an absolute mess"
+        $ spoons -= 5
+
+    if laundryCounter >= 3:
+        #player has not done laundry in the past few days, deduct spoons
+        "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
         $ spoons -= 5
 
     scene main_bedroom
