@@ -294,6 +294,12 @@ label dayTwo:
     $ spoons = addDailySpoons(spoons, difficultyLevel)
     scene large_bedroom
     "Let's see what the day has in store for you."
+
+    #daily checks
+    if eatingCounter < 2:
+        #player did not eat enough during the day prior, deduct spoons
+        "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
     
     #shower
     "A shower is a great way to start the day."
@@ -490,6 +496,12 @@ label dayThree:
 
     $ spoons = addDailySpoons(spoons, difficultyLevel)
 
+    #daily checks
+    if eatingCounter < 2:
+        #player did not eat enough during the day prior, deduct spoons
+        "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
+
     player "Hmm Should I take a Shower?"
     #shower event
     menu:
@@ -625,6 +637,12 @@ label dayFour:
 
     $ spoons = addDailySpoons(spoons, difficultyLevel)
 
+    #daily checks
+    if eatingCounter < 2:
+        #player did not eat enough during the day prior, deduct spoons
+        "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
+
     player "Hmm Should I take a Shower, or just stay in bed a little longer?"
     #shower event
     menu:
@@ -730,6 +748,12 @@ label dayFive:
     $ spoons = addDailySpoons(spoons, difficultyLevel)
 
     player "It's a New day, and I don't have work today, thank god."
+
+    #daily checks
+    if eatingCounter < 2:
+        #player did not eat enough during the day prior, deduct spoons
+        "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
 
     player "Hmm Should I take a Shower, or just stay in bed a little longer?"
     #shower event
@@ -838,6 +862,12 @@ label daySix:
     $ spoons = addDailySpoons(spoons, difficultyLevel)
 
     player "It's a New day, and I don't have work today, thank god."
+
+    #daily checks
+    if eatingCounter < 2:
+        #player did not eat enough during the day prior, deduct spoons
+        "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
 
     #shower event
     menu:
@@ -950,6 +980,12 @@ label daySeven:
     "Let's see what the day has in store for you."
 
     $ spoons = addDailySpoons(spoons, difficultyLevel)
+
+    #daily checks
+    if eatingCounter < 2:
+        #player did not eat enough during the day prior, deduct spoons
+        "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
 
     scene main_bedroom
     #shower
@@ -1079,8 +1115,16 @@ label dayEight:
     #wake up
     "Good morning! It is the start of another day."
     "Remember to conserve your spoons and use them wisely. "
+    $ spoons = addDailySpoons(spoons, difficultyLevel)
     scene large_bedroom
     "Let's see what the day has in store for you."
+    
+
+    #daily checks
+    if eatingCounter < 2:
+        #player did not eat enough during the day prior, deduct spoons
+        "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
 
     
     scene main_bedroom
@@ -1220,13 +1264,18 @@ label dayEight:
 label dayNine: 
     #starting day nine
     "DAY 9"
-
-    #wake up
     #wake up
     "Good morning! It is the start of another day."
     "Remember to conserve your spoons and use them wisely. "
+    $ spoons = addDailySpoons(spoons, difficultyLevel)
     scene large_bedroom
     "Let's see what the day has in store for you."
+
+    #daily checks
+    if eatingCounter < 2:
+        #player did not eat enough during the day prior, deduct spoons
+        "your stomach growls at you after you wake up, someone did not eat enough yesterday"
+        $ spoons -= 5
 
     scene main_bedroom
     #shower
@@ -1342,4 +1391,4 @@ label overspentSpoons:
     #call a new day, randomly, somehow
 
 label noSocialPoints:
-    "The game is over"
+    "The game is over as you have ran out of social Points"
