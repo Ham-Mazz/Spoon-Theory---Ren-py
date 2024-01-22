@@ -16,10 +16,12 @@ init python:
     showerCounter = 0
     laundryCounter = 0
     eatingCounter = 0
+    difficultyLevel = 0
 
     def difficultySet(num):
-        spoons = 40 - (num * 5)
-        socialPoints = 25 - (num * 5)
+        difficultyLevel = num
+        spoons = 40 - (difficultyLevel * 5)
+        socialPoints = 25 - (difficultyLevel * 5)
         return spoons, socialPoints
 
     def overspent():
@@ -46,7 +48,7 @@ label start:
     $ name = name.strip()
     $ difficultyLevel = 0
     define player = Character("[name]")
-    define boss = Character("Boss Colton")
+    define boss = Character("Colton")
     define busDriver = Character("Martha")
     define coworker = Character("Alvaro")
     define bestFriend = Character("Raneem")
@@ -74,14 +76,14 @@ label start:
 
     show screen spoons_and_points
 
-    #jump dayOne
+    jump dayOne
     jump dayTwo
-    #jump dayThree
-    #jump dayFour
-    #jump dayFive
-    #jump daySix
-    #jump daySeven
-    #jump dayEight
+    jump dayThree
+    jump dayFour
+    jump dayFive
+    jump daySix
+    jump daySeven
+    jump dayEight
 
     # This ends the game.
 
@@ -124,7 +126,6 @@ label dayOne:
         "Yes, make and eat breakfast (-3 Spoons)":
             $ spoons -= 3
             "You make and enjoy pancakes. They're a little lumpy, but still delicious. The effort of cooking leaves you feeling drained."
-            player "That was tasty!"
             $ eatingCounter += 1
         "No, Skip breakfast (- Hunger)":
             "You skip breakfast today. You need to save your spoons for other things today. Your stomach grumbles."
@@ -174,8 +175,8 @@ label dayOne:
             #more Alvaro lore?
             "You have fun, but being around this many people drains you of energy."
         "No, keep working (-2 Social Points, Hunger)":
-            "You tell them that you are going to skip lunch today to continue working on the project. "
             $ socialPoints -= 2
+            "You tell them that you are going to skip lunch today to continue working on the project. "
             "They look disappointed. Alvaro frowns at you. "
             "Your stomach grumbles."
     
@@ -192,7 +193,7 @@ label dayOne:
             $ spoons -= 10
             "You finish all of your work for the day, and submit it to your boss, Colton. "
             boss "Great work today, [player]."
-            player "Thanks Colton, I'll see you later."
+            player "Thanks [boss] I'll see you later."
             
         "No, take a break which results in you being unable to finish your work (-5 spoons, -2 social points) ":
             $ spoons -= 5
@@ -223,12 +224,10 @@ label dayOne:
         jump overspentSpoons
 
     scene sit_on_bus
-    player "hmm I wonder what should I have for dinner"
-
     #dinner
 
     "The grocery store near your house is having a sale on bread."
-    "Would you like to stop for groceries to make a hearty meal tonight"
+    "Would you like to stop for groceries to make a hearty meal tonight?"
     menu:
         "Yes, Stop for groceries (-5 spoons)":
             $ spoons -= 5 
@@ -243,8 +242,8 @@ label dayOne:
                 "Yes, Invite friend over. (-2 spoons +2 social points)":
                     $ eatingCounter += 1
                     $ socialPoints += 2
-                    "You call Raneem, and she comes over while you cook."
                     $ spoons -= 2
+                    "You call Raneem, and she comes over while you cook."
                     "You share a delicious tater tot hotdish, but the effort of cooking leaves you feeling exhausted."
                     if spoons < -5:
                         jump overspentSpoons
@@ -365,7 +364,7 @@ label dayTwo:
 
     #at your desk
     "You sit down and begin your work for the day."
-    "Your boss, Colton, approaches your desk."
+    "Your boss, [boss], approaches your desk."
     boss "Hey [player], are you ready for the investor presentation today?"
     player "Sure am, just finishing up that last couple things."
     boss "Thank you. I'm counting on you, [player]."
