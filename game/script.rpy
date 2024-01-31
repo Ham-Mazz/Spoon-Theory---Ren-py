@@ -24,6 +24,7 @@ init python:
         socialPoints = 25 - (difficultyLevel * 5)
         return spoons, socialPoints, difficultyLevel
 
+    #maybe use this, another jump event at bottom
     def overspent():
         if spoons <= -5:
             pass #logic to end day and play overspent scene.
@@ -179,6 +180,9 @@ label dayOne:
             "You tell them that you are going to skip lunch today to continue working on the project. "
             "They look disappointed. Alvaro frowns at you. "
             "Your stomach grumbles."
+        
+    if socialPoints < 0:
+        jump noSocialPoints
     
     if spoons < -5:
         jump overspentSpoons
@@ -202,6 +206,9 @@ label dayOne:
     
     if spoons < -5:
         jump overspentSpoons
+
+    if socialPoints < 0:
+        jump noSocialPoints
 
     #packing up from work
     "You pack up all of your belongings, and begin the trek to the bus stop"
@@ -389,6 +396,8 @@ label dayTwo:
             "You tell them that you are going to skip lunch today to continue working on the presentation. "
             "They look disappointed, but understand."
             "Your stomach grumbles."
+            if socialPoints < 0:
+                jump noSocialPoints
     
     #work proposal event
     "It's almost time for you to give the presentation to the company's investors."
@@ -411,6 +420,8 @@ label dayTwo:
             "Your whole team looks disappointed."
             "[boss] frowns as you return to your desk."
             "[bestFriend] delivers the presentation, but stumbles a few times."
+            if socialPoints < 0:
+                jump noSocialPoints
 
     #working
     "You have a lot of work to do today, and the team is relying on you to finish it."
@@ -427,7 +438,10 @@ label dayTwo:
             $ spoons -= 5
             $ socialPoints -= 2
             "You complete some of your work, but there are still some things left unfinished. Your co-workers do not appreciate having to pick up the slack."
-    
+            
+    if socialPoints < 0:
+        jump noSocialPoints
+
     if spoons < -5:
         jump overspentSpoons
 
@@ -569,6 +583,9 @@ label dayThree:
         "say you have other responseibilites":
             "sorry guys I got a document that needs to be finished today"
             $ socialPoints -= 4
+
+    if socialPoints < 0:
+        jump noSocialPoints
     
     if spoons < -5:
         jump overspentSpoons
@@ -595,6 +612,9 @@ label dayThree:
             $ socialPoints -= 2
             "You sit back down in your desk, open your small packed lunch and start eating, alone."
 
+    if socialPoints < 0:
+        jump noSocialPoints
+
     if spoons < -5:
         jump overspentSpoons
 
@@ -610,6 +630,9 @@ label dayThree:
             $ socialPoints -= 2
             "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
     
+    if socialPoints < 0:
+        jump noSocialPoints
+
     player "Ok it's time to go home!"
     "You take the bus home (-5 spoons)"
     scene enter_bus
@@ -699,11 +722,17 @@ label dayFour:
     #go out or stay home (start of branching for day 4)
     menu:
         "Stay home and have a relaxing day":
+            $ socialPoints -= 6
             #stay at home path
             "you choose to stay home and catch up on things that need to be done"
+
+            if socialPoints < 0:
+                jump noSocialPoints
+
             "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better"
             "now that you ate, find something to do for the rest of the night"
             $ eatingCounter += 1
+
             #chore or book option
             menu:
                 "Do chores for the rest of the night":
@@ -822,7 +851,12 @@ label dayFive:
     menu:
         "Stay home and have a relaxing day":
             #stay at home path
+            $ socialPoints -= 6
             "you choose to stay home and catch up on things that need to be done"
+
+            if socialPoints < 0:
+                jump noSocialPoints
+
             "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better"
             "now that you ate, find something to do for the rest of the night"
             $ eatingCounter += 1
@@ -945,7 +979,12 @@ label daySix:
     menu:
         "Stay home and have a relaxing day":
             #stay at home path
+            $ socialPoints -= 6
             "you choose to stay home and catch up on things that need to be done"
+
+            if socialPoints < 0:
+                jump noSocialPoints
+
             "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better"
             "now that you ate, find something to do for the rest of the night"
             $ eatingCounter += 1
@@ -1107,6 +1146,9 @@ label daySeven:
             $ socialPoints -= 2
             "You sit back down in your desk, open your small packed lunch and start eating, alone."
 
+            if socialPoints < 0:
+                jump noSocialPoints
+
     #finish work event
     menu:
 
@@ -1118,6 +1160,8 @@ label daySeven:
             $ spoons -= 5
             $ socialPoints -= 2
             "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
+            if socialPoints < 0:
+                jump noSocialPoints
 
     #bus home event
     player "Ok it's time to go home!"
@@ -1262,6 +1306,8 @@ label dayEight:
         "Eat in your cubicle (-2 Social Points)":
             $ socialPoints -= 2
             "You sit back down in your desk, open your small packed lunch and start eating, alone."
+            if socialPoints < 0:
+                jump noSocialPoints
 
     #work proposal event
 
@@ -1274,6 +1320,8 @@ label dayEight:
             "character says - you want me to present this blind? are you kidding, god damn it"
             $ socialPoints -= 3
             "your co-worker does the event, but she is furious about it"
+            if socialPoints < 0:
+                jump noSocialPoints
     
     #finish work event
     menu:
@@ -1284,7 +1332,9 @@ label dayEight:
             $ spoons -= 5
             $ socialPoints -= 2
             "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
-    
+            if socialPoints < 0:
+                jump noSocialPoints
+
     #packing up from work
     "You pack up all of your belongings, and begin the trek to the bus stop"
     "Your coworkers wave as you pass by them."
@@ -1445,8 +1495,10 @@ label dayNine:
             $ spoons -= 3
 
             #stay at home 
-            "you choose to stay home and just take a day to lie down and relax"
             $ socialPoints -= 6
+            "you choose to stay home and just take a day to lie down and relax"
+            if socialPoints < 0:
+                jump noSocialPoints
             "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better, maybe you wouldn't have to eat others leftovers all the time"
             "now that you ate, find something to do for the rest of the night"
             $ eatingCounter += 1
@@ -1470,3 +1522,4 @@ label overspentSpoons:
 
 label noSocialPoints:
     "The game is over as you have ran out of social Points"
+    #end the game
