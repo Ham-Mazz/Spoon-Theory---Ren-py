@@ -511,11 +511,10 @@ label dayThree:
     #day 3 timeline
     "DAY 3"
 
-    "(Wake Up)"
     scene large_bedroom
-    "You roll outta bed and hit the hard floor"
-
-    player "It's a New day... yay"
+    "Good morning! It is the start of another day."
+    "Remember to conserve your spoons and use them wisely. "
+    "Let's see what the day has in store for you."
 
     $ spoons = addDailySpoons(spoons, difficultyLevel)
 
@@ -535,40 +534,49 @@ label dayThree:
         "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
         $ spoons -= 5
 
-    player "Hmm Should I take a Shower?"
+    "A shower is a great way to start the day."
+    "Would you like to take a shower today?"
     #shower event
     menu:
-        "Take shower (-2 spoons)":
+        "Yes, Take a shower (-2 Spoons)":
             $ spoons -= 2
             $ showerCounter = 0
-            "You took a cold shower."
+            "You take a warm shower. It is nice to be clean, but the effort drains you."
             player "that was not enjoyable, but at least I smell somewhat adequate"
-        "Skip shower":
+        "No (- Cleanliness)":
             $ showerCounter += 1
-            "You did not take a shower, you smell and look horrid."
+            "You skip a shower today and get dressed. You need to save your spoons for other things today."
 
     if spoons < -5:
         jump overspentSpoons
 
-    "you start to feel hungry, what do you want to do"
-    player "hmm Should I starve today, I think food is important for my body, but I am unsure why."
+    "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
+    "Would you like to make breakfast today?"
+
     #breakfast event
     menu:
-        "Make and eat breakfast (-3 spoons)":
+        "yes, Make breakfast (-3 Spoons)":
             $ spoons -= 3
             $ eatingCounter += 1
-            "you made a scrumptious meal"
-            player "That was tasty!"
-        "Skip breakfast":
-            "you skip breakfest, lets hope you don't get too hungry"
+            "You make and enjoy some buttered toast. It's the simple things in life that make it worthwhile."
+            "The effort of cooking leaves you feeling drained."
+        "No (- Hunger)":
+            "You skip breakfast today. You need to save your spoons for other things today."
+            "Your stomach grumbles."
 
-    "Time to get to Work!"
+    #bus stop dialouge
+    "You leave the house, making sure to lock the door behind you."
+    "You walk a few blocks down the road to the bus stop."
+    "As you wait for the bus, you watch the sun rise."
 
-    player "I have to take the bus to work (-5 spoons)"
+    #on the bus dialouge
+
     scene enter_bus
+    busDriver "Martha: Hi there [player]! Have a great day."
+    player "Thank you Martha. You too."
     $ spoons -= 5
-    player "The bus is so overpriced now"
-    "Someone is in your normal seat, you have to stand today"
+    "(-5 Spoons) You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
+
     $ spoons -= 1
     if spoons < -5:
         jump overspentSpoons
