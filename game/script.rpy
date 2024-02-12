@@ -11,12 +11,19 @@ init python:
     #create all the days on ion to randmoly choose a day
     #startDay andthe wireframes as labels
     #create a fuct endDay functions for stats. 
+    
+    import random
 
     #initialize some counters
     showerCounter = 0
     laundryCounter = 0
     eatingCounter = 0
+    dayCounter = 0
     difficultyLevel = 0
+    
+    #list containing all days
+
+    dayList = [2,3,4,5,6,8]
 
     def difficultySet(num):
         difficultyLevel = num
@@ -1560,3 +1567,18 @@ label overspentSpoons:
 label noSocialPoints:
     "The game is over as you have ran out of social Points"
     #end the game
+
+label newDay:
+    if dayCounter == 0:
+        $ dayCounter += 1
+        jump dayOne
+    elif dayCounter = 6:
+        $ dayCounter += 1
+        jump dayOne
+    else:
+        #random day
+        jump newRandomDay;
+
+label newRandomDay:
+    $ 
+    
