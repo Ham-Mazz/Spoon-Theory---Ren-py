@@ -23,7 +23,7 @@ init python:
     
     #list containing all days
 
-    dayList = [2,3,4,5,6,8]
+    dayList = [2,3,4,5,6,7]
 
     def difficultySet(num):
         difficultyLevel = num
@@ -84,14 +84,14 @@ label start:
 
     show screen spoons_and_points
 
-    jump dayOne
-    jump dayTwo
-    jump dayThree
-    jump dayFour
-    jump dayFive
-    jump daySix
-    jump daySeven
-    jump dayEight
+    jump newDay
+    #jump dayTwo
+    #jump dayThree
+    #jump dayFour
+    #jump dayFive
+    #jump daySix
+    #jump daySeven
+    #jump dayEight
 
     # This ends the game.
 
@@ -296,6 +296,8 @@ label dayOne:
     scene black
     "You get into bed, close your eyes, and fall asleep."
     #End of day 1 
+    #jump to next day
+    jump newDay
 
 label dayTwo:
 
@@ -512,6 +514,7 @@ label dayTwo:
     "You get into bed, close your eyes, and fall asleep."
     
     #day 2 End
+    jump newDay
 
 label dayThree:
 
@@ -711,6 +714,7 @@ label dayThree:
     "You make your way to your bedroom."
     "You get into bed, close your eyes, and fall asleep."
     #day 3 end
+    jump newDay
 
 label dayFour: 
     #start day 4
@@ -839,6 +843,7 @@ label dayFour:
                     $ laundryCounter += 1
                     "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
     #end of day four
+    jump newDay
             
 label dayFive: 
     #start day 5
@@ -967,6 +972,7 @@ label dayFive:
                     $ laundryCounter += 1
                     "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
     #end of day five
+    jump newDay
 
 label daySix:
     "DAY 6"
@@ -1101,6 +1107,7 @@ label daySix:
                             $ socialPoints += 1
                             "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
     #this should be the end of day 6
+    jump newDay
 
 label daySeven:
     "DAY 7"
@@ -1422,147 +1429,13 @@ label dayEight:
     scene black
     "You go to sleep"
     #day 8 End
-
-label dayNine: 
-    #starting day nine
-    "DAY 9"
-    #wake up
-    "Good morning! It is the start of another day."
-    "Remember to conserve your spoons and use them wisely. "
-    $ spoons = addDailySpoons(spoons, difficultyLevel)
-    scene large_bedroom
-    "Let's see what the day has in store for you."
-
-    #daily checks
-    if eatingCounter < 2:
-        #player did not eat enough during the day prior, deduct spoons
-        "your stomach growls at you after you wake up, someone did not eat enough yesterday"
-        $ spoons -= 5
-
-    if showerCounter >= 3:
-        #player has not showered in the past few days, deduct spoons
-        "As you wake up, you feel flith roll off your body and onto the floor, you are an absolute mess"
-        $ spoons -= 5
-
-    if laundryCounter >= 3:
-        #player has not done laundry in the past few days, deduct spoons
-        "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
-        $ spoons -= 5
-
-    scene main_bedroom
-    #shower
-    "A shower is a great way to start the day."
-    "Remember, if you do not shower for 3 days, you will be deducted social points."
-    "Would you like to take a shower today?"
-
-    menu:
-        "Take shower":
-            $ spoons -= 2
-            $ showerCounter = 0
-            "You take a warm shower. It is nice to be clean, but the effort drains you."
-        "Skip shower":
-            "You skip a shower today and get dressed. You need to save your spoons for other things today."
-            $ showerCounter += 1
-
-    #breakfast
-    "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
-    "Remember, if you do not eat at least 2 times today, you will have less spoons tomorrow."
-    "Would you like to make breakfast today?"
-
-    menu:
-        "Make and eat breakfast":
-            $ spoons -= 3
-            "You make and enjoy pancakes. They're a little lumpy, but still delicious. The effort of cooking leaves you feeling drained."
-            player "That was tasty!"
-            $ eatingCounter += 1
-        "Skip breakfast":
-            "You skip breakfast today. You need to save your spoons for other things today. Your stomach grumbles."
-
-    #activity, start of branching
-
-    "after your meal, you try to find something to do with your little free time, before you start your busy day. What do you wish to do today?"
-
-    menu:
-
-        "Read a book":
-            #read a book path
-            "plus 2 something?"
-            $ spoons += 2
-
-            #go out with friends
-
-            "after you start reading your book, getting engrossed into many chapter of your long, fantasy novel. You get a call from one of your friends"
-            #add friend on phone here
-            player "Sure! I would love to come out and do that with you. Give me a little bit to get ready and i'll meet in you there in about an hour?"
-            #responding friend dialouge
-
-            "you then proceed get ready, putting on some nice clothes and doing your makeup"
-            $ spoons -= 15
-            $ socialPoints += 3
-
-            #bus on upper branch
-            "you take the bus to the resturant, which is on the other side of the city"
-            scene enter_bus
-            $ spoons -= 5
-
-            #eat lunch with friends
-            scene large_diner
-            $ spoons -= 7
-            "you arrive at the diner, and enjoy the chime as the door opens"
-            "your friends greet you, you all order and have a barrel of laughs"
-            $ eatingCounter += 1
-
-            #say goodbye
-            "after hours of talking, spilling tea and spending time with your friends, you all unfornatuately have to head home"
-            "you head back to the bus stop"
-
-            #bus home event
-            player "Ok it's time to go home!"
-            scene enter_bus
-            $ spoons -= 5
-            "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
-            scene sit_on_bus
-
-            #dinner option
-            player "hmm I wonder what should I have for dinner"
-            menu:
-                "Make dinner":
-                    $ spoons -= 5 
-                    "Food is good"
-                    $ eatingCounter += 1
-                "starve":
-                    $ spoons -= 2
-                    "I dont need to eat anyways"
-
-        "do the laundry":
-            #do the laundry path
-            $ spoons -= 3
-
-            #stay at home 
-            $ socialPoints -= 6
-            "you choose to stay home and just take a day to lie down and relax"
-            if socialPoints < 0:
-                jump noSocialPoints
-            "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better, maybe you wouldn't have to eat others leftovers all the time"
-            "now that you ate, find something to do for the rest of the night"
-            $ eatingCounter += 1
-
-            #activity on lower branch
-
-            menu:
-                "THIS IS A DUPLICATION ACTION":
-                    ""
-                    $ spoons -= 3
-                "Read a book":
-                    "You decide to keep unwinding for tonight. SO you cuddle into your bed after grabbing Pride & Prejudice, and Sense & Sensiability from Janue Austen"
-                    "You enjoy the warmth and soft lighting of your bedroom, eventually your eyes start to get heavy after finishing the first book you picked up"
-                    "you pass out 4 chapters into Sense & Sensiability"
-            #should jump to end of day
+    jump newDay
 
 label overspentSpoons:
     "As you finish your prior activity, exhuasting and nasuea washes over you"
     "You slowly close your eyes, unable to keep them open."
     #call a new day, randomly, somehow
+    jump newDay
 
 label noSocialPoints:
     "The game is over as you have ran out of social Points"
@@ -1572,13 +1445,38 @@ label newDay:
     if dayCounter == 0:
         $ dayCounter += 1
         jump dayOne
-    elif dayCounter = 6:
+    elif dayCounter == 6:
         $ dayCounter += 1
-        jump dayOne
+        jump daySeven
+    elif dayCounter > 6:
+        #end everything
+        screen black
+        "7 days have passed, the game should end"
     else:
         #random day
-        jump newRandomDay;
+        $ dayCounter += 1
+        jump newRandomDay
 
 label newRandomDay:
-    $ 
+    #get a new index using the arr len
+    $ newDayIndex = random.randint(0, len(dayList))
+
+    #pop off value using index
+
+    $ newDay = dayList.pop(newDayIndex)
+
+    #using new day value, get the new day and jump to it.
+
+    if newDay == 2:
+        jump dayTwo
+    elif newDay == 3:
+        jump dayThree
+    elif newDay == 4:
+        jump dayFour
+    elif newDay == 5:
+        jump dayFive
+    elif newDay == 6:
+        jump daySix
+    elif newDay == 7:
+        jump dayEight
     
