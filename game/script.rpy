@@ -780,57 +780,6 @@ label dayFour:
 
     #go out or stay home (start of branching for day 4)
     menu:
-        "No (-6 Social Points)":
-            $ socialPoints -= 6
-            #stay at home path
-            "You tell Raneem that you're not really feeling up to hanging out today."
-            "She is disappointed, but tells you that she understands."
-            "You can't help but think about how long it's been since you last got to spend time with her."
-
-            if socialPoints < 0:
-                jump noSocialPoints
-                
-            #leftovers or dinner?
-            "You spend most of the day resting, and by the time evening rolls around, your stomach is grumbling."
-            "You should have enough food in your pantry to whip something up for dinner."
-            "Would you like to make dinner?"
-
-            menu:
-                "Yes (-3 Spoons)":
-                    $ spoons -= 3
-                    "You make a delicious grilled cheese sandwich."
-                    if spoons < -5:
-                        jump overspentSpoons
-                    "The sage you add gives it an extra pop of flavor."
-                    $ eatingCounter += 1
-
-                "No (- Hunger)":
-                    "You skip dinner today. You are too tired to make anything tonight anyways."
-                    "Your stomach grumbles."
-
-            #laundry
-            "Despite wanting to rest today, you notice that you need to do laundry."
-            "Would you like to do your laundry?"
-            menu:
-                "Yes (-3 Spoons)":
-                    #do chores
-                    $ spoons -= 3
-                    $ laundryCounter = 0 
-                    "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
-                    if spoons < -5:
-                        jump overspentSpoons
-                "No (- Laundry)":
-                    $ laundryCounter += 1
-                    "Instead of doing laundry, you get comfy on the couch and open a book that you have been meaning to start."
-                    "The plot is light-hearted but engaging."
-                    "You don't remember the last time you were able to indulge in the simple pleasure of a book."
-
-            #sleep
-            "After a long and tiring day, you decide it's time for bed."
-            "You make your way to your bedroom."
-            "You get into bed, close your eyes, and fall asleep."
-
-            jump newDay
         "Yes (-15 Spoons)":
             #go out pathway, start by taking the bus
             $ spoons -= 15
@@ -939,17 +888,67 @@ label dayFour:
             "You get into bed, close your eyes, and fall asleep."
 
             jump newDay
+        "No (-6 Social Points)":
+            $ socialPoints -= 6
+            #stay at home path
+            "You tell Raneem that you're not really feeling up to hanging out today."
+            "She is disappointed, but tells you that she understands."
+            "You can't help but think about how long it's been since you last got to spend time with her."
+
+            if socialPoints < 0:
+                jump noSocialPoints
+                
+            #leftovers or dinner?
+            "You spend most of the day resting, and by the time evening rolls around, your stomach is grumbling."
+            "You should have enough food in your pantry to whip something up for dinner."
+            "Would you like to make dinner?"
+
+            menu:
+                "Yes (-3 Spoons)":
+                    $ spoons -= 3
+                    "You make a delicious grilled cheese sandwich."
+                    if spoons < -5:
+                        jump overspentSpoons
+                    "The sage you add gives it an extra pop of flavor."
+                    $ eatingCounter += 1
+
+                "No (- Hunger)":
+                    "You skip dinner today. You are too tired to make anything tonight anyways."
+                    "Your stomach grumbles."
+
+            #laundry
+            "Despite wanting to rest today, you notice that you need to do laundry."
+            "Would you like to do your laundry?"
+            menu:
+                "Yes (-3 Spoons)":
+                    #do chores
+                    $ spoons -= 3
+                    $ laundryCounter = 0 
+                    "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
+                    if spoons < -5:
+                        jump overspentSpoons
+                "No (- Laundry)":
+                    $ laundryCounter += 1
+                    "Instead of doing laundry, you get comfy on the couch and open a book that you have been meaning to start."
+                    "The plot is light-hearted but engaging."
+                    "You don't remember the last time you were able to indulge in the simple pleasure of a book."
+
+            #sleep
+            "After a long and tiring day, you decide it's time for bed."
+            "You make your way to your bedroom."
+            "You get into bed, close your eyes, and fall asleep."
+
+            jump newDay
             
 label dayFive: 
     #start day 5
     "DAY 5"
-    "(Wake Up)"
+    "Good morning! It is the start of another day."
     scene large_bedroom
-    "You roll outta bed and hit the hard floor"
+    "Remember to conserve your spoons and use them wisely."
+    "Let's see what the day has in store for you."
 
     $ spoons = addDailySpoons(spoons, difficultyLevel)
-
-    player "It's a New day, and I don't have work today, thank god."
 
     #daily checks
     if eatingCounter < 2:
@@ -967,119 +966,206 @@ label dayFive:
         "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
         $ spoons -= 5
 
-    player "Hmm Should I take a Shower, or just stay in bed a little longer?"
+    if spoons < -5:
+        jump overspentSpoons
+
+    "A shower is a great way to start the day."
+    "Would you like to take a shower today?"
+
     #shower event
     menu:
-        "Take shower (-2 spoons)":
+        "Yes, Take a shower (-2 Spoons)":
             $ showerCounter = 0
             $ spoons -= 2
-            "You took a cold shower, that's one way to start a morning"
-            player "that was not enjoyable, but at least I can stay in if i'd like, who cares."
-        "Skip shower":
-            $ showerCounter += 1
-            "You did not take a shower, you smell and look horrid."
+            "You take a warm shower. It is nice to be clean, but the effort drains you."
 
-    "you start to feel hungry, what do you want to do"
-    player "hmm Should I starve today, I think food is important for my body, but I am unsure why."
+            if spoons < -5:
+                jump overspentSpoons
+
+        "No, Skip shower (- Cleanliness)":
+            $ showerCounter += 1
+            "You skip a shower today and get dressed. You need to save your spoons for other things today."
+
     #breakfast event
+    "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
+    "Would you like to make breakfast today?"
     menu:
-        "Make and eat breakfast (-3 spoons)":
+        "Yes (-3 Spoons)":
             $ spoons -= 3
             $ eatingCounter += 1
-            "you made a scrumptious meal"
-            player "That was tasty!"
-        "Skip breakfast":
-            "you skip breakfest, lets hope you don't get too hungry"
+            "You make and enjoy some fresh fruit and tea. It's refreshing and rejuvenating."
+            "The effort of preparing food leaves you feeling drained."
+
+            if spoons < -5:
+                jump overspentSpoons
+            
+        "No (- Hunger)":
+            "You skip breakfast today. You need to save your spoons for other things today."
+            "Your stomach grumbles."
 
     #go out or stay home (start of branching for day 5)
-    menu:
-        "Stay home and have a relaxing day":
-            #stay at home path
-            $ socialPoints -= 6
-            "you choose to stay home and catch up on things that need to be done"
+    "It's your day off, and you plan on spending it at home. Your plan is disrupted when your friend Raneem calls."
+    "She asks you to go out with her for lunch."
+    "Would you like to spend the day with Raneem?"
 
+    menu:
+        "Yes (-15 Spoons)":
+            $ spoons -= 15
+            "You tell Raneem that you'll meet her at your favorite diner. "
+            "Your limbs ache as you pull on your shoes, but you are excited to spend time with Raneem."
+            if spoons < -5:
+                jump overspentSpoons
+            $ socialPoints += 3
+            #bus stop
+            "You leave the house, making sure to lock the door behind you. "
+            "You walk a few blocks down the road to the bus stop."
+            "As you wait for the bus, you listen to the birds."
+
+            #on the bus
+            busDriver "Hi there [player]! Any fun plans today?"
+            player "Hi [busDriver]! I'm going out with my friend."
+            busDriver "Oh, have fun dear!"
+            "You take a seat at the back of the bus."
+            scene sit_on_bus
+            $ spoons -= 5
+            "(-5 Spoons) You are already feeling fatigued."
+            if spoons < -5:
+                jump overspentSpoons
+
+            #at the resturant
+            "[bestFriend] is waiting for you by the time the bus arrives at the diner."
+            "You both waste no time in getting inside and placing your orders."
+            scene large_diner
+            bestFriend "How have you been [player]? I feel like I haven't seen you in forever!"
+            player "I've been okay. Busy with work. What about you?"
+            "[bestFriend] tells you all about the book she is currently reading. It's nice to talk with her like this."
+            $ spoons -= 5
+            "(-5 Spoons) After nearly two hours of sitting, the ache in your hips becomes nearly unbearable."
+            if spoons < -5:
+                jump overspentSpoons
+            "When you finish eating, [bestFriend] asks if you would like to watch a movie with her."
+            "Would you like to go to the movie theater?"
+
+            menu:
+                "Yes (-7 Spoons)":
+                    $ spoons -= 7
+                    "You agree and pay for your meal."
+                    $ socialPoints += 2
+                    "[bestFriend] leads you down the street to a movie theater and pays for your ticket to a romcom you had been looking forward to."
+                    "By the time the movie ends, it is already getting late"
+                    bestFriend "That was so much fun!"
+                    player "Yeah! It was even better than I expected."
+                    bestFriend "Well, I better head home. It was so good to see you again [player]!"
+                    player "It was great to see you too. We should do this again soon. "
+
+                "No":
+                    player "I'm sorry [bestFriend], I don't think I have the energy tonight."
+                    bestFriend "Oh, okay. That's alright."
+                    "You say goodbye to her, pay for your meal, and leave the restaurant. "
+                    "You wave goodbye to Raneem as you wait for the bus."
+            #at the bus stop
+
+            "You are not at the bus stop for long before [busDriver] pulls up, ready to take you home."
+            scene enter_bus
+
+            #on the bus
+            "You exchange nods with her, and collapse into your usual seat."
+            scene sit_on_bus
+            "Today has been long and exhausting, even if it was fun."
+            $ spoons -= 5
+            "(-5 spoons) You can feel the fatigue wearing down on your body."
+
+            if spoons < -5:
+                jump overspentSpoons
+
+            #dinner
+            "By the time you return home, your stomach is grumbling."
+            "You should have enough food in your pantry to whip something up for dinner."
+            "Would you like to make dinner?"
+            menu:
+                "Yes (-3 spoons)":
+                    $ spoons -= 3 
+                    $ eatingCounter += 1
+                    "You make a delicious grilled cheese sandwich."
+                    "The sage you add gives it an extra pop of flavor."
+                "No (- Hunger)":
+                    "You skip dinner today. You are too tired to make anything tonight anyways."
+                    "Your stomach grumbles."
+            
+            #laundry
+
+            "It has been a long and tiring day, but you notice that you need to do laundry. "
+            "Would you like to do your laundry?"
+            menu:
+                "Yes (-3 Spoons)":
+                    "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
+                "No (- Laundry)":
+                    $ laundryCounter += 1
+                    "Instead of doing laundry, you sit on the couch and watch TV for a while. You deserve a break."
+                    "A stand up comedian is telling jokes on a talk show."
+                    "Only half of them are actually funny, but you enjoy yourself nonetheless."
+                    
+            #sleep
+            "After a long and tiring day, you decide it's time for bed. "
+            "You make your way to your bedroom."
+            "You get into bed, close your eyes, and fall asleep."
+
+            jump newDay
+
+        "No (-6 Social Points)":
+            $ socialPoints -= 6
+            "You tell Raneem that you're not really feeling up to hanging out today."
+            "She is disappointed, but tells you that she understands."
+            "You can't help but think about how long it's been since you last got to spend time with her."
+            
             if socialPoints < 0:
                 jump noSocialPoints
 
-            "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better"
-            "now that you ate, find something to do for the rest of the night"
-            $ eatingCounter += 1
-            #chore or book option
+            #dinner
+            "You spend most of the day resting, and by the time evening rolls around, your stomach is grumbling."
+            "You should have enough food in your pantry to whip something up for dinner."
+            "Would you like to make dinner?"
             menu:
-                "Do chores for the rest of the night":
-                    #do chores
+                "Yes (-3 Spoons)":
                     $ spoons -= 3
-                    $ laundryCounter = 0 
-                    "clean wax, idk do shit"
-                    "after you finishing cleaning and doing stuff, you go to bed"
-                "Read a book for the night":
-                    $ laundryCounter += 1
-                    "You open and begin to read, the Night of our stars"
-                    "the main character is attempting to jailbreak to his lover from the local jail"
-                    "he succeeds and they live together happily in a beachouse, watching the stars soar over them during the night"
-                    "after finishing the book, you head to bed"
-            #hopefully jump to end day
-        "go out with friends and do stuff":
-            #go out pathway, start by taking the bus
-            "you get ready, putting on a cute dress and doing your makeup"
-            $ spoons -= 12
-            $ socialPoints =+ 3;
-            "you take the bus to the resturant, which is on the other side of the city"
-            scene enter_bus
-            $ spoons -= 5
-            "you arrive at the cozy little diner, greeting your friends with a hug and laughter, you missed them"
-            scene large_diner
-            "you guys sit down, order food and begin to eat, laughter is heard from your table all night"
-            $ spoons -= 3
-            $ eatingCounter += 1
-            "one of your friends covers the bill"
-
-            #keep going out with friends to movies, or go home
-            menu:
-                "Go home for the day":
-                    "afterwards you head back home"
-                "go to the movies with friends":
-                    $ spoons -= 5
-                    $ socialPoints
-                    "you watch barbie with friends, you are kenough"
-                    "afterwards you head back home, tired and sick on sugar and salt"
-
-            #both pathways result in going home, dinner event then chore event, so back to here
-            
-            #make dinner event
-            menu:   
-                "Make dinner":
-                    $ spoons -= 3 
                     $ eatingCounter += 1
-                    "Food is good"
-                "starve":
-                    "I dont need to eat anyways"
+                    "You make a delicious grilled cheese sandwich."
+                    "The sage you add gives it an extra pop of flavor."
+                "No (- Hunger)":
+                    "You skip dinner today. You are too tired to make anything tonight anyways."
+                    "Your stomach grumbles."
 
-            #chore or TV option
+            #laundry
+            "Despite wanting to rest today, you notice that you need to do laundry. "
+            "Would you like to do your laundry?"
             menu:
-                "Do chores for the rest of the night":
-                    #do chores
+                "Yes (-3 Spoons)":
                     $ spoons -= 3
-                    $ laundryCounter = 0 
-                    "clean wax, idk do shit"
-                    "after you finishing cleaning and doing stuff, you go to bed"
-                "Watch TV":
+                    "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
+
+                "No (- Laundry)":
                     $ laundryCounter += 1
-                    "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
-    #end of day five
-    jump newDay
+                    "Instead of doing laundry, you get comfy on the couch and open a book that you have been meaning to start."
+                    "The plot is light-hearted but engaging. "
+                    "You don't remember the last time you were able to indulge in the simple pleasure of a book."
+
+            #sleep
+            "After a long and tiring day, you decide it's time for bed. "
+            "You make your way to your bedroom."
+            "You get into bed, close your eyes, and fall asleep."
+
+            jump newDay
 
 label daySix:
     "DAY 6"
     #start of day 6
 
-    "(Wake Up)"
+    "Good morning! It is the start of another day."
     scene large_bedroom
-    "You roll outta bed and hit the hard floor"
+    "Remember to conserve your spoons and use them wisely."
+    "Let's see what the day has in store for you."
 
     $ spoons = addDailySpoons(spoons, difficultyLevel)
-
-    player "It's a New day, and I don't have work today, thank god."
 
     #daily checks
     if eatingCounter < 2:
@@ -1097,112 +1183,194 @@ label daySix:
         "As you wake up, you find your bedroom littered with laundry, you wish you did laundry last night"
         $ spoons -= 5
 
+    if spoons < -5:
+        jump overspentSpoons
+
     #shower event
+
+    "A shower is a great way to start the day."
+    "Would you like to take a shower today?"
+
     menu:
-        "Take shower (-2 spoons)":
+        "Yes, Take a shower (-2 Spoons)":
             $ showerCounter = 0
             $ spoons -= 2
-            "You took a cold shower, that's one way to start a morning"
-            player "that was not enjoyable, but at least I can stay in if i'd like, who cares."
-        "Skip shower":
-            $ showerCounter += 1
-            "You did not take a shower, you smell and look horrid."
+            "You take a warm shower. It is nice to be clean, but the effort drains you."
 
-    "you start to feel hungry, what do you want to do"
-    player "hmm Should I starve today, I think food is important for my body, but I am unsure why."
+            if spoons < -5:
+                jump overspentSpoons
+
+        "No, Skip shower (- Cleanliness)":
+            $ showerCounter += 1
+            "You skip a shower today and get dressed. You need to save your spoons for other things today."
+
+    "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
+    "Would you like to make breakfast today?"
+
     #breakfast event
     menu:
-        "Make and eat breakfast (-3 spoons)":
+        "Yes (-3 Spoons)":
             $ spoons -= 3
             $ eatingCounter += 1
-            "you made (and ate) a scrumptious meal"
-            player "That was tasty!"
-        "Skip breakfast":
-            "you skip breakfest, lets hope you don't get too hungry"
+            "You make and enjoy some fresh fruit and tea. It's refreshing and rejuvenating."
+            "The effort of preparing food leaves you feeling drained."
 
-    #go out or stay home (start of branching for day 6)
+            if spoons < -5:
+                jump overspentSpoons
+            
+        "No (- Hunger)":
+            "You skip breakfast today. You need to save your spoons for other things today."
+            "Your stomach grumbles."
+
+    "It's your day off, and you plan on spending it at home. Your plan is disrupted when your friend Raneem calls."
+    "She asks you to go out with her for lunch."
+    "Would you like to spend the day with Raneem?"
+
     menu:
-        "Stay home and have a relaxing day":
-            #stay at home path
-            $ socialPoints -= 6
-            "you choose to stay home and catch up on things that need to be done"
+        "Yes (-15 Spoons)":
+            $ spoons -= 15
+            "You tell Raneem that you'll meet her at your favorite diner."
+            "Your limbs ache as you pull on your shoes, but you are excited to spend time with Raneem."
+            if spoons < -5:
+                jump overspentSpoons
+            $ socialPoints += 3
 
+            #bus stop
+            "You leave the house, making sure to lock the door behind you."
+            "You walk a few blocks down the road to the bus stop."
+            "As you wait for the bus, you listen to the birds."
+
+            #on the bus
+            busDriver "Hi there [player]! Any fun plans today?"
+            player "Hi [busDriver]! I'm going out with my friend."
+            busDriver "Oh, have fun dear!"
+            "You take a seat at the back of the bus."
+            scene sit_on_bus
+            $ spoons -= 5
+            "(-5 Spoons) You are already feeling fatigued."
+            if spoons < -5:
+                jump overspentSpoons
+
+            "[bestFriend] is waiting for you by the time the bus arrives at the diner."
+            "You both waste no time in getting inside and placing your orders."
+            scene large_diner
+            bestFriend "How have you been [player]? I feel like I haven't seen you in forever!"
+            player "I've been okay. Busy with work. What about you?"
+            "[bestFriend] tells you all about the book she is currently reading. It's nice to talk with her like this."
+            $ spoons -= 5
+            "(-5 Spoons) After nearly two hours of sitting, the ache in your hips becomes nearly unbearable."
+            if spoons < -5:
+                jump overspentSpoons
+
+            "When you finish eating, you realize that you want to keep talking with Raneem."
+            "Would you like to invite her to come home with you?"
+
+            menu:
+                "Yes (-7 Spoons)":
+                    $ spoons -= 7
+                    "[bestFriend] is thrilled and agrees to come home with you to continue hanging out."
+                    $ spoons += 2
+                    "You pay for your meal, and she drives both of you to your house."
+                    scene large_bedroom
+                    "You spend the next few hours laughing and sharing stories."
+                    bestFriend "Thank you for having me over! I had so much fun."
+                    player "Of course! It was great talking with you."
+                    bestFriend "Well, I better head home before it gets too dark. Have a great rest of your evening!"
+                    player "Drive safe!"
+                    "You wave to [bestFriend] as she drives away, a content smile settling across your face."
+                "No":
+                    "As much as you'd like to continue hanging out, you don't have the energy to keep socializing. "
+                    "You ask Raneem to give you a ride home, and in exchange, you pay for both of your meals."
+                    bestFriend "It was good to see you again, have a good night."
+                    player "Thank you for the ride, we should hang out again soon."
+
+            #dinner
+            "By the time you return home, your stomach is grumbling."
+            "You should have enough food in your pantry to whip something up for dinner."
+            "Would you like to make dinner?"
+            menu:
+                "Yes (-3 spoons)":
+                    $ spoons -= 3 
+                    $ eatingCounter += 1
+                    "You make a delicious grilled cheese sandwich."
+                    "The sage you add gives it an extra pop of flavor."
+                "No (- Hunger)":
+                    "You skip dinner today. You are too tired to make anything tonight anyways."
+                    "Your stomach grumbles."
+
+            #laundry
+
+            "Despite wanting to rest today, you notice that you need to do laundry."
+            "Would you like to do your laundry?"
+            menu:
+                "Yes (-3 Spoons)":
+                    $ spoons -= 3
+                    "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
+
+                "No (- Laundry)":
+                    $ laundryCounter += 1
+                    "Instead of doing laundry, you sit on the couch and watch TV for a while. You deserve a break."
+                    "A stand up comedian is telling jokes on a talk show."
+                    "Only half of them are actually funny, but you enjoy yourself nonetheless."
+            
+            #bed time
+
+            "After a long and tiring day, you decide it's time for bed. "
+            "You make your way to your bedroom."
+            "You get into bed, close your eyes, and fall asleep."
+
+            jump newDay
+
+        "No (-6 Social Points)":
+            
+            $ socialPoints -= 6
+
+            "You tell Raneem that you're not really feeling up to hanging out today."
+            "She is disappointed, but tells you that she understands."
+            "You can't help but think about how long it's been since you last got to spend time with her."
+            
             if socialPoints < 0:
                 jump noSocialPoints
 
-            "you clean the kitchen, and grab some leftovers to eat and finished those off. You should learn to cook better"
-            "now that you ate, find something to do for the rest of the night"
-            $ eatingCounter += 1
-            #chore or book option
+
+            #dinner
+            "You spend most of the day resting, and by the time evening rolls around, your stomach is grumbling."
+            "You should have enough food in your pantry to whip something up for dinner."
+            "Would you like to make dinner?"
+
             menu:
-                "Do chores for the rest of the night":
-                    #do chores
+                "Yes (-3 spoons)":
+                    $ spoons -= 3 
+                    $ eatingCounter += 1
+                    "You make a delicious grilled cheese sandwich."
+                    "The sage you add gives it an extra pop of flavor."
+                "No (- Hunger)":
+                    "You skip dinner today. You are too tired to make anything tonight anyways."
+                    "Your stomach grumbles."
+
+            #laundry
+            
+            "Despite wanting to rest today, you notice that you need to do laundry."
+            "Would you like to do your laundry?"
+            menu:
+                "Yes (-3 Spoons)":
                     $ spoons -= 3
-                    "clean wax, idk do shit"
-                    "after you finishing cleaning and doing stuff, you go to bed"
-                "Read a book for the night":
-                    "You open and begin to read, the Night of our stars"
-                    "the main character is attempting to jailbreak to his lover from the local jail"
-                    "he succeeds and they live together happily in a beachouse, watching the stars soar over them during the night"
-                    "after finishing the book, you head to bed"
-            #hopefully jump to end day
-        "Go our with your friends for the night":
-            #pathway that sends you to go with friends, upper two branches on figma wireframe
-            $ spoons -= 12
-            $ socialPoints += 3
-            "go our with your friends, get ready and stuff"
+                    "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
 
-            #take the bus to resturant
+                "No (- Laundry)":
+                    $ laundryCounter += 1
+                    "Instead of doing laundry, you get comfy on the couch and open a book that you have been meaning to start. "
+                    "The plot is light-hearted but engaging."
+                    "You don't remember the last time you were able to indulge in the simple pleasure of a book."
+            
+            #bedtime
 
-            $ spoons -= 5
-            "you take the bus to the resturant, going with your freidns and chatting on the way there"
+            "After a long and tiring day, you decide it's time for bed. "
+            "You make your way to your bedroom."
+            "You get into bed, close your eyes, and fall asleep."
 
-            #eat lunch at resturant
-            $ eatingCounter += 1
-            $ spoons -= 3
-            "you eat lunch with your friends group, you have an amazing time doing so"
+            jump newDay
 
-            #invite friend home or go home alone and single (I ship characters I don't actually know)
-            menu:
-                "Invite Friend back to your place":
-                    $ spoons -=7
-                    $ socialPoints += 2
-                    "you invite your friend over for dinner as well, they agree so you go back to your place"
-                    "now that your friend is here, do you choose to"
-                    menu:
-                        "be responisble and wash dishes, and do other chores":
-                            $ laundryCounter = 0 
-                            "you do chores after you get home, she hangs out for a while but heads home after a little bit"
-                        "Hang out and do a movie marathon":
-                            $ spoons -= 1
-                            $ laundryCounter += 1 
-                            $ socialPoints += 1
-                            "you guys do a movie marathon, watching 5 movies before she passes out on the couch"
-                "Go home alone":
-                    $ spoons -=5
-                    "you head home alone"
-                    #make dinner event
-                    menu:   
-                        "Make dinner":
-                            $ spoons -= 3 
-                            $ eatingCounter += 1
-                            "Food is good"
-                        "starve":
-                            "I dont need to eat anyways"
-
-                    #chore or TV option
-                    menu:
-                        "Do chores for the rest of the night":
-                            #do chores
-                            $ spoons -= 3
-                            $ laundryCounter = 0 
-                            "clean wax, idk do shit"
-                            "after you finishing cleaning and doing stuff, you go to bed"
-                        "Watch TV":
-                            $ socialPoints += 1
-                            "You watch 3 movies and pass out in the middle of the second, so much for a movie night"
-    #this should be the end of day 6
-    jump newDay
 
 label daySeven:
     "DAY 7"
