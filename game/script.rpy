@@ -1371,7 +1371,6 @@ label daySix:
 
             jump newDay
 
-
 label daySeven:
     "DAY 7"
     # Day 7 timeline
@@ -1402,128 +1401,187 @@ label daySeven:
     scene main_bedroom
     #shower
     "A shower is a great way to start the day."
-    "Remember, if you do not shower for 3 days, you will be deducted social points."
     "Would you like to take a shower today?"
 
-    player "Hmm Should I take a Shower?"
-
     menu:
-        "Take shower":
+        "Yes(-2 Spoons)":
             $ spoons -= 2
             $ showerCounter = 0
             "You take a warm shower. It is nice to be clean, but the effort drains you."
-        "Skip shower":
+        "No (- Cleanliness)":
             "You skip a shower today and get dressed. You need to save your spoons for other things today."
             $ showerCounter += 1
+
+    if spoons < -5:
+        jump overspentSpoons
+    
     #breakfast
     "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
-    "Remember, if you do not eat at least 2 times today, you will have less spoons tomorrow."
     "Would you like to make breakfast today?"
 
     menu:
-        "Make and eat breakfast":
+        "Yes (-3 Spoons)":
             $ spoons -= 3
-            "You make and enjoy pancakes. They're a little lumpy, but still delicious. The effort of cooking leaves you feeling drained."
-            player "That was tasty!"
+            "You make and enjoy scrambled eggs. You might have added a little too much salt, but they're still tasty."
+            "The effort of cooking leaves you feeling drained."
             $ eatingCounter += 1
-        "Skip breakfast":
-            "You skip breakfast today. You need to save your spoons for other things today. Your stomach grumbles."
+            if spoons < -5:
+                jump overspentSpoons
+        "No (- Hunger)":
+            "You skip breakfast today. You need to save your spoons for other things today."
+            "Your stomach grumbles."
 
     #transition
     "You leave the house, making sure to lock the door behind you."
     "You walk a few blocks down the road to the bus stop."
     "As you wait for the bus, it starts to rain. It makes your body ache."
+
     #bus
-    $ spoons -= 5
-    "The bus driver, Martha, greets you as you board. She has been the driver on your route for years and she knows you well."
-    scene enter_bus
-    "She knows how much energy it takes for you to be here every day, and she always offers you a warm smile for your effort."
+
+    busDriver "Hello [player]! Off to work?."
+    player "I sure am."
     scene sit_on_bus
+    $ spoons -= 5
     "You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
 
-    "You arrive at work and sit down in your small, cramped, dusty cubicle. You already wish the work day was over."
-    "..."
+    if spoons < -5:
+        jump overspentSpoons
 
-    "Eventually, you hear a knock on the wall of your cubicle. It's your boss Colton."
+    #at work
+    "After the bus drops you off at work, you waste no time getting to your desk."
+    "Your coworker, [coworker], greets you as you make your way through the building."
+    "You sit down and begin your work for the day."
+    "You are starting an important project with the rest of your team."
 
-    boss "Hey , [player], take your lunch, and remember that you have a proposal to present to the board afterwards"
-
-    "You begrudgingly clock out for lunch. Grabbing your measly meal."
-    player "Hmm, where should I eat lunch?"
     #lunch event
-    $ eatingCounter += 1
+    "Partway through the day, your stomach begins to rumble. It's time for lunch."
+    "Your co-workers approach you. They invite you to join them for lunch in the break room."
+    "Would you like to eat lunch with your co-workers?"
+
     menu:
-        "Eat with your co-worker (-5 spoons)":
+        "Yes (-5 Spoons)":
+            $ eatingCounter += 1
             $ spoons -= 5
-            "You sit down with (character), and having a amazing lunch break. You talk with (character) about (stuff)."
-        "Eat in your cubicle (-2 Social Points)":
+            "You join your co-workers in the break room. [bestFriend] tells you about a new book he has been reading."
+            "You have fun, but being around this many people drains you of energy."
+            if spoons < -5:
+                jump overspentSpoons
+        "No (-2 Social Points) (- Hunger)":
             $ socialPoints -= 2
-            "You sit back down in your desk, open your small packed lunch and start eating, alone."
+            "You tell them that you are going to skip lunch today to continue working on the project."
+            "They look disappointed. Alvaro frowns at you."
+            "Your stomach grumbles."
 
             if socialPoints < 0:
                 jump noSocialPoints
 
     #finish work event
+    "You have a lot of work to do today, and the team is relying on you to finish it. "
+    "Whatever work you do not complete will have to be picked up by your co-workers."
+    "Would you like to finish all of your work today?"
+
     menu:
 
-        "Finish all your work for the day":
+        "Yes (-10 Spoons)":
             $ spoons -= 10
-            "After lunch, you focus and manage to get all your work finished somehow."
+            "You finish all of your work for the day, and submit it to your boss, [boss]."
+            boss "Great work today, [player]."
+            player "Thanks boss, I'll see you later."
             
-        "Take a break, resulting in you being unable to finish your work":
+        "No (-5 Spoons)":
             $ spoons -= 5
+            "You complete some of your work, but there are still some things left unfinished. Your co-workers do not appreciate having to pick up the slack."
             $ socialPoints -= 2
-            "After lunch, you scroll through tiktoks and decide that the work on your desk can be done tommorow. Your coworkers are not impressed with the amount of work you left behind"
             if socialPoints < 0:
                 jump noSocialPoints
 
+    if spoons < -5:
+        jump overspentSpoons
+
+    #pack up
+    "You pack up all of your belongings, and begin the trek to the bus stop."
+    "Your coworkers wave as you pass by them. "
+    coworker "Have a good night, [player]!"
+    player "You too, [coworker]! "
+
     #bus home event
-    player "Ok it's time to go home!"
-    "You take the bus home (-5 spoons)"
-    $ spoons -= 5
-    scene enter_bus
-    "You find an empty spot and take a seat, feeling the bus shake as it goes along"
-    scene sit_on_bus
-    player "hmm I wonder what should I have for dinner"
     
-    $ eatingCounter += 1
+    "You are not at the bus stop for long before [player] pulls up, ready to take you home."
+    "She greets you with a warm smile."
+    busDriver "Are you ready to go home, hon?"
+    player "Absolutely."
+
+
+    $ spoons -= 5
+    "Today has been long and exhausting. You can feel the fatigue wearing down on your body."
+
+    #dinner pathing
+    "The grocery store near your house is having a sale on vegetables."
+    "Would you like to stop for groceries to make a hearty meal tonight, or would you rather save your energy and get takeout?"
 
     menu:
-        "Stop for groceries (-5 spoons)":
+        "Get groceries (-5 Spoons)":
             $ spoons -= 5 
-            "lets grab a this, and a that"
             scene large_grocery_store
+            "You buy fresh groceries. The effort leaves you feeling drained."
+            "When you get home, you debate on whether or not you should invite your friend, Raneem, over for dinner."
+            "Do you invite [bestFriend] over and cook for her?"
+            
             menu:
-                "Invite friend over and cook dinner? (-2 spoons +2 social points)":
+                "Yes (-2 Spoons)":
                     $ spoons -= 2
+                    $ eatingCounter += 1
+                    scene large_bedroom
+                    "You call [bestFriend], and she comes over while you cook."
+                    "You share a delicious leek and potato soup, but the effort of cooking leaves you feeling exhausted."
+                    bestFriend "Thank you for the meal, [player]! I know how tiring cooking can be, and I appreciate you inviting me over."
+                    player "Any time. I'm glad you liked it!"
                     $ socialPoints += 2
-                    "You had a good time and and enjoyed a fufilling meal with your friend!"
-                "Eat dinner alone":
-                    player "hmm that was a good meal!"
+                "No (- Hunger)":
+                    "You decide that you do not have the energy to cook for yourself tonight, let alone someone else."
+                    "You skip dinner."
 
-        "Stop for takeout (-2 spoons)":
+        "Get takeout (-2 Spoons)":
             $ spoons -= 2
             scene large_diner
+            "Grocery shopping sounds exhausting, so you elect to get takeout instead."
+            "When you get home, you realize that you ordered far too much food for one person."
+            "Would you like to invite your friend [bestFriend] over to share the food?"
+
             menu:
-                "Invite friend over and eat together? (-2 spoons +2 social points)":
+                "Yes (-2 spoons)":
                     $ spoons -= 2
+
+                    "You call [bestFriend], and she comes over before the food goes cold."
+                    bestFriend "Thank you for thinking of me, [player]! This was delicious"
+                    player "Of course!"
                     $ socialPoints += 2
-                    "You had a good time and and enjoyed a fufilling meal with your friend!"
-                "Eat takeout alone":
-                    player "hmm that was a fast, greasy meal"
+
+                "No":
+                    "As much as you would like to see Raneem, you don't have the energy to spend time around others tonight"
+                    "You eat your takeout alone and put the leftovers in the fridge."
+                    
+            
     #lunadry event      
+
+    "Despite it having been a long day, you notice that you need to do laundry. "
+    "Remember, if you do not do the laundry at least twice a week, you will be deducted social points."
+    "Would you like to do your laundry?"
+
     menu:            
-        "Do laundry (-3 spoons)":
+        "Yes (-3 Spoons)":
             $ spoons -= 3
             $ laundryCounter = 0 
-            player "at least I got that out of the way"
-        "Watch TV":
+            "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
+        "No":
             $ laundryCounter += 1
-            player "I will just chill tongiht and watch TV"
+            "Instead of doing laundry, you sit on the couch and watch TV for a while. You deserve a break. "
     
-    player "Time To head to bed!"
-    scene black
-    "You go to sleep"
+    "After a long and tiring day, you decide it's time for bed. "
+    "You make your way to your bedroom."
+    "You get into bed, close your eyes, and fall asleep."
+
+    jump newDay
     #End of day 7
 
 label dayEight:
