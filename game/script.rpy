@@ -1,5 +1,5 @@
 # The script of the game goes in this file.
-
+# PAIN
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 define audio.dayMusic = "audio/day-placeholder.mp3"
