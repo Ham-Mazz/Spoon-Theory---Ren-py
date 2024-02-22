@@ -2,7 +2,7 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-
+define audio.dayMusic = "audio/day-placeholder.mp3"
 
 define player = Character("[name]")
 
@@ -55,11 +55,26 @@ label start:
     $ name = renpy.input("What's your name?")
     $ name = name.strip()
     $ difficultyLevel = 0
-    define player = Character("[name]")
-    define boss = Character("Colton")
-    define busDriver = Character("Martha")
-    define coworker = Character("Alvaro")
-    define bestFriend = Character("Raneem")
+    define player = Character("[name]", image = "placeholder.jpeg")
+    define boss = Character("Colton", image = "placeholder.jpeg")
+    define busDriver = Character("Martha", image = "placeholder.jpeg")
+    define coworker = Character("Alvaro", image = "placeholder.jpeg")
+    define bestFriend = Character("Raneem", image = "placeholder.jpeg")
+
+    image player state1 = "placeholder.jpeg"
+    image player state2 = "placeholder.jpeg"
+
+    image boss state1 = "placeholder.jpeg"
+    image boss state2 = "placeholder.jpeg"
+
+    image busDriver state1 = "placeholder.jpeg"
+
+    image coworker state1 = "placeholder.jpeg"
+    image coworker state2 = "placeholder.jpeg"
+
+    image bestFriend state1 = "placeholder.jpeg"
+    image bestFriend state2 = "placeholder.jpeg"
+   
 
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
@@ -98,12 +113,13 @@ label start:
     return
 
 label dayOne:
-        
+    play music dayMusic loop    
     # Day 1 timeline
     "Day 1"
     #wake up
     "Good morning! It is the start of another day."
     "Remember to conserve your spoons and use them wisely. "
+
     scene large_bedroom
     "Let's see what the day has in store for you."
 
@@ -297,9 +313,12 @@ label dayOne:
     "You get into bed, close your eyes, and fall asleep."
     #End of day 1 
     #jump to next day
+    stop music fadeout 1.0
+
     jump newDay
 
 label dayTwo:
+    play music dayMusic loop    
 
     #day 2 timeline
     "DAY 2"
@@ -514,9 +533,12 @@ label dayTwo:
     "You get into bed, close your eyes, and fall asleep."
     
     #day 2 End
+    stop music fadeout 1.0
+
     jump newDay
 
 label dayThree:
+    play music dayMusic loop    
 
     #day 3 timeline
     "DAY 3"
@@ -712,9 +734,14 @@ label dayThree:
     "You make your way to your bedroom."
     "You get into bed, close your eyes, and fall asleep."
     #day 3 end
+
+    stop music fadeout 1.0
+
     jump newDay
 
 label dayFour: 
+    play music dayMusic loop    
+
     #start day 4
     "DAY 4"
     "Good morning! It is the start of another day."
@@ -886,6 +913,8 @@ label dayFour:
             "After a long and tiring day, you decide it's time for bed."
             "You make your way to your bedroom."
             "You get into bed, close your eyes, and fall asleep."
+            
+            stop music fadeout 1.0
 
             jump newDay
         "No (-6 Social Points)":
@@ -938,9 +967,13 @@ label dayFour:
             "You make your way to your bedroom."
             "You get into bed, close your eyes, and fall asleep."
 
+            stop music fadeout 1.0
+
             jump newDay
             
 label dayFive: 
+    play music dayMusic loop    
+
     #start day 5
     "DAY 5"
     "Good morning! It is the start of another day."
@@ -1110,6 +1143,8 @@ label dayFive:
             "You make your way to your bedroom."
             "You get into bed, close your eyes, and fall asleep."
 
+            stop music fadeout 1.0
+
             jump newDay
 
         "No (-6 Social Points)":
@@ -1154,9 +1189,13 @@ label dayFive:
             "You make your way to your bedroom."
             "You get into bed, close your eyes, and fall asleep."
 
+            stop music fadeout 1.0
+
             jump newDay
 
 label daySix:
+    play music dayMusic loop    
+
     "DAY 6"
     #start of day 6
 
@@ -1318,6 +1357,7 @@ label daySix:
             "After a long and tiring day, you decide it's time for bed. "
             "You make your way to your bedroom."
             "You get into bed, close your eyes, and fall asleep."
+            stop music fadeout 1.0
 
             jump newDay
 
@@ -1368,10 +1408,13 @@ label daySix:
             "After a long and tiring day, you decide it's time for bed. "
             "You make your way to your bedroom."
             "You get into bed, close your eyes, and fall asleep."
+            stop music fadeout 1.0
 
             jump newDay
 
 label daySeven:
+    play music dayMusic loop    
+
     "DAY 7"
     # Day 7 timeline
     #wake up
@@ -1579,11 +1622,14 @@ label daySeven:
     "After a long and tiring day, you decide it's time for bed. "
     "You make your way to your bedroom."
     "You get into bed, close your eyes, and fall asleep."
+    stop music fadeout 1.0
 
     jump newDay
     #End of day 7
 
 label dayEight:
+    play music dayMusic loop    
+
     "DAY 8"
     #Day 8 timeline
     #wake up
@@ -1768,6 +1814,7 @@ label dayEight:
     "You make your way to your bedroom."
     "You get into bed, close your eyes, and fall asleep."
 
+    stop music fadeout 1.0
     scene black
     #day 8 End
     jump newDay
@@ -1776,6 +1823,8 @@ label overspentSpoons:
     "As you finish your prior activity, exhuasting and nasuea washes over you"
     "You slowly close your eyes, unable to keep them open."
     #call a new day, randomly, somehow
+    stop music fadeout 1.0
+
     jump newDay
 
 label noSocialPoints:
