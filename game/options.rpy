@@ -29,7 +29,7 @@ define config.version = "1.0"
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _p("""
+define gui.about = _p(""" This is a test for about screen
 """)
 
 
@@ -126,7 +126,7 @@ default preferences.text_cps = 0
 ## The default auto-forward delay. Larger numbers lead to longer waits, with 0
 ## to 30 being the valid range.
 
-default preferences.afm_time = 15
+default preferences.afm_time = 10
 
 
 ## Save directory ##############################################################
@@ -150,7 +150,7 @@ define config.save_directory = "SpoonTheory-1696348515"
 ##
 ## The icon displayed on the taskbar or dock.
 
-define config.window_icon = "gui/window_icon.png"
+define config.window_icon = "gui/helmet.jpg"
 
 
 ## Build configuration #########################################################
