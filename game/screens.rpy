@@ -319,6 +319,8 @@ screen navigation():
 
         textbutton _("About") action ShowMenu("about")
 
+        textbutton _("Credits") action ShowMenu("credits")
+
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
@@ -569,6 +571,35 @@ style about_text is gui_text
 style about_label_text:
     size gui.label_text_size
 
+## Credits Scene ################################################################
+##
+## This screen gives credits to the developers
+##
+##
+##
+
+screen credits():
+
+    tag menu
+
+    ## This use statement includes the game_menu screen inside this one. The
+    ## vbox child is then included inside the viewport inside the game_menu
+    ## screen.
+    use game_menu(_("Credits"), scroll="viewport"):
+
+        style_prefix "credits"
+
+        vbox:
+
+            
+            text _("Programmers - Matthew Espinoza & Hamza Preson\n")
+
+style credit_label is gui_label
+style credit_label_text is gui_label_text
+style credit_text is gui_text
+
+style credit_label_text:
+    size gui.label_text_size
 
 ## Load and Save screens #######################################################
 ##
