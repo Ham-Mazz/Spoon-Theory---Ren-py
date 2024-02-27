@@ -52,28 +52,32 @@ screen spoons_and_points:
 # The game starts here.
 
 label start:
+
+    screen characterSelect:
+        
+    
     $ name = renpy.input("What's your name?")
     $ name = name.strip()
     $ difficultyLevel = 0
-    define player = Character("[name]", image = "placeholder.jpeg")
-    define boss = Character("Colton", image = "placeholder.jpeg")
-    define busDriver = Character("Martha", image = "placeholder.jpeg")
-    define coworker = Character("Alvaro", image = "placeholder.jpeg")
-    define bestFriend = Character("Raneem", image = "placeholder.jpeg")
+    define player = Character("[name]", image = "player")
+    define boss = Character("Colton", image = "boss")
+    define busDriver = Character("Martha", image = "busDriver")
+    define coworker = Character("Alvaro", image = "coworker")
+    define bestFriend = Character("Raneem", image = "bestFriend")
 
-    image player state1 = "placeholder.jpeg"
-    image player state2 = "placeholder.jpeg"
+    image side player = "placeholder.jpeg"
+    #image player state2 = "placeholder.jpeg"
 
-    image boss state1 = "placeholder.jpeg"
-    image boss state2 = "placeholder.jpeg"
+    image side boss = "placeholder.jpeg"
+    #image boss state2 = "placeholder.jpeg"
 
-    image busDriver state1 = "placeholder.jpeg"
+    image side busDriver = "placeholder.jpeg"
 
-    image coworker state1 = "placeholder.jpeg"
-    image coworker state2 = "placeholder.jpeg"
+    image side coworker = "placeholder.jpeg"
+    #image coworker state2 = "placeholder.jpeg"
 
-    image bestFriend state1 = "placeholder.jpeg"
-    image bestFriend state2 = "placeholder.jpeg"
+    image side bestFriend = "placeholder.jpeg"
+    #image bestFriend state2 = "placeholder.jpeg"
    
 
     # Show a background. This uses a placeholder by default, but you can
@@ -163,7 +167,7 @@ label dayOne:
     "As you wait for the bus, it starts to rain. It makes your body ache."
 
     #bus
-    busDriver "Hello [player]! Heading to work?"
+    busDriver state1 "Hello [player]! Heading to work?"
     scene enter_bus
 
     player "Hi Martha! Sure am."
