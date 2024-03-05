@@ -1876,7 +1876,8 @@ label overspentSpoons:
 
 label noSocialPoints:
     "You have lost all of your social points. You lose."
-    #end the game
+    #ending the game
+    $ dayCounter = 100
 
 label newDay:
     if dayCounter == 0:
@@ -1885,6 +1886,10 @@ label newDay:
     elif dayCounter == 6:
         $ dayCounter += 1
         jump daySeven
+    elif dayCounter == 100:
+        #game Over, Ran out of spoons ending 
+        screen black
+        "The Game is over, you have lost all of your social points. (somrthing about spoon theory.) Life is exhausting."
     elif dayCounter > 6:
         #end everything
         

@@ -591,8 +591,13 @@ screen credits():
 
         vbox:
 
-            
-            text _("Programmers - Matthew Espinoza & Hamza Preson\n")
+            text _("Berglund Fellows - Grace Shoemaker and Cryptid Parke")
+            text _("Coding Team - Matthew Espinoza & Hamza Alhamdi")
+            text _("Business Team - Kacelyn Kubojiri")
+            text _("Design Team -  Grace Shoemaker, Cryptid Parke and ")
+            text _("Lead Artists - Joseph Barrett")
+            text _("Business Team - Kacelyn Kubojiri")
+            text _("With a Special Thanks to both Andy Soria and Pacific University")
 
 style credit_label is gui_label
 style credit_label_text is gui_label_text
