@@ -109,9 +109,11 @@ label dayOne:
     "Remember to conserve your spoons and use them wisely."
 
     scene large_bedroom
+    with fade
     "Let's see what the day has in store for you."
 
     scene main_bedroom
+    with dissolve
     #shower
     "A shower is a great way to start the day."
     "Remember, if you do not shower for 3 days, you will be deducted social points."
@@ -153,11 +155,13 @@ label dayOne:
     #bus
     busDriver "Hello [player]! Heading to work?"
     scene enter_bus
+    with dissolve
 
     player "Hi [busDriver]! Sure am."
     "She has been the driver on your route for years and she knows you well"
     "She knows how much energy it takes for you to be here every day, and she always offers you a warm smile for your effort."
     scene sit_on_bus
+    with dissolve
     $ spoons -= 5
     "You sit in your usual seat and watch the scenery go by. You are already feeling fatigued. (-5 Spoons)"
 
@@ -234,6 +238,7 @@ label dayOne:
     
     #bus home event
     scene enter_bus
+    with dissolve
     $ spoons -= 5
     "(-5 Spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."   
 
@@ -241,6 +246,7 @@ label dayOne:
         jump overspentSpoons
 
     scene sit_on_bus
+    with dissolve
     #dinner
 
     "The grocery store near your house is having a sale on bread."
@@ -249,10 +255,12 @@ label dayOne:
         "Yes, Stop for groceries (-5 Spoons)":
             $ spoons -= 5 
             scene large_grocery_store
+            with dissolve
             "You buy fresh groceries. The effort leaves you feeling drained."
             if spoons < -5:
                 jump overspentSpoons
             scene large_bedroom
+            with dissolve
             "When you get home, you debate on whether or not you should invite your friend, Raneem, over for dinner."
             "Do you invite [bestFriend] over and cook for her?"
             menu:
@@ -277,6 +285,7 @@ label dayOne:
             if spoons < -5:
                 jump overspentSpoons
             scene large_diner
+            with dissolve
             "You stop for takeout at the restaurant next to your house."
 
     #luandry
@@ -297,6 +306,7 @@ label dayOne:
     "After a long and tiring day, you decide it's time for bed."
     "You make your way to your bedroom."
     scene black
+    with fade
     "You get into bed, close your eyes, and fall asleep."
     #End of day 1 
     #jump to next day
@@ -314,6 +324,7 @@ label dayTwo:
     "Remember to conserve your spoons and use them wisely."
     $ spoons = addDailySpoons(spoons, difficultyLevel)
     scene large_bedroom
+    with fade
     "Let's see what the day has in store for you."
 
     #daily checks
@@ -378,6 +389,7 @@ label dayTwo:
     #on the bus
     busDriver "Hello [player] How are you today?"
     scene enter_bus
+    with dissolve
     player "I'm alright [busDriver]. How are you"
     busDriver "Same as always, my dear. Same as always."
     $ spoons -= 5
@@ -481,6 +493,7 @@ label dayTwo:
 
     #on the bus
     scene enter_bus
+    with dissolve
     "You exchange nods with her, and collapse into your usual seat."
     scene sit_on_bus
     $ spoons -= 5
@@ -526,6 +539,7 @@ label dayTwo:
     "After a long and tiring day, you decide it's time for bed."
     "You make your way to your bedroom."
     scene black
+    with fade
     "You get into bed, close your eyes, and fall asleep."
     
     #day 2 End
@@ -540,6 +554,7 @@ label dayThree:
     "DAY 3"
 
     scene large_bedroom
+    with fade
     "Good morning! It is the start of another day."
     "Remember to conserve your spoons and use them wisely."
     "Let's see what the day has in store for you."
@@ -606,9 +621,11 @@ label dayThree:
     #on the bus dialouge
 
     scene enter_bus
+    with dissolve
     busDriver "Hi there [player]! Have a great day."
     player "Thank you [busDriver]. You too."
     $ spoons -= 5
+    scene sit_on_bus
     "(-5 Spoons) You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
 
     if spoons < -5:
@@ -700,6 +717,7 @@ label dayThree:
     "You are not at the bus stop for long before [busDriver] pulls up, ready to take you home."
     "You exchange nods with her, and collapse into your usual seat." 
     scene enter_bus
+    with dissolve
     $ spoons -= 5
     "(-5 Spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
     "Watching the scenery helps clear your head after such a long day at work."
@@ -734,12 +752,16 @@ label dayThree:
             "Instead of doing laundry, you sit on the couch and watch TV for a while. You deserve a break."
             "You watch a stand up comedian, who is telling jokes on a talk show."
             "Only half of them are actually funny, but you enjoy yourself nonetheless."
-
+    
     scene large_bedroom
+    with dissolve
     "After a long and tiring day, you decide it's time for bed."
     "You make your way to your bedroom."
     "You get into bed, close your eyes, and fall asleep."
     #day 3 end
+
+    scene black
+    with fade
 
     stop music fadeout 1.0
 
@@ -752,6 +774,7 @@ label dayFour:
     "DAY 4"
     "Good morning! It is the start of another day."
     scene large_bedroom
+    with fade
     "Remember to conserve your spoons and use them wisely."
     "Let's see what the day has in store for you."
 
@@ -778,7 +801,6 @@ label dayFour:
 
     if spoons < -5:
         jump overspentSpoons
-
 
     "A shower is a great way to start the day."
     "Would you like to take a shower today?"
@@ -836,6 +858,7 @@ label dayFour:
             busDriver "Oh, have fun dear!"
             "You take a seat at the back of the bus."
             scene enter_bus
+            with dissolve
             $ spoons -= 5
 
             #at the resturant
@@ -843,6 +866,7 @@ label dayFour:
             if spoons < -5:
                 jump overspentSpoons
             scene large_diner
+            with dissolve
             "You both waste no time in getting inside and placing your orders."
             bestFriend "How have you been [player]? I feel like I haven't seen you in forever!"
             player "I've been okay. Busy with work. What about you?"
@@ -887,6 +911,8 @@ label dayFour:
             
             #make dinner event
             "By the time you return home, your stomach is grumbling."
+            scene large_bedroom
+            with dissolve
             "You should have enough food in your pantry to whip something up for dinner."
             "Would you like to make dinner?"
 
@@ -919,10 +945,12 @@ label dayFour:
                     "A stand up comedian is telling jokes on a talk show."
                     "Only half of them are actually funny, but you enjoy yourself nonetheless."
 
-            #sleep!!
+            #sleep
             "After a long and tiring day, you decide it's time for bed."
             "You make your way to your bedroom."
             "You get into bed, close your eyes, and fall asleep."
+            scene black 
+            with fade
             
             stop music fadeout 1.0
 
@@ -989,6 +1017,7 @@ label dayFive:
     "DAY 5"
     "Good morning! It is the start of another day."
     scene large_bedroom
+    with fade
     "Remember to conserve your spoons and use them wisely."
     "Let's see what the day has in store for you."
 
@@ -1076,6 +1105,7 @@ label dayFive:
             busDriver "Oh, have fun dear!"
             "You take a seat at the back of the bus."
             scene sit_on_bus
+            with fade
             $ spoons -= 5
             "(-5 Spoons) You are already feeling fatigued."
             if spoons < -5:
@@ -1085,6 +1115,7 @@ label dayFive:
             "[bestFriend] is waiting for you by the time the bus arrives at the diner."
             "You both waste no time in getting inside and placing your orders."
             scene large_diner
+            with dissolve
             bestFriend "How have you been [player]? I feel like I haven't seen you in forever!"
             player "I've been okay. Busy with work. What about you?"
             "[bestFriend] tells you all about the book she is currently reading. It's nice to talk with her like this."
@@ -1120,6 +1151,7 @@ label dayFive:
 
             "You are not at the bus stop for long before [busDriver] pulls up, ready to take you home."
             scene enter_bus
+            with dissolve
 
             #on the bus
             "You exchange nods with her, and collapse into your usual seat."
@@ -1130,6 +1162,9 @@ label dayFive:
 
             if spoons < -5:
                 jump overspentSpoons
+
+            scene main_bedroom
+            with dissolve
 
             #dinner
             "By the time you return home, your stomach is grumbling."
@@ -1164,6 +1199,9 @@ label dayFive:
             "You make your way to your bedroom."
             "You get into bed, close your eyes, and fall asleep."
 
+            scene black
+            with fade
+
             stop music fadeout 1.0
 
             jump newDay
@@ -1176,6 +1214,9 @@ label dayFive:
             
             if socialPoints < 0:
                 jump noSocialPoints
+
+            scene main_bedroom
+            with dissolve
 
             #dinner
             "You spend most of the day resting, and by the time evening rolls around, your stomach is grumbling."
@@ -1210,6 +1251,9 @@ label dayFive:
             "You make your way to your bedroom."
             "You get into bed, close your eyes, and fall asleep."
 
+            scene black
+            with fade
+
             stop music fadeout 1.0
 
             jump newDay
@@ -1222,6 +1266,7 @@ label daySix:
 
     "Good morning! It is the start of another day."
     scene large_bedroom
+    with fade
     "Remember to conserve your spoons and use them wisely."
     "Let's see what the day has in store for you."
 
@@ -1309,6 +1354,7 @@ label daySix:
             busDriver "Oh, have fun dear!"
             "You take a seat at the back of the bus."
             scene sit_on_bus
+            with dissolve
             $ spoons -= 5
             "(-5 Spoons) You are already feeling fatigued."
             if spoons < -5:
@@ -1317,6 +1363,7 @@ label daySix:
             "[bestFriend] is waiting for you by the time the bus arrives at the diner."
             "You both waste no time in getting inside and placing your orders."
             scene large_diner
+            with dissolve
             bestFriend "How have you been [player]? I feel like I haven't seen you in forever!"
             player "I've been okay. Busy with work. What about you?"
             "[bestFriend] tells you all about the book she is currently reading. It's nice to talk with her like this."
@@ -1337,6 +1384,7 @@ label daySix:
                     $ socialPoints += 2
                     "You pay for your meal, and she drives both of you to your house."
                     scene large_bedroom
+                    with dissolve
                     "You spend the next few hours laughing and sharing stories."
                     bestFriend "Thank you for having me over! I had so much fun."
                     player "Of course! It was great talking with you."
@@ -1351,6 +1399,9 @@ label daySix:
                         jump overspentSpoons
                     bestFriend "It was good to see you again, have a good night."
                     player "Thank you for the ride, we should hang out again soon."
+
+            scene main_bedroom
+            with dissolve
 
             #dinner
             "By the time you return home, your stomach is grumbling."
@@ -1388,6 +1439,9 @@ label daySix:
             "You get into bed, close your eyes, and fall asleep."
             stop music fadeout 1.0
 
+            scene black 
+            with dissolve
+
             jump newDay
 
         "No (-6 Social Points)":
@@ -1401,6 +1455,9 @@ label daySix:
             if socialPoints < 0:
                 jump noSocialPoints
 
+
+            scene main_bedroom
+            with dissolve
 
             #dinner
             "You spend most of the day resting, and by the time evening rolls around, your stomach is grumbling."
@@ -1437,6 +1494,10 @@ label daySix:
             "After a long and tiring day, you decide it's time for bed."
             "You make your way to your bedroom."
             "You get into bed, close your eyes, and fall asleep."
+            
+            scene black 
+            with fade
+            
             stop music fadeout 1.0
 
             jump newDay
@@ -1450,6 +1511,7 @@ label daySeven:
     "Good morning! It is the start of another day."
     "Remember to conserve your spoons and use them wisely. "
     scene large_bedroom
+    with fade
     "Let's see what the day has in store for you."
 
     $ spoons = addDailySpoons(spoons, difficultyLevel)
@@ -1477,6 +1539,7 @@ label daySeven:
         jump overspentSpoons
 
     scene main_bedroom
+    with dissolve
     #shower
     "A shower is a great way to start the day."
     "Would you like to take a shower today?"
@@ -1519,6 +1582,7 @@ label daySeven:
     busDriver "Hello [player]! Off to work?."
     player "I sure am."
     scene sit_on_bus
+    with dissolve
     $ spoons -= 5
     "You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
 
@@ -1554,7 +1618,7 @@ label daySeven:
                 jump noSocialPoints
 
     #finish work event
-    "You have a lot of work to do today, and the team is relying on you to finish it. "
+    "You have a lot of work to do today, and the team is relying on you to finish it."
     "Whatever work you do not complete will have to be picked up by your co-workers."
     "Would you like to finish all of your work today?"
 
@@ -1583,12 +1647,14 @@ label daySeven:
     player "You too, [coworker]! "
 
     #bus home event
+
+    scene enter_bus
+    with dissolve
     
     "You are not at the bus stop for long before [busDriver] pulls up, ready to take you home."
     "She greets you with a warm smile."
     busDriver "Are you ready to go home, hon?"
     player "Absolutely."
-
 
     $ spoons -= 5
     "Today has been long and exhausting. You can feel the fatigue wearing down on your body."
@@ -1604,10 +1670,14 @@ label daySeven:
         "Get groceries (-5 Spoons)":
             $ spoons -= 5 
             scene large_grocery_store
+            with dissolve
             "You buy fresh groceries. The effort leaves you feeling drained."
             
             if spoons < -5:
                 jump overspentSpoons
+
+            scene large_bedroom
+                    with dissolve
                 
             "When you get home, you debate on whether or not you should invite your friend, [bestFriend], over for dinner."
             "Do you invite [bestFriend] over and cook for her?"
@@ -1616,7 +1686,6 @@ label daySeven:
                 "Yes (-2 Spoons)":
                     $ spoons -= 2
                     $ eatingCounter += 1
-                    scene large_bedroom
                     "You call [bestFriend], and she comes over while you cook."
                     "You share a delicious leek and potato soup, but the effort of cooking leaves you feeling exhausted."
                     if spoons < -5:
@@ -1631,14 +1700,16 @@ label daySeven:
         "Get takeout (-2 Spoons)":
             $ spoons -= 2
             scene large_diner
+            with dissolve
             "Grocery shopping sounds exhausting, so you elect to get takeout instead."
             "When you get home, you realize that you ordered far too much food for one person."
+            scene main_bedroom
+            with dissolve
             "Would you like to invite your friend [bestFriend] over to share the food?"
 
             menu:
                 "Yes (-2 spoons)":
                     $ spoons -= 2
-
                     "You call [bestFriend], and she comes over before the food goes cold."
                     bestFriend "Thank you for thinking of me, [player]! This was delicious"
                     player "Of course!"
@@ -1668,6 +1739,8 @@ label daySeven:
     "After a long and tiring day, you decide it's time for bed. "
     "You make your way to your bedroom."
     "You get into bed, close your eyes, and fall asleep."
+    scene black
+    with fade
     stop music fadeout 1.0
 
     jump newDay
@@ -1684,8 +1757,8 @@ label dayEight:
     "Remember to conserve your spoons and use them wisely. "
     $ spoons = addDailySpoons(spoons, difficultyLevel)
     scene large_bedroom
+    with fade
     "Let's see what the day has in store for you."
-    
 
     #daily checks
     if eatingCounter < 2:
@@ -1709,7 +1782,6 @@ label dayEight:
     if spoons < -5:
         jump overspentSpoons
     
-    scene main_bedroom
     #shower
     "A shower is a great way to start the day."
     "Would you like to take a shower today?"
@@ -1750,6 +1822,7 @@ label dayEight:
     #bus
     busDriver "Hello [player]! How are you today?"
     scene enter_bus
+    with dissolve
 
     player "I'm alright [busDriver]. How are you?"
     "Same as always, my dear. Same as always."
@@ -1845,6 +1918,7 @@ label dayEight:
     #bus home event
     player "You exchange nods with her, and collapse into your usual seat."
     scene enter_bus
+    with dissolve
     $ spoons -= 5
     "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on you."
 
@@ -1855,6 +1929,8 @@ label dayEight:
     "Watching the scenery helps clear your head after such a long day at work."
 
     #make dinner event
+    scene main_bedroom
+    with dissolve
     "By the time you return home, your stomach is grumbling."
     "You should have enough food to make something for dinner. "
     "Would you like to make dinner?"
@@ -1892,6 +1968,7 @@ label dayEight:
 
     stop music fadeout 1.0
     scene black
+    with fade
     #day 8 End
     jump newDay
 
