@@ -325,12 +325,18 @@ label dayTwo:
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
         "You have not showered in the last 3 days. You start to smell, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
 
     if laundryCounter >= 3:
         #player has not done laundry in the past few days, deduct spoons
         "You have not done your laundry in 3 days. You have no clean clothes, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
+
+    if socialPoints < 0:
+        jump noSocialPoints
+
+    if spoons < -5:
+        jump overspentSpoons
     
     #shower
     "A shower is a great way to start the day."
@@ -549,12 +555,18 @@ label dayThree:
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
         "You have not showered in the last 3 days. You start to smell, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
 
     if laundryCounter >= 3:
         #player has not done laundry in the past few days, deduct spoons
         "You have not done your laundry in 3 days. You have no clean clothes, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
+
+    if socialPoints < 0:
+        jump noSocialPoints
+
+    if spoons < -5:
+        jump overspentSpoons
 
     "A shower is a great way to start the day."
     "Would you like to take a shower today?"
@@ -754,15 +766,19 @@ label dayFour:
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
         "You have not showered in the last 3 days. You start to smell, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
 
     if laundryCounter >= 3:
         #player has not done laundry in the past few days, deduct spoons
         "You have not done your laundry in 3 days. You have no clean clothes, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
+
+    if socialPoints < 0:
+        jump noSocialPoints
 
     if spoons < -5:
         jump overspentSpoons
+
 
     "A shower is a great way to start the day."
     "Would you like to take a shower today?"
@@ -988,12 +1004,15 @@ label dayFive:
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
         "You have not showered in the last 3 days. You start to smell, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
 
     if laundryCounter >= 3:
         #player has not done laundry in the past few days, deduct spoons
         "You have not done your laundry in 3 days. You have no clean clothes, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
+
+    if socialPoints < 0:
+        jump noSocialPoints
 
     if spoons < -5:
         jump overspentSpoons
@@ -1217,12 +1236,15 @@ label daySix:
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
         "You have not showered in the last 3 days. You start to smell, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
 
     if laundryCounter >= 3:
         #player has not done laundry in the past few days, deduct spoons
         "You have not done your laundry in 3 days. You have no clean clothes, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
+
+    if socialPoints < 0:
+        jump noSocialPoints
 
     if spoons < -5:
         jump overspentSpoons
@@ -1441,12 +1463,15 @@ label daySeven:
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
         "You have not showered in the last 3 days. You start to smell, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
 
     if laundryCounter >= 3:
         #player has not done laundry in the past few days, deduct spoons
         "You have not done your laundry in 3 days. You have no clean clothes, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
+
+    if socialPoints < 0:
+        jump noSocialPoints
 
     if spoons < -5:
         jump overspentSpoons
@@ -1671,12 +1696,15 @@ label dayEight:
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
         "You have not showered in the last 3 days. You start to smell, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
 
     if laundryCounter >= 3:
         #player has not done laundry in the past few days, deduct spoons
         "You have not done your laundry in 3 days. You have no clean clothes, and lose 2 social points."
-        $ spoons -= 5
+        $ socialPoints -= 3
+
+    if socialPoints < 0:
+        jump noSocialPoints
 
     if spoons < -5:
         jump overspentSpoons
