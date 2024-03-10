@@ -1091,10 +1091,11 @@ label dayFive:
         jump overspentSpoons
 
     "A shower is a great way to start the day."
-    "Would you like to take a shower today?"
 
     #shower event
     menu:
+        "Would you like to take a shower today?"
+        
         "Yes, Take a shower (-2 Spoons)":
             $ showerCounter = 0
             $ spoons -= 2
@@ -1109,9 +1110,10 @@ label dayFive:
 
     #breakfast event
     "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
-    "Would you like to make breakfast today?"
 
     menu:
+        "Would you like to make breakfast today?"
+
         "Yes (-3 Spoons)":
             $ spoons -= 3
             $ eatingCounter += 1
@@ -1128,9 +1130,10 @@ label dayFive:
     #go out or stay home (start of branching for day 5)
     "It's your day off, and you plan on spending it at home. Your plan is disrupted when your friend [bestFriend] calls."
     "She asks you to go out with her for lunch."
-    "Would you like to spend the day with [bestFriend]?"
 
     menu:
+        "Would you like to spend the day with [bestFriend]?"
+
         "Yes (-15 Spoons)":
             $ spoons -= 15
             "You tell [bestFriend] that you'll meet her at your favorite diner. "
@@ -1168,9 +1171,10 @@ label dayFive:
             if spoons < -5:
                 jump overspentSpoons
             "When you finish eating, [bestFriend] asks if you would like to watch a movie with her."
-            "Would you like to go to the movie theater?"
 
             menu:
+                "Would you like to go to the movie theater?"
+
                 "Yes (-7 Spoons)":
                     $ spoons -= 7
                     "You agree and pay for your meal."
@@ -1213,8 +1217,9 @@ label dayFive:
             #dinner
             "By the time you return home, your stomach is grumbling."
             "You should have enough food in your pantry to whip something up for dinner."
-            "Would you like to make dinner?"
             menu:
+                "Would you like to make dinner?"
+
                 "Yes (-3 spoons)":
                     $ spoons -= 3 
                     $ eatingCounter += 1
@@ -1227,8 +1232,9 @@ label dayFive:
             #laundry
 
             "It has been a long and tiring day, but you notice that you need to do laundry."
-            "Would you like to do your laundry?"
             menu:
+                "Would you like to do your laundry?"
+                
                 "Yes (-3 Spoons)":
                     "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
                     $ laundryCounter = 0
@@ -1265,8 +1271,10 @@ label dayFive:
             #dinner
             "You spend most of the day resting, and by the time evening rolls around, your stomach is grumbling."
             "You should have enough food in your pantry to whip something up for dinner."
-            "Would you like to make dinner?"
+            
             menu:
+                "Would you like to make dinner?"
+
                 "Yes (-3 Spoons)":
                     $ spoons -= 3
                     $ eatingCounter += 1
@@ -1278,8 +1286,10 @@ label dayFive:
 
             #laundry
             "Despite wanting to rest today, you notice that you need to do laundry."
-            "Would you like to do your laundry?"
+
             menu:
+                "Would you like to do your laundry?"
+
                 "Yes (-3 Spoons)":
                     $ spoons -= 3
                     "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
@@ -1586,9 +1596,10 @@ label daySeven:
     with dissolve
     #shower
     "A shower is a great way to start the day."
-    "Would you like to take a shower today?"
 
     menu:
+        "Would you like to take a shower today?"
+
         "Yes(-2 Spoons)":
             $ spoons -= 2
             $ showerCounter = 0
@@ -1602,9 +1613,10 @@ label daySeven:
     
     #breakfast
     "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
-    "Would you like to make breakfast today?"
 
     menu:
+        "Would you like to make breakfast today?"
+
         "Yes (-3 Spoons)":
             $ spoons -= 3
             "You make and enjoy scrambled eggs. You might have added a little too much salt, but they're still tasty."
@@ -1642,9 +1654,10 @@ label daySeven:
     #lunch event
     "Partway through the day, your stomach begins to rumble. It's time for lunch."
     "Your co-workers approach you. They invite you to join them for lunch in the break room."
-    "Would you like to eat lunch with your co-workers?"
 
     menu:
+        "Would you like to eat lunch with your co-workers?"
+        
         "Yes (-5 Spoons)":
             $ eatingCounter += 1
             $ spoons -= 5
@@ -1664,9 +1677,10 @@ label daySeven:
     #finish work event
     "You have a lot of work to do today, and the team is relying on you to finish it."
     "Whatever work you do not complete will have to be picked up by your co-workers."
-    "Would you like to finish all of your work today?"
+    
 
     menu:
+        "Would you like to finish all of your work today?"
 
         "Yes (-10 Spoons)":
             $ spoons -= 10
@@ -1708,9 +1722,10 @@ label daySeven:
 
     #dinner pathing
     "The grocery store near your house is having a sale on vegetables."
-    "Would you like to stop for groceries to make a hearty meal tonight, or would you rather save your energy and get takeout?"
 
     menu:
+        "Would you like to stop for groceries to make a hearty meal tonight, or would you rather save your energy and get takeout?"
+
         "Get groceries (-5 Spoons)":
             $ spoons -= 5 
             scene large_grocery_store
@@ -1768,10 +1783,11 @@ label daySeven:
             
     #lunadry event      
 
-    "Despite it having been a long day, you notice that you need to do laundry. "
-    "Would you like to do your laundry?"
+    "Despite it having been a long day, you notice that you need to do laundry."
 
-    menu:            
+    menu:
+        "Would you like to do your laundry?"
+
         "Yes (-3 Spoons)":
             $ spoons -= 3
             $ laundryCounter = 0 
@@ -1828,9 +1844,10 @@ label dayEight:
     
     #shower
     "A shower is a great way to start the day."
-    "Would you like to take a shower today?"
 
     menu:
+        "Would you like to take a shower today?"
+
         " Yes, take a shower (-2 Spoons)":
             $ spoons -= 2
             $ showerCounter = 0
@@ -1844,9 +1861,10 @@ label dayEight:
 
     #breakfast
     "Now that you are ready for the day, it's time for breakfast. It is important to nourish your body."
-    "Would you like to make breakfast today?"
 
     menu:
+        "Would you like to make breakfast today?"
+
         "Yes, make and eat breakfast (-3 Spoons)":
             $ spoons -= 3
             "You make and enjoy pancakes. They're a little lumpy, but still delicious. The effort of cooking leaves you feeling drained."
@@ -1891,8 +1909,10 @@ label dayEight:
     #lunch option
     "Partway through the day, your stomach begins to rumble. It's time for lunch."
     "Your co-workers approach you. They invite you to join them for lunch in the break room."
-    "Would you like to eat lunch with your co-workers?"
+
     menu:
+        "Would you like to eat lunch with your co-workers?"
+
         "Yes (-5 Spoons)":
             $ eatingCounter += 1
             $ spoons -= 5
@@ -1911,10 +1931,11 @@ label dayEight:
     #Catch up on work
     "Some of your coworkers have been falling behind on their work and your boss asked you to help pick up the slack."
     "You know this will take a lot of your energy for the day, but your team is counting on you."
-    "Your team will fall behind on their deadlines if someone doesn't take charge."
-    "Will you finish your coworkers unfinished work?"    
+    "Your team will fall behind on their deadlines if someone doesn't take charge."  
     
     menu:
+        "Will you finish your coworkers unfinished work?"  
+
         "Yes (-6 Spoons)":
             $ spoons -= 6
             "You finish all of the extra work and submit it to your boss."
@@ -1933,9 +1954,10 @@ label dayEight:
     #finish work event
     "You still have a lot of work to do today, and the team is relying on you to finish it."
     "Whatever work you do not complete will have to be picked up by your co-workers."
-    "Would you like to finish all of your work today?"
 
     menu:
+        "Would you like to finish all of your work today?"
+
         "Yes (-10 Spoons)":
             $ spoons -= 10
             "You finish all of your work for the day, and submit it to your boss."
@@ -1976,10 +1998,11 @@ label dayEight:
     scene main_bedroom
     with dissolve
     "By the time you return home, your stomach is grumbling."
-    "You should have enough food to make something for dinner. "
-    "Would you like to make dinner?"
+    "You should have enough food to make something for dinner."
 
     menu:
+        "Would you like to make dinner?"
+
         "Yes (-3 Spoons)":
             $ spoons -= 3 
             "You make stew with some things that you bought the last time you went grocery shopping, happy you got to use some of the vegetables you never know what to do with."
@@ -1993,9 +2016,10 @@ label dayEight:
         jump overspentSpoons
     
     "Despite it having been a long day, you notice that you need to do laundry."
-    "Would you like to do your laundry?"
     # be productive event
     menu:            
+        "Would you like to do your laundry?"
+        
         "Yes (-3 Spoons)":
             $ spoons -= 3
             "You wash, dry, fold, and put away all of your laundry. You are exhausted, but going to bed with clean sheets was worth it."
