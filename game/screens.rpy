@@ -114,7 +114,7 @@ screen say(who, what):
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
     if not renpy.variant("small"):
-        add SideImage() xalign 0.05 yalign 0.9
+        add SideImage() xalign 0.05 yalign 0.91
 
 
 ## Make the namebox available for styling through the Character object.
