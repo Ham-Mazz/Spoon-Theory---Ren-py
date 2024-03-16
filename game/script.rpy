@@ -184,9 +184,9 @@ label dayOne:
 
     "Partway through the day, your stomach begins to rumble. It's time for lunch."
     "Your co-workers approach you. They invite you to join them for lunch in the break room."
-
-    "Would you like to eat lunch with your co-workers?"   
+ 
     menu:
+        "Would you like to eat lunch with your co-workers?"
         "Yes, eat with your co-workers (-5 Spoons)":
             $ eatingCounter += 1
             $ spoons -= 5
@@ -267,7 +267,7 @@ label dayOne:
                 jump overspentSpoons
             scene large_bedroom
             with dissolve
-            "When you get home, you debate on whether or not you should invite your friend, Raneem, over for dinner."
+            "When you get home, you debate on whether or not you should invite your friend, [bestFriend], over for dinner."
             
             menu:
                 "Do you invite [bestFriend] over and cook for her?"
@@ -474,8 +474,7 @@ label dayTwo:
 
     #working
     "You have a lot of work to do today, and the team is relying on you to finish it."
-    "Whatever work you do not complete will have to be picked up by your co-workers "
-    
+    "Whatever work you do not complete will have to be picked up by your co-workers "    
 
     #finish work event
     
@@ -497,7 +496,6 @@ label dayTwo:
         jump overspentSpoons
 
     #pack up from work
-
     "You pack up all of your belongings, and begin the trek to the bus stop."
     "Your coworkers wave as you pass by them."
     coworker " Have a good night, [player]!"
@@ -869,7 +867,6 @@ label dayFour:
     # No transition to branch dialouge?
     "It's your day off, and you plan on spending it at home. Your plan is disrupted when your friend [bestFriend] calls."
     "She asks you to go out with her for lunch."
-    
 
     #go out or stay home (start of branching for day 4)
     menu:
@@ -1009,7 +1006,6 @@ label dayFour:
             #leftovers or dinner?
             "You spend most of the day resting, and by the time evening rolls around, your stomach is grumbling."
             "You should have enough food in your pantry to whip something up for dinner."
-            
 
             menu:
                 "Would you like to make dinner?"
@@ -1066,7 +1062,6 @@ label dayFive:
     "Let's see what the day has in store for you."
 
     $ spoons = addDailySpoons(spoons, difficultyLevel)
-
     
     #daily checks
     if eatingCounter < 2:
@@ -1136,7 +1131,7 @@ label dayFive:
 
         "Yes (-15 Spoons)":
             $ spoons -= 15
-            "You tell [bestFriend] that you'll meet her at your favorite diner. "
+            "You tell [bestFriend] that you'll meet her at your favorite diner."
             "Your limbs ache as you pull on your shoes, but you are excited to spend time with [bestFriend]."
             if spoons < -5:
                 jump overspentSpoons
@@ -1349,7 +1344,6 @@ label daySix:
         jump overspentSpoons
 
     #shower event
-
     "A shower is a great way to start the day."
 
     menu:
@@ -1478,7 +1472,6 @@ label daySix:
                     "Your stomach grumbles."
 
             #laundry
-
             "Despite wanting to rest today, you notice that you need to do laundry."
     
             menu:
@@ -1537,8 +1530,7 @@ label daySix:
                     "You skip dinner today. You are too tired to make anything tonight anyways."
                     "Your stomach grumbles."
 
-            #laundry
-            
+            #laundry         
             "Despite wanting to rest today, you notice that you need to do laundry."
 
             menu:
@@ -1574,7 +1566,7 @@ label daySeven:
     # Day 7 timeline
     #wake up
     "Good morning! It is the start of another day."
-    "Remember to conserve your spoons and use them wisely. "
+    "Remember to conserve your spoons and use them wisely."
     scene large_bedroom
     with fade
     "Let's see what the day has in store for you."
@@ -1803,7 +1795,7 @@ label daySeven:
             "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
         "No":
             $ laundryCounter += 1
-            "Instead of doing laundry, you sit on the couch and watch TV for a while. You deserve a break. "
+            "Instead of doing laundry, you sit on the couch and watch TV for a while. You deserve a break."
     
     "After a long and tiring day, you decide it's time for bed. "
     "You make your way to your bedroom."
@@ -1823,7 +1815,7 @@ label dayEight:
     #wake up
     
     "Good morning! It is the start of another day."
-    "Remember to conserve your spoons and use them wisely. "
+    "Remember to conserve your spoons and use them wisely."
     $ spoons = addDailySpoons(spoons, difficultyLevel)
     scene large_bedroom
     with fade
