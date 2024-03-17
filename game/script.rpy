@@ -32,6 +32,9 @@ init python:
         currentSpoons += 40 - (difficultyLevel * 5)
         return currentSpoons
 
+    def getDifficultlyLevel():
+        return difficultyLevel
+
 screen spoons_and_points:
     hbox:
         xalign 0.05
@@ -44,28 +47,35 @@ screen spoons_and_points:
 # The game starts here.
 
 label start:
+
+    screen characterSelect:
+        pass
+        #nothing here yet
+
     $ name = renpy.input("What's your name?")
     $ name = name.strip()
     $ difficultyLevel = 0
-    define player = Character("[name]", image = "placeholder.jpeg")
-    define boss = Character("Colton", image = "placeholder.jpeg")
-    define busDriver = Character("Martha", image = "placeholder.jpeg")
-    define coworker = Character("Alvaro", image = "placeholder.jpeg")
-    define bestFriend = Character("Raneem", image = "placeholder.jpeg")
+    define player = Character("[name]", image = "player")
+    define boss = Character("Colton", image = "boss")
+    define busDriver = Character("Martha", image = "busDrive")
+    define coworker = Character("Alvaro", image = "coworker")
+    define bestFriend = Character("Raneem", image = "bestFriend")
 
-    image player state1 = "placeholder.jpeg"
-    image player state2 = "placeholder.jpeg"
+    image side player = "placeholder.jpeg"
+    #image player state2 = "placeholder.jpeg"
+    image side boss = "placeholder.jpeg"
+    #image boss state2 = "placeholder.jpeg"
 
     image boss state1 = "placeholder.jpeg"
     image boss state2 = "placeholder.jpeg"
 
-    image busDriver state1 = "placeholder.jpeg"
+    image side busDriver = "placeholder.jpeg"
 
-    image coworker state1 = "placeholder.jpeg"
-    image coworker state2 = "placeholder.jpeg"
+    image side coworker = "placeholder.jpeg"
+    #image coworker state2 = "placeholder.jpeg"
 
-    image bestFriend state1 = "placeholder.jpeg"
-    image bestFriend state2 = "placeholder.jpeg"
+    image side bestFriend = "placeholder.jpeg"
+    #image bestFriend state2 = "placeholder.jpeg"
    
     "Choose the difficulty"
     menu:
