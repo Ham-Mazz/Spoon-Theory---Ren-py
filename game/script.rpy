@@ -1,7 +1,5 @@
 # The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
 define audio.dayMusic = "audio/day-placeholder.mp3"
 
 define player = Character("[name]")
@@ -44,16 +42,14 @@ init python:
 
         return newSpoons
 
-    def getSocialPoints():
-        return socialPoints
+    #def getSocialPoints():
+    #    return socialPoints
 
-    def changeSocialPoints(amount):
-        currentSocialPoints = getSpoons()
-        newSocialPoints = (currentSpoons + amount)
-
-        return 
-
-
+    #def changeSocialPoints(amount):
+    #    currentSocialPoints = getSpoons()
+    #    newSocialPoints = (currentSocialPoints + amount)
+    #
+    #   return newSocialPoints
 
 
 screen spoons_and_points:
@@ -172,7 +168,7 @@ label dayOne:
         "Would you like to make breakfast today?"
 
         "Yes, make and eat breakfast (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             "You make and enjoy pancakes. They're a little lumpy, but still delicious. The effort of cooking leaves you feeling drained."
             $ eatingCounter += 1
         "No, Skip breakfast (- Hunger)":
@@ -196,7 +192,7 @@ label dayOne:
     "She knows how much energy it takes for you to be here every day, and she always offers you a warm smile for your effort."
     scene sit_on_bus
     with dissolve
-    $ spoons -= 5
+    $ spoons = changeSpoons(5)
     "You sit in your usual seat and watch the scenery go by. You are already feeling fatigued. (-5 Spoons)"
 
     if spoons < -5:
@@ -205,14 +201,12 @@ label dayOne:
     #arrival to work
     "After the bus drops you off at work, you waste no time getting to your desk."
     "Your coworker, [coworker], greets you as you make your way through the building."
-    #should Alvaro say something?
 
     #at your desk
     "You sit down and begin your work for the day"
     "You are finishing an important project with the rest of your team"
 
     #lunch
-
     "Partway through the day, your stomach begins to rumble. It's time for lunch."
     "Your co-workers approach you. They invite you to join them for lunch in the break room."
  
@@ -220,7 +214,7 @@ label dayOne:
         "Would you like to eat lunch with your co-workers?"
         "Yes, eat with your co-workers (-5 Spoons)":
             $ eatingCounter += 1
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "You join your co-workers in the break room. [coworker] tells you all about his daughter's dance recital."
             "You have fun, but being around this many people drains you of energy."
         "No, keep working (-2 Social Points, Hunger)":
@@ -244,13 +238,13 @@ label dayOne:
         "Would you like to finish all of your work today?"
 
         "Yes (-10 Spoons)":
-            $ spoons -= 10
+            $ spoons = changeSpoons(10)
             "You finish all of your work for the day, and submit it to your boss, [boss]."
             boss "Great work today, [player]."
             player "Thanks [boss] I'll see you later."
             
         "No (-5 Spoons, -2 Social Points) ":
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             $ socialPoints -= 2
             "You complete some of your work, but there are still some things left unfinished. Your co-workers do not appreciate having to pick up the slack."
     
@@ -275,7 +269,7 @@ label dayOne:
     #bus home event
     scene enter_bus
     with dissolve
-    $ spoons -= 5
+    $ spoons = changeSpoons(5) 
     "(-5 Spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."   
 
     if spoons < -5:
@@ -290,7 +284,7 @@ label dayOne:
         "Would you like to stop for groceries to make a hearty meal tonight?"
 
         "Yes, Stop for groceries (-5 Spoons)":
-            $ spoons -= 5 
+            $ spoons = changeSpoons(5) 
             scene large_grocery_store
             with dissolve
             "You buy fresh groceries. The effort leaves you feeling drained."
@@ -306,7 +300,7 @@ label dayOne:
                 "Yes, Invite friend over. (-2 Spoons, +2 Social points)":
                     $ eatingCounter += 1
                     $ socialPoints += 2
-                    $ spoons -= 2
+                    $ spoons = changeSpoons(2) 
                     "You call [bestFriend], and she comes over while you cook."
                     "You share a delicious tater-tot hotdish, but the effort of cooking leaves you feeling exhausted."
                     if spoons < -5:
@@ -319,7 +313,7 @@ label dayOne:
 
         "Stop for takeout (-2 Spoons)":
             $ eatingCounter += 1
-            $ spoons -= 2
+            $ spoons = changeSpoons(2)
             "Going to the store sounds exhausting, but you still need to eat."
             if spoons < -5:
                 jump overspentSpoons
@@ -335,7 +329,7 @@ label dayOne:
         "Would you like to do your laundry?"
 
         "Yes, Do laundry (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             $ laundryCounter = 0 
             "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
             if spoons < -5:
@@ -372,7 +366,7 @@ label dayTwo:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "You did not eat at least 2 meals yesterday. You have 5 less spoons today."
-        $ spoons -= 5
+        $ spoons = changeSpoons(5)
 
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
@@ -397,7 +391,7 @@ label dayTwo:
         "Would you like to take a shower today?"
 
         "Yes, take a shower (-2 Spoons)":
-            $ spoons -= 2
+            $ spoons = changeSpoons(2)
             $ showerCounter = 0
             "You take a warm shower. It is nice to be clean, but the effort drains you."
         "No, skip shower  (- Cleanliness)":
@@ -414,7 +408,7 @@ label dayTwo:
         "Would you like to make breakfast today?"
         
         "Yes (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             "You make and enjoy scrambled eggs. They're a little burnt, but you don't mind."
             "The effort of cooking leaves you feeling drained."
             $ eatingCounter += 1
@@ -435,7 +429,7 @@ label dayTwo:
     with dissolve
     player "I'm alright [busDriver]. How are you"
     busDriver "Same as always, my dear. Same as always."
-    $ spoons -= 5
+    $ spoons = changeSpoons(5) 
     scene sit_on_bus
     "(-5 spoons) You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
     if spoons < -5:
@@ -453,7 +447,6 @@ label dayTwo:
     boss "Thank you. I'm counting on you, [player]."
 
     #lunch
-
     "Partway through the day, your stomach begins to rumble. It's time for lunch."
     "Your co-workers approach you. They invite you to join them for lunch in the break room"
 
@@ -461,7 +454,7 @@ label dayTwo:
         "Would you like to eat lunch with your co-workers?"
 
         "Yes (-5 Spoons)":
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             $ eatingCounter += 1
             "You join your co-workers in the break room. You tell them about a new book you have been reading."
             "You have fun, but being around this many people drains you of energy."
@@ -484,8 +477,8 @@ label dayTwo:
         "Will you present to the investors?"
 
         "Yes (-6 Spoons, +3 Social Points)":
-            $ spoons -= 6
-            # $ socialPoints += 3
+            $ spoons = changeSpoons(6)
+            #$ socialPoints += 3
             "You present the project to the investors, and it goes smoothly."
             boss "Great job [player]!"
             "You are proud of yourself, but you feel exhausted after standing and talking for so long"
@@ -508,15 +501,14 @@ label dayTwo:
     "Whatever work you do not complete will have to be picked up by your co-workers "    
 
     #finish work event
-    
     menu:
         "Would you like to finish all of your work today?"
 
         "Yes (-10 Spoons)":
-            $ spoons -= 10
+            $ spoons = changeSpoons(10)
             "You finish all of your work for the day, and submit it to your boss."
         "No (-5 Spoons, -2 Social Points) ":
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             $ socialPoints -= 2
             "You complete some of your work, but there are still some things left unfinished. Your co-workers do not appreciate having to pick up the slack."
             
@@ -540,7 +532,7 @@ label dayTwo:
     with dissolve
     "You exchange nods with her, and collapse into your usual seat."
     scene sit_on_bus
-    $ spoons -= 5
+    $ spoons = changeSpoons(5)
     "(-5 Spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
     if spoons < -5:
         jump overspentSpoons
@@ -554,10 +546,11 @@ label dayTwo:
         "Would you like to make dinner?"
 
         "Yes, make dinner (-3 Spoons)":
-            $ spoons -= 3 
+            $ spoons = changeSpoons(3) 
             "You make pasta with the homemade spaghetti sauce your mom brought over the last time she visited."
             "The spaghetti is almost as good as when she makes it for you."
-            $ spoons -= 5
+            #why is this here?
+            #$ spoons -= 5
             $ eatingCounter += 1
             if spoons < -5:
                 jump overspentSpoons
@@ -572,7 +565,7 @@ label dayTwo:
         "Would you like to do your laundry?"
 
         "Yes (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
             if spoons < -5:
                 jump overspentSpoons
@@ -613,7 +606,7 @@ label dayThree:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "You did not eat at least 2 meals yesterday. You have 5 less spoons today."
-        $ spoons -= 5
+        $ spoons = changeSpoons(5)
 
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
@@ -638,7 +631,7 @@ label dayThree:
         "Would you like to take a shower today?"
 
         "Yes, Take a shower (-2 Spoons)":
-            $ spoons -= 2
+            $ spoons -= changeSpoons(2)
             $ showerCounter = 0
             "You take a warm shower. It is nice to be clean, but the effort drains you."
             player "that was not enjoyable, but at least I smell somewhat adequate"
@@ -656,7 +649,7 @@ label dayThree:
         "Would you like to make breakfast today?"
 
         "Yes, Make breakfast (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             $ eatingCounter += 1
             "You make and enjoy some buttered toast. It's the simple things in life that make it worthwhile."
             "The effort of cooking leaves you feeling drained."
@@ -675,7 +668,7 @@ label dayThree:
     with dissolve
     busDriver "Hi there [player]! Have a great day."
     player "Thank you [busDriver]. You too."
-    $ spoons -= 5
+    $ spoons = changeSpoons(5)
     scene sit_on_bus
     "(-5 Spoons) You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
 
@@ -698,7 +691,7 @@ label dayThree:
         "You ponder over his offer. Would you like to help [coworker] catch up on his work?"
 
         "Yes (-8 Spoons)":
-            $ spoons -= 8
+            $ spoons = changeSpoons(8)
             player "Sure, just forward me the files."
             coworker "Thank you [player], you're the best!"
             "[coworker] tells the rest of the team about how helpful you were."
@@ -726,7 +719,7 @@ label dayThree:
         "Would you like to eat lunch with your co-workers?"
 
         "Yes (-5 Spoons)":
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             $ eatingCounter += 1
             "You join your co-workers in the break room. You tell them about a new movie you watched the other day."
             "You have fun, but being around this many people drains you of energy."
@@ -750,10 +743,10 @@ label dayThree:
         "Would you like to finish all of your work today?"
 
         "Yes (-10 Spoons)":
-            $ spoons -= 10
+            $ spoons = changeSpoons(10)
             "You finish all of your work for the day, and submit it to your boss."   
         "No (-5 Spoons)":
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "You complete some of your work, but there are still some things left unfinished. Your co-workers do not appreciate having to pick up the slack."
             $ socialPoints -= 2
     
@@ -773,7 +766,7 @@ label dayThree:
     "You exchange nods with her, and collapse into your usual seat." 
     scene enter_bus
     with dissolve
-    $ spoons -= 5
+    $ spoons = changeSpoons(5)
     "(-5 Spoons) Today has been long and exhausting. You can feel the fatigue wearing down on your body."
     "Watching the scenery helps clear your head after such a long day at work."
 
@@ -788,7 +781,7 @@ label dayThree:
         "Would you like to make dinner?"
 
         "Yes (-3 Spoons)":
-            $ spoons -= 3 
+            $ spoons = changeSpoons(3) 
             "You make a delicious grilled cheese sandwich."
             "The sage you add gives it an extra pop of flavor."
             $ eatingCounter += 1
@@ -803,7 +796,7 @@ label dayThree:
         "Would you like to do your laundry?"
 
         "Yes, Do your laundry (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             $ laundryCounter = 0 
             "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
         "No (- Laundry)":
@@ -843,7 +836,7 @@ label dayFour:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "You did not eat at least 2 meals yesterday. You have 5 less spoons today."
-        $ spoons -= 5
+        $ spoons = changeSpoons(5)
 
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
@@ -869,7 +862,7 @@ label dayFour:
 
         "Yes (-2 Spoons)":
             $ showerCounter = 0
-            $ spoons -= 2
+            $ spoons = changeSpoons(2)
             "You take a warm shower. It is nice to be clean, but the effort drains you."
             if spoons < -5:
                 jump overspentSpoons
@@ -885,7 +878,7 @@ label dayFour:
         "Would you like to make breakfast today?"
 
         "Yes (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             $ eatingCounter += 1
             "You make and enjoy some fresh fruit and tea. It's refreshing and rejuvenating."
             "The effort of preparing food leaves you feeling drained."
@@ -905,7 +898,7 @@ label dayFour:
 
         "Yes (-15 Spoons)":
             #go out pathway, start by taking the bus
-            $ spoons -= 15
+            $ spoons = changeSpoons(15)
             "You tell [bestFriend] that you'll meet her at your favorite diner."
             "Your limbs ache as you pull on your shoes, but you are excited to spend time with [bestFriend]."
             if spoons < -5:
@@ -922,7 +915,7 @@ label dayFour:
             "You take a seat at the back of the bus."
             scene enter_bus
             with dissolve
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
 
             #at the resturant
             "[bestFriend] is waiting for you by the time the bus arrives at the diner."
@@ -935,7 +928,7 @@ label dayFour:
             player "I've been okay. Busy with work. What about you?"
             "[bestFriend] tells you all about the research project she is working on. It's nice to talk with her like this."
             "After nearly two hours of sitting, the ache in your hips becomes nearly unbearable."
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             $ eatingCounter += 1
             "When you finish eating, [bestFriend] asks if you would like to go on a walk to continue hanging out."
             
@@ -943,12 +936,11 @@ label dayFour:
                 jump overspentSpoons
 
             #keep going out with friends, or go home
-            
             menu:
                 "Would you like to go on a walk?"
 
                 "Yes (-7 Spoons)":
-                    $ spoons -= 7
+                    $ spoons = changeSpoons(7)
                     "You agree and pay for your meal."
                     if spoons < -5:
                         jump overspentSpoons
@@ -969,7 +961,7 @@ label dayFour:
 
             "You are not at the bus stop for long before [busDriver] pulls up, ready to take you home."
             "Today has been long and exhausting, even if it was fun."
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "(-5 Spoons) You can feel the fatigue wearing down on your body."
             if spoons < -5:
                 jump overspentSpoons
@@ -984,7 +976,7 @@ label dayFour:
                 "Would you like to make dinner?"
 
                 "Yes (-3 Spoons)":
-                    $ spoons -= 3 
+                    $ spoons = changeSpoons(3) 
                     "You make a delicious grilled cheese sandwich."
                     "The sage you add gives it an extra pop of flavor."
                     $ eatingCounter += 1
@@ -1002,7 +994,7 @@ label dayFour:
 
                 "Yes (-3 Spoons)":
                     #do chores
-                    $ spoons -= 3
+                    $ spoons = changeSpoons(3)
                     $ laundryCounter = 0 
                     "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
                     if spoons < -5:
@@ -1025,7 +1017,7 @@ label dayFour:
             jump newDay
 
         "No (-6 Social Points)":
-            $ socialPoints -= 6
+            $ socialPoints = changeSpoons(6)
             #stay at home path
             "You tell [bestFriend] that you're not really feeling up to hanging out today."
             "She is disappointed, but tells you that she understands."
@@ -1042,7 +1034,7 @@ label dayFour:
                 "Would you like to make dinner?"
 
                 "Yes (-3 Spoons)":
-                    $ spoons -= 3
+                    $ spoons = changeSpoons(3)
                     "You make a delicious grilled cheese sandwich."
                     if spoons < -5:
                         jump overspentSpoons
@@ -1061,7 +1053,7 @@ label dayFour:
                 
                 "Yes (-3 Spoons)":
                     #do chores
-                    $ spoons -= 3
+                    $ spoons = changeSpoons(3)
                     $ laundryCounter = 0 
                     "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
                     if spoons < -5:
@@ -1098,7 +1090,7 @@ label dayFive:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "You did not eat at least 2 meals yesterday. You have 5 less spoons today."
-        $ spoons -= 5
+        $ spoons = changeSpoons(5)
 
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
@@ -1124,7 +1116,7 @@ label dayFive:
         
         "Yes, Take a shower (-2 Spoons)":
             $ showerCounter = 0
-            $ spoons -= 2
+            $ spoons = changeSpoons(2)
             "You take a warm shower. It is nice to be clean, but the effort drains you."
 
             if spoons < -5:
@@ -1141,7 +1133,7 @@ label dayFive:
         "Would you like to make breakfast today?"
 
         "Yes (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             $ eatingCounter += 1
             "You make and enjoy some fresh fruit and tea. It's refreshing and rejuvenating."
             "The effort of preparing food leaves you feeling drained."
@@ -1161,7 +1153,7 @@ label dayFive:
         "Would you like to spend the day with [bestFriend]?"
 
         "Yes (-15 Spoons)":
-            $ spoons -= 15
+            $ spoons = changeSpoons(15)
             "You tell [bestFriend] that you'll meet her at your favorite diner."
             "Your limbs ache as you pull on your shoes, but you are excited to spend time with [bestFriend]."
             if spoons < -5:
@@ -1179,7 +1171,7 @@ label dayFive:
             "You take a seat at the back of the bus."
             scene sit_on_bus
             with fade
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "(-5 Spoons) You are already feeling fatigued."
             if spoons < -5:
                 jump overspentSpoons
@@ -1192,7 +1184,7 @@ label dayFive:
             bestFriend "How have you been [player]? I feel like I haven't seen you in forever!"
             player "I've been okay. Busy with work. What about you?"
             "[bestFriend] tells you all about the book she is currently reading. It's nice to talk with her like this."
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "(-5 Spoons) After nearly two hours of sitting, the ache in your hips becomes nearly unbearable."
             if spoons < -5:
                 jump overspentSpoons
@@ -1202,7 +1194,7 @@ label dayFive:
                 "Would you like to go to the movie theater?"
 
                 "Yes (-7 Spoons)":
-                    $ spoons -= 7
+                    $ spoons = changeSpoons(7)
                     "You agree and pay for your meal."
 
                     if spoons < -5:
@@ -1231,7 +1223,7 @@ label dayFive:
             "You exchange nods with her, and collapse into your usual seat."
             scene sit_on_bus
             "Today has been long and exhausting, even if it was fun."
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "(-5 Spoons) You can feel the fatigue wearing down on your body."
 
             if spoons < -5:
@@ -1247,7 +1239,7 @@ label dayFive:
                 "Would you like to make dinner?"
 
                 "Yes (-3 spoons)":
-                    $ spoons -= 3 
+                    $ spoons = changeSpoons(3) 
                     $ eatingCounter += 1
                     "You make a delicious grilled cheese sandwich."
                     "The sage you add gives it an extra pop of flavor."
@@ -1262,6 +1254,7 @@ label dayFive:
                 "Would you like to do your laundry?"
                 
                 "Yes (-3 Spoons)":
+                    $ spoons = changeSpoons(3) 
                     "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
                     $ laundryCounter = 0
                 "No (- Laundry)":
@@ -1302,7 +1295,7 @@ label dayFive:
                 "Would you like to make dinner?"
 
                 "Yes (-3 Spoons)":
-                    $ spoons -= 3
+                    $ spoons = changeSpoons(3)
                     $ eatingCounter += 1
                     "You make a delicious grilled cheese sandwich."
                     "The sage you add gives it an extra pop of flavor."
@@ -1317,7 +1310,7 @@ label dayFive:
                 "Would you like to do your laundry?"
 
                 "Yes (-3 Spoons)":
-                    $ spoons -= 3
+                    $ spoons = changeSpoons(3)
                     "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
                     $ laundryCounter = 0
                 "No (- Laundry)":
@@ -1356,7 +1349,7 @@ label daySix:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "You did not eat at least 2 meals yesterday. You have 5 less spoons today."
-        $ spoons -= 5
+        $ spoons = changeSpoons(5)
 
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
@@ -1382,7 +1375,7 @@ label daySix:
 
         "Yes, Take a shower (-2 Spoons)":
             $ showerCounter = 0
-            $ spoons -= 2
+            $ spoons = changeSpoons(2)
             "You take a warm shower. It is nice to be clean, but the effort drains you."
 
             if spoons < -5:
@@ -1399,7 +1392,7 @@ label daySix:
         "Would you like to make breakfast today?"
 
         "Yes (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             $ eatingCounter += 1
             "You make and enjoy some fresh fruit and tea. It's refreshing and rejuvenating."
             "The effort of preparing food leaves you feeling drained."
@@ -1418,7 +1411,7 @@ label daySix:
         "Would you like to spend the day with [bestFriend]?"
 
         "Yes (-15 Spoons)":
-            $ spoons -= 15
+            $ spoons = changeSpoons(15)
             "You tell [bestFriend] that you'll meet her at your favorite diner."
             "Your limbs ache as you pull on your shoes, but you are excited to spend time with [bestFriend]."
             if spoons < -5:
@@ -1437,7 +1430,7 @@ label daySix:
             "You take a seat at the back of the bus."
             scene sit_on_bus
             with dissolve
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "(-5 Spoons) You are already feeling fatigued."
             if spoons < -5:
                 jump overspentSpoons
@@ -1449,7 +1442,7 @@ label daySix:
             bestFriend "How have you been [player]? I feel like I haven't seen you in forever!"
             player "I've been okay. Busy with work. What about you?"
             "[bestFriend] tells you all about the book she is currently reading. It's nice to talk with her like this."
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "(-5 Spoons) After nearly two hours of sitting, the ache in your hips becomes nearly unbearable."
             if spoons < -5:
                 jump overspentSpoons
@@ -1460,7 +1453,7 @@ label daySix:
                 "Would you like to invite her to come home with you?"
 
                 "Yes (-7 Spoons)":
-                    $ spoons -= 7
+                    $ spoons = changeSpoons(7)
                     "[bestFriend] is thrilled and agrees to come home with you to continue hanging out."
                     if spoons < -5:
                         jump overspentSpoons
@@ -1475,7 +1468,7 @@ label daySix:
                     player "Drive safe!"
                     "You wave to [bestFriend] as she drives away, a content smile settling across your face."
                 "No (-5 Spoons)":
-                    $ spoons -= 5
+                    $ spoons = changeSpoons(5)
                     "As much as you'd like to continue hanging out, you don't have the energy to keep socializing."
                     "You ask [bestFriend] to give you a ride home, and in exchange, you pay for both of your meals."
                     if spoons < -5:
@@ -1494,7 +1487,7 @@ label daySix:
                 "Would you like to make dinner?"
 
                 "Yes (-3 spoons)":
-                    $ spoons -= 3 
+                    $ spoons = changeSpoons(3) 
                     $ eatingCounter += 1
                     "You make a delicious grilled cheese sandwich."
                     "The sage you add gives it an extra pop of flavor."
@@ -1509,7 +1502,7 @@ label daySix:
                 "Would you like to do your laundry?"
 
                 "Yes (-3 Spoons)":
-                    $ spoons -= 3
+                    $ spoons = changeSpoons(3)
                     "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
                     $ laundryCounter = 0
                 "No (- Laundry)":
@@ -1541,7 +1534,6 @@ label daySix:
             if socialPoints < 0:
                 jump noSocialPoints
 
-
             scene main_bedroom
             with dissolve
 
@@ -1568,7 +1560,7 @@ label daySix:
                 "Would you like to do your laundry?"
 
                 "Yes (-3 Spoons)":
-                    $ spoons -= 3
+                    $ spoons = changeSpoons(3)
                     "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
                     $ laundryCounter = 0
                 "No (- Laundry)":
@@ -1608,7 +1600,7 @@ label daySeven:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "You did not eat at least 2 meals yesterday. You have 5 less spoons today."
-        $ spoons -= 5
+        $ spoons = changeSpoons(5)
 
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
@@ -1635,7 +1627,7 @@ label daySeven:
         "Would you like to take a shower today?"
 
         "Yes(-2 Spoons)":
-            $ spoons -= 2
+            $ spoons = changeSpoons(2)
             $ showerCounter = 0
             "You take a warm shower. It is nice to be clean, but the effort drains you."
         "No (- Cleanliness)":
@@ -1652,7 +1644,7 @@ label daySeven:
         "Would you like to make breakfast today?"
 
         "Yes (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             "You make and enjoy scrambled eggs. You might have added a little too much salt, but they're still tasty."
             "The effort of cooking leaves you feeling drained."
             $ eatingCounter += 1
@@ -1672,7 +1664,7 @@ label daySeven:
     player "I sure am."
     scene sit_on_bus
     with dissolve
-    $ spoons -= 5
+    $ spoons = changeSpoons(5)
     "You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
 
     if spoons < -5:
@@ -1693,7 +1685,7 @@ label daySeven:
         
         "Yes (-5 Spoons)":
             $ eatingCounter += 1
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "You join your co-workers in the break room. [coworker] tells you about a new book he has been reading."
             "You have fun, but being around this many people drains you of energy."
             if spoons < -5:
@@ -1715,13 +1707,13 @@ label daySeven:
         "Would you like to finish all of your work today?"
 
         "Yes (-10 Spoons)":
-            $ spoons -= 10
+            $ spoons = changeSpoons(10)
             "You finish all of your work for the day, and submit it to your boss."
             boss "Great work today, [player]."
             player "Thanks [boss], I'll see you later."
             
         "No (-5 Spoons)":
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "You complete some of your work, but there are still some things left unfinished. Your co-workers do not appreciate having to pick up the slack."
             $ socialPoints -= 2
             if socialPoints < 0:
@@ -1746,7 +1738,7 @@ label daySeven:
     busDriver "Are you ready to go home, hon?"
     player "Absolutely."
 
-    $ spoons -= 5
+    $ spoons = changeSpoons(5)
     "Today has been long and exhausting. You can feel the fatigue wearing down on your body."
 
     if spoons < -5:
@@ -1759,7 +1751,7 @@ label daySeven:
         "Would you like to stop for groceries to make a hearty meal tonight, or would you rather save your energy and get takeout?"
 
         "Get groceries (-5 Spoons)":
-            $ spoons -= 5 
+            $ spoons = changeSpoons(5) 
             scene large_grocery_store
             with dissolve
             "You buy fresh groceries. The effort leaves you feeling drained."
@@ -1775,7 +1767,7 @@ label daySeven:
             
             menu:
                 "Yes (-2 Spoons)":
-                    $ spoons -= 2
+                    $ spoons = changeSpoons(2)
                     $ eatingCounter += 1
                     "You call [bestFriend], and she comes over while you cook."
                     "You share a delicious leek and potato soup, but the effort of cooking leaves you feeling exhausted."
@@ -1789,7 +1781,7 @@ label daySeven:
                     "You skip dinner."
 
         "Get takeout (-2 Spoons)":
-            $ spoons -= 2
+            $ spoons = changeSpoons(2)
             scene large_diner
             with dissolve
             "Grocery shopping sounds exhausting, so you elect to get takeout instead."
@@ -1800,7 +1792,7 @@ label daySeven:
 
             menu:
                 "Yes (-2 spoons)":
-                    $ spoons -= 2
+                    $ spoons = changeSpoons(2)
                     "You call [bestFriend], and she comes over before the food goes cold."
                     bestFriend "Thank you for thinking of me, [player]! This was delicious"
                     player "Of course!"
@@ -1814,14 +1806,13 @@ label daySeven:
                     "You eat your takeout alone and put the leftovers in the fridge."            
             
     #lunadry event      
-
     "Despite it having been a long day, you notice that you need to do laundry."
 
     menu:
         "Would you like to do your laundry?"
 
         "Yes (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             $ laundryCounter = 0 
             "You wash, dry, fold, and put away all of your laundry. You are exhausted, but at least you get to go to bed with clean sheets."
         "No":
@@ -1856,7 +1847,7 @@ label dayEight:
     if eatingCounter < 2:
         #player did not eat enough during the day prior, deduct spoons
         "You did not eat at least 2 meals yesterday. You have 5 less spoons today."
-        $ spoons -= 5
+        $ spoons = changeSpoons(5)
 
     if showerCounter >= 3:
         #player has not showered in the past few days, deduct spoons
@@ -1881,7 +1872,7 @@ label dayEight:
         "Would you like to take a shower today?"
 
         " Yes, take a shower (-2 Spoons)":
-            $ spoons -= 2
+            $ spoons = changeSpoons(2)
             $ showerCounter = 0
             "You take a warm shower. It is nice to be clean, but the effort drains you."
         "No, skip shower (- Cleanliness)":
@@ -1898,7 +1889,7 @@ label dayEight:
         "Would you like to make breakfast today?"
 
         "Yes, make and eat breakfast (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             "You make and enjoy pancakes. They're a little lumpy, but still delicious. The effort of cooking leaves you feeling drained."
             player "That was tasty!"
             $ eatingCounter += 1
@@ -1921,7 +1912,7 @@ label dayEight:
     player "I'm alright [busDriver]. How are you?"
     "Same as always, my dear. Same as always."
     scene sit_on_bus
-    $ spoons -= 5
+    $ spoons = changeSpoons(5)
     "You sit in your usual seat and watch the scenery go by. You are already feeling fatigued."
 
     if spoons < -5:
@@ -1947,7 +1938,7 @@ label dayEight:
 
         "Yes (-5 Spoons)":
             $ eatingCounter += 1
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             "You join your co-workers in the break room. You tell them about a new show you have been watching."
             "You have fun, but being around this many people drains you of energy."
             if spoons < -5:
@@ -1969,7 +1960,7 @@ label dayEight:
         "Will you finish your coworkers unfinished work?"  
 
         "Yes (-6 Spoons)":
-            $ spoons -= 6
+            $ spoons = changeSpoons(6)
             "You finish all of the extra work and submit it to your boss."
             $ socialPoints += 3
             "He smiles gratefully."
@@ -1991,10 +1982,10 @@ label dayEight:
         "Would you like to finish all of your work today?"
 
         "Yes (-10 Spoons)":
-            $ spoons -= 10
+            $ spoons = changeSpoons(10)
             "You finish all of your work for the day, and submit it to your boss."
         "No (-5 spoons)":
-            $ spoons -= 5
+            $ spoons = changeSpoons(5)
             $ socialPoints -= 2
             "You complete some of your work, but there are still some things left unfinished. Your co-workers do not appreciate having to pick up the slack."
 
@@ -2017,7 +2008,7 @@ label dayEight:
     player "You exchange nods with her, and collapse into your usual seat."
     scene enter_bus
     with dissolve
-    $ spoons -= 5
+    $ spoons = changeSpoons(5)
     "(-5 spoons) Today has been long and exhausting. You can feel the fatigue wearing down on you."
 
     if spoons < -5:
@@ -2036,7 +2027,7 @@ label dayEight:
         "Would you like to make dinner?"
 
         "Yes (-3 Spoons)":
-            $ spoons -= 3 
+            $ spoons = changeSpoons(3) 
             "You make stew with some things that you bought the last time you went grocery shopping, happy you got to use some of the vegetables you never know what to do with."
             $ eatingCounter += 1
             "It was perfect, and exactly what you were craving."
@@ -2054,7 +2045,7 @@ label dayEight:
         "Would you like to do your laundry?"
         
         "Yes (-3 Spoons)":
-            $ spoons -= 3
+            $ spoons = changeSpoons(3)
             "You wash, dry, fold, and put away all of your laundry. You are exhausted, but going to bed with clean sheets was worth it."
             $ laundryCounter = 0 
         "No (- Laundry)":
