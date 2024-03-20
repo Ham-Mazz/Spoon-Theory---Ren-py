@@ -35,6 +35,27 @@ init python:
     def getDifficultlyLevel():
         return difficultyLevel
 
+    def getSpoons():
+        return spoons
+
+    def changeSpoons(amount):
+        currentSpoons = getSpoons()
+        newSpoons = (currentSpoons - amount)
+
+        return newSpoons
+
+    def getSocialPoints():
+        return socialPoints
+
+    def changeSocialPoints(amount):
+        currentSocialPoints = getSpoons()
+        newSocialPoints = (currentSpoons + amount)
+
+        return 
+
+
+
+
 screen spoons_and_points:
     hbox:
         xalign 0.05
@@ -132,7 +153,7 @@ label dayOne:
         "Would you like to take a shower today?"
 
         "Yes, take a shower (-2 Spoons)":
-            $ spoons -= 2
+            $ spoons = changeSpoons(2)
             $ showerCounter = 0
             "You take a warm shower. It is nice to be clean, but the effort drains you."
         "No, skip shower  (- Cleanliness)":
